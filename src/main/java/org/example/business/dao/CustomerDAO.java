@@ -9,4 +9,8 @@ import java.util.Optional;
 public interface CustomerDAO {
 
     Optional<Customer> findByEmail(String email);
+
+    void saveOrder(Customer customer);
+
+    Customer saveCustomer(Customer customer);
 }

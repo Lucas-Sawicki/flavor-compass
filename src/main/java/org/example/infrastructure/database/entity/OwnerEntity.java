@@ -34,6 +34,6 @@ public class OwnerEntity {
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
-    private Set<RestaurantEntity> restaurant;
+    private Set<RestaurantEntity> restaurants;
 
 }
