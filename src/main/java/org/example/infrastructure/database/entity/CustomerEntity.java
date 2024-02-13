@@ -33,6 +33,8 @@ public class CustomerEntity {
 
     @Column(name = "phone", unique = true)
     private String phone;
+    @Column(name = "password")
+    private String password;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
@@ -41,7 +43,7 @@ public class CustomerEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<OpinionEntity> opinions;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<OrdersEntity> orders;
 
 }

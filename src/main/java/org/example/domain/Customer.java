@@ -18,6 +18,7 @@ public class Customer {
      String surname;
      String email;
      String phone;
+     String password;
      Address address;
      Set<Opinion> opinions;
      Set<Orders> orders;

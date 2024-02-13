@@ -25,4 +25,12 @@ public class Orders {
     Restaurant restaurant;
     MenuItem menuItem;
     List<OrderItem> orderItems;
+
+    public String getStatus() {
+        if(status == null){
+            return withStatus("pending").status;
+        } else {
+            return this.status;
+        }
+    }
 }

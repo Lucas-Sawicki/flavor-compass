@@ -28,8 +28,10 @@ public class CustomerService {
     public void saveOrder(Customer customer) {
         customerDAO.saveOrder(customer);
     }
+
     @Transactional
-    public Customer saveCustomer(Customer customer) {
-        return customerDAO.saveCustomer(customer);
+    public void saveCustomer(Customer customer) {
+        customerDAO.saveCustomer(customer);
     }
+
 }

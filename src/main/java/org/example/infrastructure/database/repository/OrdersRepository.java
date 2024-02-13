@@ -16,9 +16,8 @@ public class OrdersRepository implements OrdersDAO {
     private final OrdersJpaRepository ordersJpaRepository;
     private final OrdersEntityMapper ordersEntityMapper;
 
-    //TODO
     @Override
     public List<Orders> findPendingOrders() {
-        return null;
+        return ordersJpaRepository.findAllByStatus("pending").stream().toList();
     }
 }

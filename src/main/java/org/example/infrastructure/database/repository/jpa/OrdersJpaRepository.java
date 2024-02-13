@@ -10,5 +10,5 @@ import java.util.Set;
 @Repository
 public interface OrdersJpaRepository extends JpaRepository<OrdersEntity, Integer> {
 
-    Set<Orders> findAllByPendingStatus();
+    Set<Orders> findAllByStatus(String status);
 }
