@@ -2,6 +2,7 @@ package org.example.api.dto.mapper;
 
 import org.example.domain.Customer;
 import org.example.domain.MenuItem;
+import org.example.domain.Owner;
 import org.example.domain.Restaurant;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
@@ -27,6 +28,12 @@ public interface ObjectMapper {
     default String mapCustomerToString(Customer customer){
         return Optional.ofNullable(customer)
                 .map(Customer::getName)
+                .orElse(null);
+    }
+    @Named("mapOwnerToString")
+    default String mapOwnerToString(Owner owner){
+        return Optional.ofNullable(owner)
+                .map(Owner::getName)
                 .orElse(null);
     }
     @Named("mapRestaurantToString")

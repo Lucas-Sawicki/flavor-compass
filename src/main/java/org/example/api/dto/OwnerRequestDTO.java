@@ -11,20 +11,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerRequestDTO {
+public class OwnerRequestDTO {
 
-    private String customerName;
-    private String customerSurname;
+    private String ownerName;
+    private String ownerSurname;
     @Pattern(regexp = "^[+]\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$")
-    private String customerPhone;
+    private String ownerPhone;
     @Email
-    private String customerEmail;
+    private String ownerEmail;
     private String password;
-    private String customerAddressCountry;
-    private String customerAddressCity;
-    private String customerAddressStreet;
-    private String customerAddressPostalCode;
-
 
 
 }

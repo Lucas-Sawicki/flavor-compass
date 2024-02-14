@@ -12,7 +12,7 @@ public interface OrdersEntityMapper {
     @Mapping(target = "customer.orders", ignore = true)
     @Mapping(target = "customer.opinions", ignore = true)
     @Mapping(target = "orderItems.order", ignore = true)
-    @Mapping(target = "restaurant.address.customer", ignore = true)
+//    @Mapping(target = "restaurant.address.customer", ignore = true)
     Orders mapFromEntity(OrdersEntity entity);
 
 //TODO

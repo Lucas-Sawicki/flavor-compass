@@ -4,10 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.business.dao.OrdersDAO;
-import org.example.domain.Customer;
-import org.example.domain.MenuItem;
-import org.example.domain.OrderItem;
-import org.example.domain.Orders;
+import org.example.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -18,10 +15,13 @@ import java.util.*;
 @AllArgsConstructor
 public class OrdersService {
 
+
     private final CustomerService customerService;
+    private final RestaurantService restaurantService;
     private final MenuItemService menuItemService;
     private final OrderItemService orderItemService;
     private final OrdersDAO ordersDAO;
+
 
 
 
@@ -41,6 +41,8 @@ public class OrdersService {
         existingOrdersRequests.add(orderRequest);
         customerService.saveOrder(customer.withOrders(existingOrdersRequests));
     }
+
+
 
     private Orders buildOrderRequest(
             Orders orderRequest,

@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.CustomerDTO;
 import org.example.api.dto.CustomerRequestDTO;
-import org.example.api.dto.mapper.CustomerMapper;
+import org.example.api.dto.mapper.UserMapper;
 import org.example.api.dto.mapper.OrdersMapper;
 import org.example.business.CustomerService;
 import org.example.business.OrdersService;
@@ -24,7 +24,7 @@ public class CustomerController {
 
     private final OrdersService ordersService;
     private final OrdersMapper ordersMapper;
-    private final CustomerMapper customerMapper;
+    private final UserMapper userMapper;
     private final CustomerService customerService;
 
     CustomerDTO customerDTO;
@@ -50,7 +50,7 @@ public class CustomerController {
             @Valid @ModelAttribute(value = "customerRequestDTO") CustomerRequestDTO customer
     ) {
 
-        Customer mappedCustomer = customerMapper.map(customer);
+        Customer mappedCustomer = userMapper.map(customer);
         customerService.saveCustomer(mappedCustomer);
 
         return "customer_portal";

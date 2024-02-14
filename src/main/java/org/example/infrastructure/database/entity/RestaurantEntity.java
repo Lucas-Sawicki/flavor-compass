@@ -41,7 +41,7 @@ public class RestaurantEntity {
     private OwnerEntity owner;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private List<OpinionEntity> opinion;
+    private List<OpinionEntity> opinions;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "opening_hours_id")
