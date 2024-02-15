@@ -2,10 +2,10 @@ package org.example.api.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.api.dto.CustomerDTO;
+
 import org.example.api.dto.CustomerRequestDTO;
-import org.example.api.dto.mapper.UserMapper;
 import org.example.api.dto.mapper.OrdersMapper;
+import org.example.api.dto.mapper.UserMapper;
 import org.example.business.CustomerService;
 import org.example.business.OrdersService;
 import org.example.domain.Customer;
@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CustomerController {
 
     private static final String CUSTOMER = "/customer";
-    private static final String CREATE_CUSTOMER = "/customer/create";
+    private static final String CREATE_CUSTOMER = "/create/customer";
 
     private final OrdersService ordersService;
     private final OrdersMapper ordersMapper;
     private final UserMapper userMapper;
     private final CustomerService customerService;
-
-    CustomerDTO customerDTO;
 
 
     @GetMapping(value = CUSTOMER)
@@ -49,10 +47,8 @@ public class CustomerController {
     public String createCustomer(
             @Valid @ModelAttribute(value = "customerRequestDTO") CustomerRequestDTO customer
     ) {
-
         Customer mappedCustomer = userMapper.map(customer);
         customerService.saveCustomer(mappedCustomer);
-
         return "customer_portal";
     }
 

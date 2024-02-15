@@ -11,7 +11,7 @@ import java.util.Set;
 @Builder
 @EqualsAndHashCode(of = "ownerId")
 @NoArgsConstructor
-@ToString(of = {"ownerId", "name", "surname", "email"})
+@ToString(of = {"ownerId", "name", "surname"})
 @AllArgsConstructor
 @Table(name = "owner")
 public class OwnerEntity {
@@ -27,11 +27,13 @@ public class OwnerEntity {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "email", unique = true)
-    private String email;
+    @Column(name = "phone", unique = true)
+    private String phone;
 
-    @Column(name = "password")
-    private String password;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
     private Set<RestaurantEntity> restaurants;

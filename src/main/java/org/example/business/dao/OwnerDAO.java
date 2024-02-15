@@ -9,8 +9,6 @@ import java.util.Optional;
 @Repository
 public interface OwnerDAO {
 
-    Optional<Owner> findByEmail(String email);
-
     void saveOwner(Owner owner);
 
 }

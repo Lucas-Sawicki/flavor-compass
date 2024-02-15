@@ -17,9 +17,8 @@ public class CustomerRequestDTO {
     private String customerSurname;
     @Pattern(regexp = "^[+]\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$")
     private String customerPhone;
-    @Email
     private String customerEmail;
-    private String password;
+    private String customerPassword;
     private String customerAddressCountry;
     private String customerAddressCity;
     private String customerAddressStreet;

@@ -1,12 +1,11 @@
 package org.example.api.dto.mapper;
 
-import org.example.api.dto.CustomerDTO;
 import org.example.api.dto.CustomerRequestDTO;
 import org.example.api.dto.OwnerRequestDTO;
-import org.example.domain.Address;
-import org.example.domain.Customer;
-import org.example.domain.Owner;
+import org.example.domain.*;
 import org.mapstruct.Mapper;
+
+import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -17,8 +16,14 @@ public interface UserMapper {
                 .name(dto.getCustomerName())
                 .surname(dto.getCustomerSurname())
                 .phone(dto.getCustomerPhone())
-                .email(dto.getCustomerEmail())
-                .password(dto.getPassword())
+                .user(User.builder()
+                        .email(dto.getCustomerEmail())
+                        .password(dto.getCustomerPassword())
+                        .active(true)
+                        .role(Role.builder()
+                                .role("CUSTOMER")
+                                .build())
+                        .build())
                 .address(Address.builder()
                         .country(dto.getCustomerAddressCountry())
                         .city(dto.getCustomerAddressCity())
@@ -27,16 +32,21 @@ public interface UserMapper {
                         .build())
                 .build();
     }
+
     default Owner map(OwnerRequestDTO dto) {
         return Owner.builder()
                 .name(dto.getOwnerName())
                 .surname(dto.getOwnerSurname())
                 .phone(dto.getOwnerPhone())
-                .email(dto.getOwnerEmail())
-                .password(dto.getPassword())
+                .user(User.builder()
+                        .email(dto.getOwnerEmail())
+                        .active(true)
+                        .password(dto.getOwnerPassword())
+                        .role(Role.builder()
+                                .role("OWNER")
+                                .build())
+                        .build())
                 .build();
     }
 
-
-    CustomerDTO map(Customer customer);
 }

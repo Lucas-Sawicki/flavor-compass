@@ -12,7 +12,7 @@ import java.util.Set;
 @Builder
 @EqualsAndHashCode(of = "customerId")
 @NoArgsConstructor
-@ToString(of = {"customerId", "name", "surname", "email"})
+@ToString(of = {"customerId", "name", "surname", "phone"})
 @AllArgsConstructor
 @Table(name = "customer")
 public class CustomerEntity {
@@ -28,13 +28,12 @@ public class CustomerEntity {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "email", unique = true)
-    private String email;
-
     @Column(name = "phone", unique = true)
     private String phone;
-    @Column(name = "password")
-    private String password;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")

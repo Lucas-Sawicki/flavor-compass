@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.infrastructure.database.entity.UserEntity;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -9,17 +10,16 @@ import java.util.Set;
 @Value
 @With
 @Builder
-@EqualsAndHashCode(of = "email")
-@ToString(of = {"ownerId", "name", "surname", "email"})
+@EqualsAndHashCode(of = "ownerId")
+@ToString(of = {"ownerId", "name", "surname", "phone"})
 public class Owner {
 
      Long ownerId;
      String name;
      String surname;
      String phone;
-     String email;
      Address address;
-     String password;
+     User user;
      Set<Restaurant> restaurant;
 
 

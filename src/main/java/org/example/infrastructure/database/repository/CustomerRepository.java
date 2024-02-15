@@ -12,7 +12,6 @@ import org.example.infrastructure.database.repository.mapper.OrdersEntityMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -24,11 +23,6 @@ public class CustomerRepository implements CustomerDAO {
     private final OrdersJpaRepository ordersJpaRepository;
 
 
-    @Override
-    public Optional<Customer> findByEmail(String email) {
-        return  customerJpaRepository.findByEmail(email)
-                .map(customerEntityMapper::mapFromEntity);
-    }
 
     @Override
     public void saveOrder(Customer customer) {
@@ -46,5 +40,6 @@ public class CustomerRepository implements CustomerDAO {
         CustomerEntity saved = customerJpaRepository.saveAndFlush(toSave);
         customerEntityMapper.mapFromEntity(saved);
     }
+
 
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/customer/create}" th:object="${customerRequestDTO}" method="POST">
+<form action="#" th:action="@{/create/customer}" th:object="${customerRequestDTO}" method="POST">
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-6">
@@ -32,15 +32,6 @@
                     <div class="col-md-3">
                         <input type="text" id="customerSurname"
                                th:field="*{customerSurname}" required>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="customerEmail">Customer email:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="customerEmail"
-                               th:field="*{customerEmail}" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -87,15 +78,24 @@
                         <input type="text" id="customerAddressPostalCode"
                                th:field="*{customerAddressPostalCode}" required>
                     </div>
-                    <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="password">Password:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="password"
-                               th:field="*{password}" required>
-                    </div>
-                    </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="customerEmail">Customer email:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="customerEmail"
+                                       th:field="*{customerEmail}" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="customerPassword">Password:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="customerPassword"
+                                       th:field="*{customerPassword}" required>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

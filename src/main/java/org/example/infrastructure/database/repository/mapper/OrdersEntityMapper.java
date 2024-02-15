@@ -8,11 +8,13 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrdersEntityMapper {
-    @Mapping(target = "customer.address.restaurant", ignore = true)
-    @Mapping(target = "customer.orders", ignore = true)
-    @Mapping(target = "customer.opinions", ignore = true)
-    @Mapping(target = "orderItems.order", ignore = true)
-//    @Mapping(target = "restaurant.address.customer", ignore = true)
+//    @Mapping(target = "customer.address.restaurant", ignore = true)
+//    @Mapping(target = "customer.orders", ignore = true)
+//    @Mapping(target = "customer.opinions", ignore = true)
+//    @Mapping(target = "orderItems.order", ignore = true)
+//    @Mapping(target = "customer.user", ignore = true)
+//    @Mapping(target = "restaurant.address", ignore = true)
+//    @Mapping(target = "customerEntity.address", ignore = true)
     Orders mapFromEntity(OrdersEntity entity);
 
 //TODO
@@ -21,9 +23,9 @@ public interface OrdersEntityMapper {
 //                .withStatus("completed");
 //    }
 
-    @Mapping(target = "customer.address", ignore = true)
-    @Mapping(target = "customer.orders", ignore = true)
-    @Mapping(target = "customer.opinions", ignore = true)
-    @Mapping(target = "orderItems.order", ignore = true)
+//    @Mapping(target = "customer.address", ignore = true)
+//    @Mapping(target = "customer.orders", ignore = true)
+//    @Mapping(target = "customer.opinions", ignore = true)
+//    @Mapping(target = "orderItems.order", ignore = true)
     OrdersEntity mapToEntity(Orders orders);
 }

@@ -21,6 +21,7 @@ public interface RestaurantMapper {
                 .localName(dto.getRestaurantName())
                 .website(dto.getRestaurantWebsite())
                 .phone(dto.getRestaurantPhone())
+                .email(dto.getRestaurantEmail())
                 .address(Address.builder()
                         .country(dto.getRestaurantAddressCountry())
                         .city(dto.getRestaurantAddressCity())

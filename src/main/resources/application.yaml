@@ -27,3 +27,5 @@ spring:
         enabled: true
   flyway:
     baseline-on-migrate: true
+  security:
+    enabled: true

@@ -32,6 +32,10 @@ public class RestaurantEntity {
     @Column(name = "website")
     private String website;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private AddressEntity address;

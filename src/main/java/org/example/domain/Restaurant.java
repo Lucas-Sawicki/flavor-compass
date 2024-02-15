@@ -11,13 +11,14 @@ import java.util.Set;
 @With
 @Builder
 @EqualsAndHashCode(of = "phone")
-@ToString(of = {"restaurantId", "localName", "website", "phone", "owner"})
+@ToString(of = {"restaurantId", "localName", "website", "phone", "owner", "email"})
 public class Restaurant {
 
      Long restaurantId;
      String localName;
      String website;
      String phone;
+     String email;
      Address address;
      Owner owner;
      OpeningHours openingHours;
