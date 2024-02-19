@@ -12,5 +12,5 @@ public interface CustomerDAO {
 
     void saveOrder(Customer customer);
 
-    void saveCustomer(Customer customer);
+    Customer saveCustomer(Customer customer);
 }

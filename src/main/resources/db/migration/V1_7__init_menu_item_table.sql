@@ -5,6 +5,7 @@ CREATE TABLE menu_item
     category        VARCHAR(50)   NOT NULL,
     description     TEXT          NOT NULL,
     price           DECIMAL(7, 2) NOT NULL,
+    available       BOOLEAN       NOT NULL,
     opinion_id      INT,
     photo_url       VARCHAR(200),
     PRIMARY KEY (menu_item_id),

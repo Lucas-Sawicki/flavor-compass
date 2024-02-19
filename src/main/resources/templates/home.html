@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Mniam mniam</title>
@@ -16,12 +16,7 @@
     <p>Find yor favorite restaurant</p>
     <div class="row mt-3">
         <div class="col-md-4">
-            <a th:href="@{/create/customer}" class="btn btn-info" role="button">Create customer new account</a>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-4">
-            <a th:href="@{/create/owner}" class="btn btn-info" role="button">Create restaurant owner new account</a>
+            <a th:href="@{/registration}" class="btn btn-info" role="button">Registration</a>
         </div>
     </div>
     <div class="row mt-3">

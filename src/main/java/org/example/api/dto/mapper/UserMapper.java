@@ -1,50 +1,45 @@
 package org.example.api.dto.mapper;
 
-import org.example.api.dto.CustomerRequestDTO;
-import org.example.api.dto.OwnerRequestDTO;
+import org.example.api.dto.AddressDTO;
+import org.example.api.dto.RegistrationDTO;
+import org.example.api.dto.UserDTO;
 import org.example.domain.*;
 import org.mapstruct.Mapper;
-
-import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-
-    default Customer map(CustomerRequestDTO dto) {
-        return Customer.builder()
-                .name(dto.getCustomerName())
-                .surname(dto.getCustomerSurname())
-                .phone(dto.getCustomerPhone())
-                .user(User.builder()
-                        .email(dto.getCustomerEmail())
-                        .password(dto.getCustomerPassword())
-                        .active(true)
-                        .role(Role.builder()
-                                .role("CUSTOMER")
-                                .build())
-                        .build())
+    default Customer mapCustomer(RegistrationDTO registrationDTO, UserDTO userDTO, AddressDTO addressDTO) {
+       return Customer.builder()
+                .name(registrationDTO.getName())
+                .surname(registrationDTO.getSurname())
+                .phone(registrationDTO.getPhone())
+               .user(User.builder()
+                       .email(userDTO.getEmail())
+                       .password(userDTO.getPassword())
+                       .active(true)
+                       .build())
                 .address(Address.builder()
-                        .country(dto.getCustomerAddressCountry())
-                        .city(dto.getCustomerAddressCity())
-                        .postalCode(dto.getCustomerAddressPostalCode())
-                        .street(dto.getCustomerAddressStreet())
+                        .country(addressDTO.getAddressCountry())
+                        .city(addressDTO.getAddressCity())
+                        .postalCode(addressDTO.getAddressPostalCode())
+                        .street(addressDTO.getAddressStreet())
                         .build())
                 .build();
     }
+//    default User mapUserWithCustomer(RegistrationDTO registrationDTO, UserDTO userDTO, Customer customer) {
+//        return
+//    }
 
-    default Owner map(OwnerRequestDTO dto) {
+    default Owner mapOwner(RegistrationDTO registrationDTO, UserDTO userDTO) {
         return Owner.builder()
-                .name(dto.getOwnerName())
-                .surname(dto.getOwnerSurname())
-                .phone(dto.getOwnerPhone())
+                .name(registrationDTO.getName())
+                .surname(registrationDTO.getSurname())
+                .phone(registrationDTO.getPhone())
                 .user(User.builder()
-                        .email(dto.getOwnerEmail())
+                        .email(userDTO.getEmail())
+                        .password(userDTO.getPassword())
                         .active(true)
-                        .password(dto.getOwnerPassword())
-                        .role(Role.builder()
-                                .role("OWNER")
-                                .build())
                         .build())
                 .build();
     }

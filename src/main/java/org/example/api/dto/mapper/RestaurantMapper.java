@@ -1,14 +1,9 @@
 package org.example.api.dto.mapper;
 
-import org.example.api.dto.CustomerRequestDTO;
-import org.example.api.dto.OrdersDTO;
 import org.example.api.dto.RestaurantDTO;
 import org.example.domain.Address;
-import org.example.domain.Customer;
-import org.example.domain.Orders;
 import org.example.domain.Restaurant;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface RestaurantMapper {

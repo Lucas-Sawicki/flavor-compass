@@ -12,10 +12,14 @@ import org.mapstruct.ReportingPolicy;
 public interface MenuItemEntityMapper {
 
     @Mapping(target = "menuItem.orderItem", ignore = true)
-    @Mapping(target = "order.orderItems", ignore = true)
+    @Mapping(target = "orders.", ignore = true)
+    @Mapping(target = "orderItem.order", ignore = true)
+    @Mapping(target = "opinions", ignore = true)
     MenuItem mapFromEntity(MenuItemEntity entity);
 
     @Mapping(target = "menuItem.orderItem", ignore = true)
-    @Mapping(target = "order.orderItems", ignore = true)
+    @Mapping(target = "orders", ignore = true)
+    @Mapping(target = "orderItem.order", ignore = true)
+    @Mapping(target = "opinions", ignore = true)
     MenuItemEntity mapToEntity(MenuItem menuItem);
 }

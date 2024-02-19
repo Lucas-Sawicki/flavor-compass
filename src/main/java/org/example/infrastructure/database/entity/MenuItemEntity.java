@@ -34,6 +34,9 @@ public class MenuItemEntity {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column (name = "available")
+    private Boolean available;
+
     @Column(name = "photo_url")
     private String photoUrl;
 

@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface OwnerDAO {
 
-    void saveOwner(Owner owner);
+    Owner saveOwner(Owner owner);
 
 }

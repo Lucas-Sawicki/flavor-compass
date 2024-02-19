@@ -2,6 +2,7 @@ package org.example.domain;
 
 import lombok.*;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Value
@@ -17,6 +18,6 @@ public class User {
     Boolean active;
     Customer customer;
     Owner owner;
-    Role role;
+    Collection<Role> roles;
 
 }

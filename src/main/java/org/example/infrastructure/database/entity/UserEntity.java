@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.infrastructure.database.entity.RoleEntity;
-import org.hibernate.validator.constraints.Length;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -15,12 +14,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "application_user")
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private Integer userId;
 
     @Column(name = "email", unique = true)
     private String email;
@@ -37,11 +36,12 @@ public class UserEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private OwnerEntity owner;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-            name = "application_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<RoleEntity> roles;
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "role_id"))
+    private Collection<RoleEntity> roles;
 }

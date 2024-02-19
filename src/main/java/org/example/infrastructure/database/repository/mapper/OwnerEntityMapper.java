@@ -10,10 +10,10 @@ import org.mapstruct.ReportingPolicy;
 
 public interface OwnerEntityMapper {
 
-    @Mapping(target = "restaurants.owner", ignore = true)
+    @Mapping(target = "restaurants", ignore = true)
     Owner mapFromEntity(OwnerEntity customer);
 
-    @Mapping(target = "restaurants.owner", ignore = true)
+    @Mapping(target = "restaurants", ignore = true)
     OwnerEntity mapToEntity(Owner customer);
 
 }

@@ -3,6 +3,10 @@ server:
   servlet:
     context-path: /zajavka-project
 
+api:
+  restApiToConsume:
+    url:
+
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource

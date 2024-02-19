@@ -8,6 +8,5 @@ import java.util.List;
 @Repository
 public interface OrdersDAO {
 
-
     List<Orders> findPendingOrders();
 }

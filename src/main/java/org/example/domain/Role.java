@@ -2,19 +2,18 @@ package org.example.domain;
 
 import lombok.*;
 
+import java.util.Collection;
+import java.util.Set;
+
 @Value
 @With
 @Builder
 @EqualsAndHashCode(of = "roleId")
 @ToString
-public class Role implements Comparable<Role>{
+public class Role {
 
 
     int roleId;
     String role;
-
-    @Override
-    public int compareTo(Role o) {
-        return this.getRole().compareTo(o.getRole());
-    }
+    Collection<User> users;
 }

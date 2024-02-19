@@ -18,13 +18,12 @@ public class Owner {
      String name;
      String surname;
      String phone;
-     Address address;
      User user;
-     Set<Restaurant> restaurant;
+     Set<Restaurant> restaurants;
 
 
      public Set<Restaurant> getRestaurants() {
-          return Objects.isNull(restaurant) ? new HashSet<>() : restaurant;
+          return Objects.isNull(restaurants) ? new HashSet<>() : restaurants;
      }
 
 

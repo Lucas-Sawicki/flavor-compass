@@ -12,10 +12,16 @@ import org.mapstruct.ReportingPolicy;
 
 public interface RestaurantEntityMapper {
 
-    @Mapping(target = "restaurantOwner.restaurants", ignore = true)
+    @Mapping(target = "address.customer", ignore = true)
+    @Mapping(target = "owner.user", ignore = true)
+    @Mapping(target = "opinions", ignore = true)
+    @Mapping(target = "orders", ignore = true)
     Restaurant mapFromEntity(RestaurantEntity restaurant);
 
-    @Mapping(target = "restaurantOwner.restaurants", ignore = true)
+    @Mapping(target = "address.customer", ignore = true)
+    @Mapping(target = "owner.user", ignore = true)
+    @Mapping(target = "opinions", ignore = true)
+    @Mapping(target = "orders", ignore = true)
     RestaurantEntity mapToEntity(Restaurant restaurant);
 
 }

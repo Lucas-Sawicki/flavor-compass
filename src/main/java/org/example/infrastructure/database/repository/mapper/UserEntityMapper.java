@@ -11,10 +11,8 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserEntityMapper {
 
-    @Mapping(target = "restaurantOwner.restaurants", ignore = true)
     User mapFromEntity(UserEntity user);
 
-    @Mapping(target = "restaurantOwner.restaurants", ignore = true)
     UserEntity mapToEntity(User user);
 
 }

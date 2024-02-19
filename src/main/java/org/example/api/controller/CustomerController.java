@@ -3,12 +3,12 @@ package org.example.api.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.example.api.dto.CustomerRequestDTO;
+import org.example.api.dto.AddressDTO;
 import org.example.api.dto.mapper.OrdersMapper;
 import org.example.api.dto.mapper.UserMapper;
 import org.example.business.CustomerService;
 import org.example.business.OrdersService;
-import org.example.domain.Customer;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,10 @@ public class CustomerController {
 
 
     @GetMapping(value = CUSTOMER)
-    public String homePage(Model model) {
+    public String homePage(Model model, Authentication authentication) {
+
+        String currentCustomer = authentication.getName();
+
         var availableOrders = ordersService.availableOrders().stream()
                 .map(ordersMapper::map)
                 .toList();
@@ -38,17 +41,17 @@ public class CustomerController {
     }
     @GetMapping(value = CREATE_CUSTOMER)
     public String createCustomerPage(Model model) {
-        CustomerRequestDTO customerRequestDTO = new CustomerRequestDTO();
-        model.addAttribute("customerRequestDTO", customerRequestDTO);
-        return "create_new_user";
+        AddressDTO addressDTO = new AddressDTO();
+        model.addAttribute("addressDTO", addressDTO);
+        return "create_new_customer";
     }
 
     @PostMapping(value = CREATE_CUSTOMER)
     public String createCustomer(
-            @Valid @ModelAttribute(value = "customerRequestDTO") CustomerRequestDTO customer
+            @Valid @ModelAttribute(value = "customerRequestDTO") AddressDTO customer
     ) {
-        Customer mappedCustomer = userMapper.map(customer);
-        customerService.saveCustomer(mappedCustomer);
+
+
         return "customer_portal";
     }
 

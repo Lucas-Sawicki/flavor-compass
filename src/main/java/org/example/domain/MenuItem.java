@@ -20,6 +20,7 @@ public class MenuItem {
      String description;
      BigDecimal price;
      String photoUrl;
+     Boolean available;
      OrderItem orderItem;
      Set<Opinion> opinions;
      Set<Orders> orders;
