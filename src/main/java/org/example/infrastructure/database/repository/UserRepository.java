@@ -31,6 +31,11 @@ public class UserRepository implements UserDAO {
     }
 
     @Override
+    public Optional<User> findOwnerById(Long id) {
+        return userJpaRepository.findById(id).map(userEntityMapper::mapFromEntity);
+    }
+
+    @Override
     public Boolean existsByEmail(String email) {
         return userJpaRepository.existsByEmail(email);
     }

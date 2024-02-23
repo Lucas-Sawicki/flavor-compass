@@ -7,7 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.api.management.ValidEmail;
+import org.example.domain.OpeningHours;
 import org.example.domain.Owner;
+
+import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Data
 @Builder
@@ -22,9 +29,8 @@ public class RestaurantDTO {
     private String restaurantPhone;
     @ValidEmail
     private String restaurantEmail;
-    private String restaurantAddressCountry;
-    private String restaurantAddressCity;
-    private String restaurantAddressStreet;
-    private String restaurantAddressPostalCode;
 
+    private AddressDTO addressDTO;
+    @Builder.Default
+    private Map<DayOfWeek, OpeningHoursDTO> openingHours = new TreeMap<>();
 }

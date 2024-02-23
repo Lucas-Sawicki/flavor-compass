@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restauracja</title>
+</head>
+<body>
+<h1>Informacje o restauracji</h1>
+
+<p>Nazwa: <span th:text="${restaurant.localName}"></span></p>
+<p>Strona internetowa: <span th:text="${restaurant.website}"></span></p>
+<p>Telefon: <span th:text="${restaurant.phone}"></span></p>
+<p>Email: <span th:text="${restaurant.email}"></span></p>
+
+<h2>Adres</h2>
+<p>Kraj: <span th:text="${restaurant.address.country}"></span></p>
+<p>Miasto: <span th:text="${restaurant.address.city}"></span></p>
+<p>Kod pocztowy: <span th:text="${restaurant.address.postalCode}"></span></p>
+<p>Ulica: <span th:text="${restaurant.address.street}"></span></p>
+
+<h2>Godziny otwarcia</h2>
+<table>
+    <tr>
+        <th>Dzień tygodnia</th>
+        <th>Otwarcie</th>
+        <th>Zamknięcie</th>
+    </tr>
+    <tr th:each="entry : ${restaurant.openingHours.entrySet()}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value.open}"></td>
+        <td th:text="${entry.value.close}"></td>
+    </tr>
+</table>
+</body>
+</html>

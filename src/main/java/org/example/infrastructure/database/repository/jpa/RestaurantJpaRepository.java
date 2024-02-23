@@ -14,4 +14,6 @@ public interface RestaurantJpaRepository extends JpaRepository<RestaurantEntity,
 
 
     List<Restaurant> findRestaurantsByOwner(Owner owner);
+    Boolean existsByEmail(String email);
+
 }

@@ -10,38 +10,40 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     default Customer mapCustomer(RegistrationDTO registrationDTO, UserDTO userDTO, AddressDTO addressDTO) {
-       return Customer.builder()
+        Customer customer = Customer.builder()
                 .name(registrationDTO.getName())
                 .surname(registrationDTO.getSurname())
                 .phone(registrationDTO.getPhone())
-               .user(User.builder()
-                       .email(userDTO.getEmail())
-                       .password(userDTO.getPassword())
-                       .active(true)
-                       .build())
-                .address(Address.builder()
-                        .country(addressDTO.getAddressCountry())
-                        .city(addressDTO.getAddressCity())
-                        .postalCode(addressDTO.getAddressPostalCode())
-                        .street(addressDTO.getAddressStreet())
-                        .build())
                 .build();
+
+        User user = User.builder()
+                .email(userDTO.getEmail())
+                .password(userDTO.getPassword())
+                .active(true)
+                .build();
+
+        Address address = Address.builder()
+                .country(addressDTO.getAddressCountry())
+                .city(addressDTO.getAddressCity())
+                .postalCode(addressDTO.getAddressPostalCode())
+                .street(addressDTO.getAddressStreet())
+                .build();
+
+        return customer.withAddress(address).withUser(user);
     }
-//    default User mapUserWithCustomer(RegistrationDTO registrationDTO, UserDTO userDTO, Customer customer) {
-//        return
-//    }
 
     default Owner mapOwner(RegistrationDTO registrationDTO, UserDTO userDTO) {
-        return Owner.builder()
+        Owner owner = Owner.builder()
                 .name(registrationDTO.getName())
                 .surname(registrationDTO.getSurname())
                 .phone(registrationDTO.getPhone())
-                .user(User.builder()
-                        .email(userDTO.getEmail())
-                        .password(userDTO.getPassword())
-                        .active(true)
-                        .build())
                 .build();
-    }
 
+        User user = User.builder()
+                .email(userDTO.getEmail())
+                .password(userDTO.getPassword())
+                .active(true)
+                .build();
+        return owner.withUser(user);
+    }
 }

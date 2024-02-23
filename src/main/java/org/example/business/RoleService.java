@@ -1,5 +1,6 @@
 package org.example.business;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.domain.Role;
 import org.example.infrastructure.database.entity.RoleEntity;
@@ -14,7 +15,8 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
 
-    public Role findByRole(String role){
+    @Transactional
+    public Role findByRole(String role) {
         return roleRepository.findByRole(role);
     }
 }

@@ -25,11 +25,11 @@ public class OrderItemEntity {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_item_id")
     private MenuItemEntity menuItem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private OrdersEntity order;
 

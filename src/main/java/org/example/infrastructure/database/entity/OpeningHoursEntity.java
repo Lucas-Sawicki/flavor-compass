@@ -3,7 +3,11 @@ package org.example.infrastructure.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Getter
@@ -15,14 +19,14 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Table(name = "opening_hours")
 public class OpeningHoursEntity {
-
     @Id
     @Column(name = "opening_hours_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long openingHoursId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "day_of_the_week")
-    private String dayOfTheWeek;
+    private DayOfWeek dayOfWeek;
 
     @Column(name = "open_time")
     private LocalTime openTime;
@@ -36,7 +40,6 @@ public class OpeningHoursEntity {
     @Column(name = "delivery_end_time")
     private LocalTime deliveryEndTime;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "openingHours")
-    private RestaurantEntity restaurant;
-
+    @ManyToMany(mappedBy = "openingHours")
+    private Set<RestaurantEntity> restaurants;
 }

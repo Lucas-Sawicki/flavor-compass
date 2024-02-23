@@ -18,6 +18,6 @@ public class User {
     Boolean active;
     Customer customer;
     Owner owner;
-    Collection<Role> roles;
+    Set<Role> roles;
 
 }

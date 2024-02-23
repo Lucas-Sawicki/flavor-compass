@@ -7,6 +7,8 @@
 //import org.springframework.http.MediaType;
 //import org.springframework.http.codec.json.Jackson2JsonDecoder;
 //import org.springframework.http.codec.json.Jackson2JsonEncoder;
+//import org.springframework.web.reactive.function.client.ExchangeStrategies;
+//import org.springframework.web.reactive.function.client.WebClient;
 //
 //
 //@Configuration
@@ -20,6 +22,7 @@
 //
 //    @Bean
 //    public ApiClient petStoreApiClient(final ObjectMapper objectMapper) {
+//
 //        final var exchangeStrategies = ExchangeStrategies
 //                .builder()
 //                .codecs(configurer -> {

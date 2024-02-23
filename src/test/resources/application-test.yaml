@@ -3,7 +3,7 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:myDb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;
     username: sa
     password: password
     driverClassName: org.h2.Driver
@@ -11,6 +11,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       format_sql: true
-      ddl-auto: validate
+      ddl-auto: create-drop
   security:
     enabled: false

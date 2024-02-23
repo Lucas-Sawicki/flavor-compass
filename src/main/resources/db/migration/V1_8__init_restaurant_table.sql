@@ -4,12 +4,9 @@ CREATE TABLE restaurant (
     address_id          INT             NOT NULL,
     phone               VARCHAR(20)     NOT NULL,
     email               VARCHAR(32)     NOT NULL,
-    opening_hours_id    INT             NOT NULL,
     website             VARCHAR(64),
     owner_id            INT             NOT NULL,
     opinion_id          INT,
-
-
 
     PRIMARY KEY (restaurant_id),
       UNIQUE (phone),
@@ -23,4 +20,17 @@ CREATE TABLE restaurant (
     CONSTRAINT fk_restaurant_opinion
                 FOREIGN KEY (opinion_id)
                     REFERENCES opinion (opinion_id)
+);
+
+CREATE TABLE restaurant_opening_hours (
+    restaurant_id INT,
+    opening_hours_id INT,
+    day_of_week VARCHAR(10),
+    PRIMARY KEY (restaurant_id, opening_hours_id),
+    CONSTRAINT fk_restaurant_opening_hours
+            FOREIGN KEY (restaurant_id)
+                REFERENCES restaurant (restaurant_id),
+    CONSTRAINT fk_opening_hours_restaurant
+            FOREIGN KEY (opening_hours_id)
+                REFERENCES opening_hours (opening_hours_id)
 );

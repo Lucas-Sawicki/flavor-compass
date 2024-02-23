@@ -1,8 +1,11 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.infrastructure.database.entity.RestaurantEntity;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Set;
 
 @Value
 @With
@@ -12,10 +15,10 @@ import java.time.LocalTime;
 public class OpeningHours {
 
     Long openingHoursId;
-    String dayOfTheWeek;
+    DayOfWeek dayOfWeek;
     LocalTime openTime;
     LocalTime closeTime;
     LocalTime deliveryStartTime;
     LocalTime deliveryEndTime;
-    Restaurant restaurant;
+    Set<Restaurant> restaurants;
 }

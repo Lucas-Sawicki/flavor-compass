@@ -35,14 +35,14 @@ public class CustomerEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<OpinionEntity> opinions;
+    private Set<OpinionEntity> opinions;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private Set<OrdersEntity> orders;
 
 }

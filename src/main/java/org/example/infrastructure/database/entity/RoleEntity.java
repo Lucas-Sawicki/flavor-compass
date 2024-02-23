@@ -1,10 +1,7 @@
 package org.example.infrastructure.database.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.domain.User;
 
 import java.util.Collection;
@@ -14,6 +11,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "roleId")
 @Entity
 @Table(name = "roles")
 public class RoleEntity {
@@ -25,10 +23,6 @@ public class RoleEntity {
 
     @Column(name = "role")
     private String role;
-
-    @ManyToMany(mappedBy = "roles")
-    private Collection<UserEntity> users;
-
 
 }
 

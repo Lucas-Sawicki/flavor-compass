@@ -15,12 +15,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 @Slf4j
-public class SecurityConfiguration extends BCryptPasswordEncoder {
+public class SecurityConfiguration extends BCryptPasswordEncoder{
 
 
     private CustomUserDetailsService customUserDetailsService;
@@ -34,6 +36,10 @@ public class SecurityConfiguration extends BCryptPasswordEncoder {
     public AccessDeniedHandler accessDeniedHandler() {
         return new CustomAccessDeniedHandler();
     }
+    @Bean
+    public CustomAuthenticationHandler customAuthenticationHandler() {
+        return new CustomAuthenticationHandler();
+    }
 
     @Bean
     public AuthenticationManager authenticationManager(
@@ -44,11 +50,12 @@ public class SecurityConfiguration extends BCryptPasswordEncoder {
     @Bean
     @ConditionalOnProperty(value = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
     public SecurityFilterChain securityEnabled(HttpSecurity http) throws Exception {
+        log.info("Security enabled");
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "error", "/home", "/create/**", "/registration").permitAll()
-                        .requestMatchers("/owner/**").hasAnyAuthority("OWNER")
-                        .requestMatchers("/customer/**").hasAnyAuthority("CUSTOMER")
+                        .requestMatchers("/", "/error", "/login" ,"/registration","/swagger-ui/**", "/images/oh_no.png").permitAll()
+                        .requestMatchers("/owner/**", "/owner").hasAnyAuthority("OWNER")
+                        .requestMatchers("/customer/**", "/customer").hasAnyAuthority("CUSTOMER")
                         .requestMatchers("/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/**").hasAnyAuthority("REST_API")
                         .anyRequest().authenticated()
@@ -62,12 +69,12 @@ public class SecurityConfiguration extends BCryptPasswordEncoder {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/perform_login")
-                        .defaultSuccessUrl("/home.html", true)
-                        .failureUrl("/login.html?error=true")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/home.html", false)
+                        .failureUrl("/error")
                         .usernameParameter("email")
-                        .successHandler(new CustomAuthenticationHandler())
-                        .failureHandler(new CustomAuthenticationHandler())
+                        .successHandler(customAuthenticationHandler())
+                        .failureHandler(customAuthenticationHandler())
                         .permitAll()
                 )
                 .logout(configuration -> configuration
@@ -79,7 +86,7 @@ public class SecurityConfiguration extends BCryptPasswordEncoder {
     }
 
     @Bean
-    @ConditionalOnProperty(value = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(value = "spring.security.enabled", havingValue = "false", matchIfMissing = true)
     SecurityFilterChain securityDisabled(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -87,6 +94,7 @@ public class SecurityConfiguration extends BCryptPasswordEncoder {
                         .anyRequest()
                         .permitAll()
                 );
+        log.info("Security disabled");
         return http.build();
     }
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.business.dao.OrdersDAO;
 import org.example.domain.*;
+import org.example.infrastructure.database.repository.OrdersRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -20,6 +21,7 @@ public class OrdersService {
     private final RestaurantService restaurantService;
     private final MenuItemService menuItemService;
     private final OrderItemService orderItemService;
+    private final OrdersRepository ordersRepository;
     private final OrdersDAO ordersDAO;
 
 
@@ -39,7 +41,7 @@ public class OrdersService {
         Orders orderRequest = buildOrderRequest(request, customer);
         Set<Orders> existingOrdersRequests = customer.getOrders();
         existingOrdersRequests.add(orderRequest);
-        customerService.saveOrder(customer.withOrders(existingOrdersRequests));
+        saveOrder(customer.withOrders(existingOrdersRequests));
     }
 
 
@@ -66,10 +68,20 @@ public class OrdersService {
         return Math.abs(orderNumber);
     }
     @Transactional
-    public List<Orders> availableOrders() {
-        List<Orders> availableOrders = ordersDAO.findPendingOrders();
-        log.info("Available orders: [{}]", availableOrders.size());
-        return  availableOrders;
+    public List<Orders> availableOrdersForCustomer(Customer customer) {
+        List<Orders> ordersForCustomer = ordersRepository.findOrdersByCustomerEmail(customer.getUser().getEmail());
+        log.info("Available orders: [{}]", ordersForCustomer.size());
+        return  ordersForCustomer;
+    }
+    @Transactional
+    public List<Orders> availableOrdersForRestaurant(Restaurant restaurant) {
+        List<Orders> ordersForRestaurant = ordersRepository.findOrdersByRestaurantEmail(restaurant.getEmail());
+        log.info("Available orders: [{}]", ordersForRestaurant.size());
+        return  ordersForRestaurant;
+    }
+    @Transactional
+    public void saveOrder(Customer customer) {
+        ordersDAO.saveOrder(customer);
     }
 
 }

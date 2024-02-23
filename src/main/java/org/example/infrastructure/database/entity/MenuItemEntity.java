@@ -40,13 +40,13 @@ public class MenuItemEntity {
     @Column(name = "photo_url")
     private String photoUrl;
 
-    @OneToOne(mappedBy = "menuItem")
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "menuItem")
     private OrderItemEntity orderItem;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuItem")
     private Set<OpinionEntity> opinions;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menuItem", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuItem")
     private Set<OrdersEntity> orders;
 
 }

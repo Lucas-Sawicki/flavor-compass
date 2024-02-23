@@ -19,19 +19,27 @@ public class OwnerService {
     private final UserDAO userDAO;
 
 
-
-
     @Transactional
-    public Owner findOwner(String email) {
+    public Owner findOwnerByEmail(String email) {
         Optional<User> owner = userDAO.findByEmail(email);
         if (owner.isEmpty()) {
             throw new NotFoundException("Could not find owner by email: [%s]".formatted(email));
         }
         return owner.get().getOwner();
     }
+
+    @Transactional
+    public Owner findOwnerById(Long id) {
+        Optional<User> owner = userDAO.findOwnerById(id);
+        if (owner.isEmpty()) {
+            throw new NotFoundException("Could not find owner by id: [%s]".formatted(id));
+        }
+        return owner.get().getOwner();
+    }
+
     @Transactional
     public Owner saveOwner(Owner owner) {
-      return   ownerDAO.saveOwner(owner);
+        return ownerDAO.saveOwner(owner);
 
     }
 

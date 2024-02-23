@@ -1,58 +1,54 @@
 package org.example.api.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import org.example.api.dto.AddressDTO;
+import org.example.api.dto.OrdersDTO;
 import org.example.api.dto.mapper.OrdersMapper;
 import org.example.api.dto.mapper.UserMapper;
 import org.example.business.CustomerService;
 import org.example.business.OrdersService;
+import org.example.domain.Customer;
+import org.example.domain.exception.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
 public class CustomerController {
 
     private static final String CUSTOMER = "/customer";
-    private static final String CREATE_CUSTOMER = "/create/customer";
-
+    @Autowired
+    private final AuthenticationManager authenticationManager;
     private final OrdersService ordersService;
     private final OrdersMapper ordersMapper;
     private final UserMapper userMapper;
     private final CustomerService customerService;
 
 
-    @GetMapping(value = CUSTOMER)
-    public String homePage(Model model, Authentication authentication) {
+    @RequestMapping(value = CUSTOMER, method = RequestMethod.GET)
+    public String homePage(
+            @Valid @ModelAttribute(value = "OrdersDTO") OrdersDTO dto,
+            Model model, Authentication authentication) {
 
-        String currentCustomer = authentication.getName();
+        if (authentication.isAuthenticated()) {
+            String currentCustomer = authentication.getName();
+            Customer customerFound = customerService.findCustomer(currentCustomer);
 
-        var availableOrders = ordersService.availableOrders().stream()
-                .map(ordersMapper::map)
-                .toList();
-        model.addAttribute("availableOrdersDTOs", availableOrders);
-        return "customer_portal";
+
+            var availableOrders = ordersService.availableOrdersForCustomer(customerFound).stream()
+                    .map(ordersMapper::map)
+                    .toList();
+            model.addAttribute("OrdersDTO", availableOrders);
+            return "customer_portal";
+        } else {
+            throw new NotFoundException("Cannot log in");
+        }
     }
-    @GetMapping(value = CREATE_CUSTOMER)
-    public String createCustomerPage(Model model) {
-        AddressDTO addressDTO = new AddressDTO();
-        model.addAttribute("addressDTO", addressDTO);
-        return "create_new_customer";
-    }
-
-    @PostMapping(value = CREATE_CUSTOMER)
-    public String createCustomer(
-            @Valid @ModelAttribute(value = "customerRequestDTO") AddressDTO customer
-    ) {
-
-
-        return "customer_portal";
-    }
-
 }

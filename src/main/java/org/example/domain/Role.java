@@ -15,5 +15,5 @@ public class Role {
 
     int roleId;
     String role;
-    Collection<User> users;
+    Set<User> users;
 }

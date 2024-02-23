@@ -2,9 +2,12 @@ package org.example.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.domain.OpeningHours;
 
+import java.time.DayOfWeek;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -17,7 +20,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "restaurant")
 public class RestaurantEntity {
-
     @Id
     @Column(name = "restaurant_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +37,7 @@ public class RestaurantEntity {
     @Column(name = "email", unique = true)
     private String email;
 
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
@@ -45,13 +46,15 @@ public class RestaurantEntity {
     private OwnerEntity owner;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private List<OpinionEntity> opinions;
+    private Set<OpinionEntity> opinions;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "opening_hours_id")
-    private OpeningHoursEntity openingHours;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "restaurant_opening_hours",
+            joinColumns = @JoinColumn(name = "restaurant_id"),
+            inverseJoinColumns = @JoinColumn(name = "opening_hours_id"))
+    private Map<DayOfWeek, OpeningHoursEntity> openingHours;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<OrdersEntity> orders;
 
 

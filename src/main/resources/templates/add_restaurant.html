@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Registration panel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<form action="#" th:action="@{/owner/add/restaurant}" th:object="${restaurantDTO}" method="POST">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <h1>Add restaurant</h1>
+                <p>Please enter restaurant information:</p>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="name">Name:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="name"
+                               th:field="*{restaurantName}" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="website">Website:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="website"
+                               th:field="*{restaurantWebsite}" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="phone">Phone number:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="phone"
+                               th:field="*{restaurantPhone}" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="email"
+                               th:field="*{restaurantEmail}" required>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div th:object="${restaurantDTO.addressDTO}">
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="addressCountry">Country:</label>
+                            <input type="text" id="addressCountry" th:field="*{addressCountry}"
+                                   class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="addressCity">City:</label>
+                            <input type="text" id="addressCity" th:field="*{addressCity}"
+                                   class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="addressStreet">Street:</label>
+                            <input type="text" id="addressStreet" th:field="*{addressStreet}"
+                                   class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="addressPostalCode">Postal code:</label>
+                            <input type="text" id="addressPostalCode"
+                                   th:field="*{addressPostalCode}"
+                                   class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Dzień tygodnia</th>
+                    <th>Godzina otwarcia</th>
+                    <th>Godzina zamknięcia</th>
+                    <th>Początek dostawy</th>
+                    <th>Koniec dostawy</th>
+                </tr>
+                <tr th:each="entry : *{openingHours}">
+                    <td th:text="${entry.key}"></td>
+                    <td><input type="time" th:field="*{openingHours[__${entry.key}__].openTime}" /></td>
+                    <td><input type="time" th:field="*{openingHours[__${entry.key}__].closeTime}" /></td>
+                    <td><input type="time" th:field="*{openingHours[__${entry.key}__].deliveryStartTime}" /></td>
+                    <td><input type="time" th:field="*{openingHours[__${entry.key}__].deliveryEndTime}" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <input type="submit" value="Add!" class="btn btn-success">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{/}" class="btn btn-info" role="button">Go back to the main page</a>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

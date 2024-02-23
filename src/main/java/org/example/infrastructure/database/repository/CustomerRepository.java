@@ -23,19 +23,6 @@ public class CustomerRepository implements CustomerDAO {
     private final CustomerJpaRepository customerJpaRepository;
 
     private final CustomerEntityMapper customerEntityMapper;
-    private final OrdersEntityMapper ordersEntityMapper;
-    private final OrdersJpaRepository ordersJpaRepository;
-
-
-    @Override
-    public void saveOrder(Customer customer) {
-        List<OrdersEntity> orders = customer.getOrders().stream()
-                .map(ordersEntityMapper::mapToEntity)
-                .toList();
-
-        orders.forEach(request -> request.setCustomer(customerEntityMapper.mapToEntity(customer)));
-        ordersJpaRepository.saveAllAndFlush(orders);
-    }
 
     @Override
     public Customer saveCustomer(Customer customer) {

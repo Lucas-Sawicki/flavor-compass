@@ -29,7 +29,7 @@ import java.util.Collections;
 @Controller
 @AllArgsConstructor
 public class RegistrationController {
-public static final String REGISTER = "/registration";
+    public static final String REGISTER = "/registration";
     private AuthenticationManager authenticationManager;
     private PasswordEncoder passwordEncoder;
     private UserService userService;
@@ -37,7 +37,6 @@ public static final String REGISTER = "/registration";
     private CustomerService customerService;
     private RoleService roleService;
     private UserMapper userMapper;
-
 
 
     @GetMapping(value = REGISTER)
@@ -53,12 +52,11 @@ public static final String REGISTER = "/registration";
                                            @ModelAttribute UserDTO userDTO,
                                            @ModelAttribute AddressDTO addressDTO,
                                            BindingResult bindingResult
-                                           ){
-        if (userService.existsByEmail(userDTO.getEmail())){
+    ) {
+        if (userService.existsByEmail(userDTO.getEmail())) {
             return new ResponseEntity<>("Email is already taken", HttpStatus.BAD_REQUEST);
         }
         if (addressDTO.isCustomer()) {
-
             Customer customer = userMapper.mapCustomer(registrationDTO, userDTO, addressDTO);
             String password = customer.getUser().getPassword();
             Role role = roleService.findByRole("CUSTOMER");
@@ -77,5 +75,7 @@ public static final String REGISTER = "/registration";
         }
         return ResponseEntity.ok("success_register");
     }
+
+
 }
 
