@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version "$springBootVersion"
     id 'io.spring.dependency-management' version "$springBootependencyManagementVersion"
     id 'org.openapi.generator' version "${openapiGeneratorVersion}"
+    id 'jacoco'
 }
 
 group = 'pl.zajavka'
@@ -20,7 +21,10 @@ configurations {
 repositories {
     mavenCentral()
 }
-
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir('flavour-compass-tests')
+}
 dependencies {
 
     //spring
@@ -30,6 +34,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
 
     //annotations
     compileOnly 'org.projectlombok:lombok'
@@ -75,7 +81,19 @@ dependencies {
 
 
 //compileJava.dependsOn tasks.openApiGenerate
-
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('flavour-compass-tests')
+    }
+}
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
 tasks.named('test') {
     useJUnitPlatform()
     testLogging {

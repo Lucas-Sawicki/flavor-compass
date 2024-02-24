@@ -2,14 +2,13 @@ package org.example.api.dto.mapper;
 
 import org.example.api.dto.AddressDTO;
 import org.example.api.dto.RegistrationDTO;
-import org.example.api.dto.UserDTO;
 import org.example.domain.*;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    default Customer mapCustomer(RegistrationDTO registrationDTO, UserDTO userDTO, AddressDTO addressDTO) {
+    default Customer mapCustomer(RegistrationDTO registrationDTO, AddressDTO addressDTO) {
         Customer customer = Customer.builder()
                 .name(registrationDTO.getName())
                 .surname(registrationDTO.getSurname())
@@ -17,8 +16,8 @@ public interface UserMapper {
                 .build();
 
         User user = User.builder()
-                .email(userDTO.getEmail())
-                .password(userDTO.getPassword())
+                .email(registrationDTO.getEmail())
+                .password(registrationDTO.getPassword())
                 .active(true)
                 .build();
 
@@ -32,7 +31,7 @@ public interface UserMapper {
         return customer.withAddress(address).withUser(user);
     }
 
-    default Owner mapOwner(RegistrationDTO registrationDTO, UserDTO userDTO) {
+    default Owner mapOwner(RegistrationDTO registrationDTO) {
         Owner owner = Owner.builder()
                 .name(registrationDTO.getName())
                 .surname(registrationDTO.getSurname())
@@ -40,10 +39,18 @@ public interface UserMapper {
                 .build();
 
         User user = User.builder()
-                .email(userDTO.getEmail())
-                .password(userDTO.getPassword())
+                .email(registrationDTO.getEmail())
+                .password(registrationDTO.getPassword())
                 .active(true)
                 .build();
         return owner.withUser(user);
+    }
+
+    default User mapApiUser(RegistrationDTO registrationDTO) {
+        return User.builder()
+                .email(registrationDTO.getEmail())
+                .password(registrationDTO.getPassword())
+                .active(true)
+                .build();
     }
 }

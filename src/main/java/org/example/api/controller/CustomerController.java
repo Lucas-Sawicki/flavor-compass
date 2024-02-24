@@ -1,10 +1,8 @@
 package org.example.api.controller;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
-import org.example.api.dto.AddressDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.example.api.dto.OrdersDTO;
 import org.example.api.dto.mapper.OrdersMapper;
 import org.example.api.dto.mapper.UserMapper;
@@ -20,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 public class CustomerController {
 
@@ -49,6 +48,17 @@ public class CustomerController {
             return "customer_portal";
         } else {
             throw new NotFoundException("Cannot log in");
+        }
+    }
+    @GetMapping("/customer/{customerID}")
+    public String showOwner(@PathVariable Long customerID, Model model) {
+        Customer findCustomer = customerService.findCustomerById(customerID);
+        log.info("Customer found");
+        if (findCustomer != null) {
+            model.addAttribute("customer", findCustomer);
+            return "customer_portal";
+        } else {
+            return "error";
         }
     }
 }

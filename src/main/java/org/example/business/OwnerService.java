@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import org.example.business.dao.OwnerDAO;
 import org.example.business.dao.UserDAO;
 import org.example.domain.Owner;
+import org.example.domain.Role;
 import org.example.domain.User;
 import org.example.domain.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor

@@ -2,13 +2,11 @@ package org.example.business;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.api.dto.mapper.UserMapper;
 import org.example.business.dao.CustomerDAO;
 import org.example.business.dao.UserDAO;
 import org.example.domain.Customer;
 import org.example.domain.User;
 import org.example.domain.exception.NotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -30,7 +28,15 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer saveCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {
       return customerDAO.saveCustomer(customer);
+    }
+
+    public Customer findCustomerById(Long id) {
+        Optional<User> customer = userDAO.findOwnerById(id);
+        if (customer.isEmpty()) {
+            throw new NotFoundException("Could not find customer by id: [%s]".formatted(id));
+        }
+        return customer.get().getCustomer();
     }
 }

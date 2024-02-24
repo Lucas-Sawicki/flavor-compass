@@ -44,7 +44,6 @@
                                th:field="*{phone}" required>
                     </div>
                 </div>
-                <div th:object="${userDTO}">
                     <div class="row mt-3">
                         <div class="col-md-3">
                             <label for="email">Email</label>
@@ -71,8 +70,7 @@
                     </div>
                 </div>
                 <br>
-            </div>
-            <div th:object="${addressDTO}">
+            <div th:object="${registrationDTO.addressDTO}">
                 <div class="form-group">
                     <p>You are a customer or restaurant owner?</p>
                     <select id="userType" th:field="*{customer}" class="form-control">

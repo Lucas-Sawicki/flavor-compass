@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +22,14 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 
 @Slf4j
+@Service
+@Transactional
 public class CustomAuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -77,6 +81,7 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
             Long id = userId.get();
             Map<String, String> roleTargetUrlMap = new HashMap<>();
             roleTargetUrlMap.put("OWNER", "/owner/" + id);
+            roleTargetUrlMap.put("REST_API", "/api/" + id);
             roleTargetUrlMap.put("CUSTOMER", "/customer/" + id);
             final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (final GrantedAuthority grantedAuthority : authorities) {

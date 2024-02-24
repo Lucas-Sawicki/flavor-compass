@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.example.domain.Role;
 import org.example.infrastructure.database.entity.RoleEntity;
 import org.example.infrastructure.database.repository.RoleRepository;
+import org.example.infrastructure.database.repository.mapper.RoleEntityMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,9 +15,11 @@ import java.util.Optional;
 public class RoleService {
 
     private final RoleRepository roleRepository;
+    private final RoleEntityMapper roleEntityMapper;
 
     @Transactional
     public Role findByRole(String role) {
-        return roleRepository.findByRole(role);
+        RoleEntity entity = roleRepository.findByRole(role);
+        return roleEntityMapper.mapFromEntity(entity);
     }
 }

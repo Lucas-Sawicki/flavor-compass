@@ -2,7 +2,7 @@ package org.example.api.management;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.example.api.dto.UserDTO;
+import org.example.api.dto.RegistrationDTO;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 
@@ -11,7 +11,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
     }
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context){
-        UserDTO user = (UserDTO) obj;
+        RegistrationDTO user = (RegistrationDTO) obj;
         return user.getPassword().equals(user.getMatchingPassword());
     }
 

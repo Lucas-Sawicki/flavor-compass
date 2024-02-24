@@ -52,6 +52,7 @@ public class RestaurantEntity {
     @JoinTable(name = "restaurant_opening_hours",
             joinColumns = @JoinColumn(name = "restaurant_id"),
             inverseJoinColumns = @JoinColumn(name = "opening_hours_id"))
+    @MapKeyEnumerated(EnumType.STRING)
     private Map<DayOfWeek, OpeningHoursEntity> openingHours;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")

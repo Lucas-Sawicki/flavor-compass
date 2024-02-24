@@ -25,7 +25,7 @@ CREATE TABLE restaurant (
 CREATE TABLE restaurant_opening_hours (
     restaurant_id INT,
     opening_hours_id INT,
-    day_of_week VARCHAR(10),
+    opening_hours_key VARCHAR(10),
     PRIMARY KEY (restaurant_id, opening_hours_id),
     CONSTRAINT fk_restaurant_opening_hours
             FOREIGN KEY (restaurant_id)

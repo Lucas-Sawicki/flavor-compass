@@ -22,7 +22,6 @@ public interface OwnerEntityMapper {
     @Mapping(target = "restaurants", ignore = true)
     Owner mapFromEntity(OwnerEntity customer);
 
-    @Mapping(target = "restaurants", ignore = true)
-    @Mapping(target = "user", ignore = true)
+
     OwnerEntity mapToEntity(Owner customer);
 }
