@@ -2,6 +2,7 @@ package org.example.business;
 
 import lombok.AllArgsConstructor;
 import org.example.domain.User;
+import org.example.infrastructure.database.entity.UserEntity;
 import org.example.infrastructure.database.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    public Optional<User> findByEmail(String email) {
+    public Optional<UserEntity> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 

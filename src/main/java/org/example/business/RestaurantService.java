@@ -26,10 +26,10 @@ public class RestaurantService {
     private final OpeningHoursService openingHoursService;
 
 
-    public List<Restaurant> availableRestaurantsByOwner(String owner) {
-        Owner getOwner = ownerService.findOwnerByEmail(owner);
-        return restaurantDAO.findAvailableRestaurantsByOwner(getOwner);
-    }
+//    public List<Restaurant> availableRestaurantsByOwner(String owner) {
+//        Owner getOwner = ownerService.findOwnerByEmail(owner);
+//        return restaurantDAO.findAvailableRestaurantsByOwner(getOwner);
+//    }
     @Transactional
     public Restaurant addRestaurant(Restaurant restaurant) {
         Map<DayOfWeek, OpeningHours> savedOpeningHours = new TreeMap<>();

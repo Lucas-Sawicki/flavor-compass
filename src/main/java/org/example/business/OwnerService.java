@@ -8,6 +8,8 @@ import org.example.domain.Owner;
 import org.example.domain.Role;
 import org.example.domain.User;
 import org.example.domain.exception.NotFoundException;
+import org.example.infrastructure.database.entity.OwnerEntity;
+import org.example.infrastructure.database.entity.UserEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,8 +24,8 @@ public class OwnerService {
 
 
     @Transactional
-    public Owner findOwnerByEmail(String email) {
-        Optional<User> owner = userDAO.findByEmail(email);
+    public OwnerEntity findOwnerByEmail(String email) {
+        Optional<UserEntity> owner = userDAO.findByEmail(email);
         if (owner.isEmpty()) {
             throw new NotFoundException("Could not find owner by email: [%s]".formatted(email));
         }

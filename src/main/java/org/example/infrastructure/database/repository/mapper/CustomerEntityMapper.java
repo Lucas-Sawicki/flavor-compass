@@ -17,11 +17,8 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CustomerEntityMapper {
 
-    @Mapping(target = "opinions", ignore = true)
-    @Mapping(target = "orders", ignore = true)
+
     Customer mapFromEntity(CustomerEntity customer);
-    @Mapping(target = "opinions", ignore = true)
-    @Mapping(target = "orders", ignore = true)
     CustomerEntity mapToEntity(Customer customer);
 
 

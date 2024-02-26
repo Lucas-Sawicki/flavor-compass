@@ -36,12 +36,12 @@ public class OrdersService {
 
 //        Optional<MenuItem> menuItem = menuItemService.findMenuItem(request.getMenuItem());
 //        Optional<OrderItem> orderItem = orderItemService.findOrderItem(request.withOrderItems());
-        Customer customer = customerService.findCustomer(request.getCustomer().getUser().getEmail());
-
-        Orders orderRequest = buildOrderRequest(request, customer);
-        Set<Orders> existingOrdersRequests = customer.getOrders();
-        existingOrdersRequests.add(orderRequest);
-        saveOrder(customer.withOrders(existingOrdersRequests));
+////        Customer customer = customerService.findCustomerByEmail(request.getCustomer().getUser().getEmail());
+//
+//        Orders orderRequest = buildOrderRequest(request, customer);
+//        Set<Orders> existingOrdersRequests = customer.getOrders();
+//        existingOrdersRequests.add(orderRequest);
+//        saveOrder(customer.withOrders(existingOrdersRequests));
     }
 
 

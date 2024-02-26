@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegistrationController {
     public static final String REGISTER = "/registration";
     private UserService userService;
-    @Autowired
     private AuthenticationService authenticationService;
 
 

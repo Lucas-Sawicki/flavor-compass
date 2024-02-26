@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.DayOfWeek;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class RestaurantController {
     private final OpeningHoursService openingHoursService;
 
     @GetMapping(value = ADD_RESTAURANT)
-    public String homePage(Model model) {
+    public String homePage(@RequestParam("token") String token, Model model) {
         RestaurantDTO restaurantDTO = new RestaurantDTO();
         Map<DayOfWeek, OpeningHoursDTO> openingHours = new TreeMap<>();
 

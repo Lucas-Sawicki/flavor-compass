@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Flavor Compass</title>
@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <h1>Restaurant portal!</h1>
-    <p>Find yor favorite restaurant</p>
+    <p>Find your favorite restaurant</p>
     <div class="row mt-3">
         <div class="col-md-4">
             <a th:href="@{/registration}" class="btn btn-info" role="button">Registration</a>
@@ -22,6 +22,21 @@
     <div class="row mt-3">
         <div class="col-md-4">
             <a th:href="@{/login}" class="btn btn-info" role="button">Login</a>
+        </div>
+    </div>
+    <div th:if="${token != null}">
+        <p>Welcome back, <span th:text="${currentUser.username}"></span>!</p>
+    </div>
+    <div sec:authorize="hasRole('ROLE_OWNER')">
+        Content visible only for users with OWNER role
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_CUSTOMER')">
+        Content visible only for users with CUSTOMER role
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <a th:href="@{/logout}" class="btn btn-info" role="button">Logout</a>
         </div>
     </div>
 </div>

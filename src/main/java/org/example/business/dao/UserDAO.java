@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface UserDAO {
     User saveUser(User user);
-    Optional<User> findByEmail(String email);
+    Optional<UserEntity> findByEmail(String email);
     Optional<User>  findOwnerById(Long id);
     Boolean existsByEmail(String email);
 

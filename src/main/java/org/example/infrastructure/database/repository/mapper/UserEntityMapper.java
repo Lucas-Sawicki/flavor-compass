@@ -13,8 +13,10 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserEntityMapper {
-    @Mapping(target = "owner.user", ignore = true)
+    @Mapping(target = "customer", ignore = true)
+    @Mapping(target = "owner", ignore = true)
     User mapFromEntity(UserEntity user);
+
     UserEntity mapToEntity(User user);
 
 }

@@ -21,22 +21,5 @@ public class ApplicationRunner {
         SpringApplication.run(ApplicationRunner.class, args);
     }
 
-//    @Bean
-//    CommandLineRunner run(
-//            RoleRepository roleRepository,
-//            UserRepository userRepository,
-//            PasswordEncoder encoder) {
-//        return args -> {
-//            if (userRepository.findByEmail("admin").isPresent()){
-//                return;
-//            }
-//            RoleEntity role = roleRepository.findByRole("ADMIN");
-//            Set<RoleEntity> roles = new HashSet<>();
-//            roles.add(role);
-//            String password = encoder.encode("admin");
-//            UserEntity admin = new UserEntity(1, "admin", password, true, null, null, roles);
-//            userRepository.saveUser(admin);
-//        };
-//    }
 
 }

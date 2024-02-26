@@ -2,21 +2,25 @@ package org.example.infrastructure.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.business.AuthenticationService;
+import org.example.business.TokenService;
 import org.example.business.UserService;
 import org.example.domain.User;
 import org.example.domain.exception.NotFoundException;
+import org.example.infrastructure.database.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -29,13 +33,19 @@ import java.util.*;
 
 @Slf4j
 @Service
-@Transactional
+@RequiredArgsConstructor
 public class CustomAuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Autowired
     private UserService userService;
+    @Autowired
+    private TokenService tokenService;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
@@ -51,11 +61,22 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
                 .println(objectMapper.writeValueAsString(data));
         response.sendRedirect("/flavour-compass/error");
     }
+
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        handle(request, response, authentication);
-        clearAuthenticationAttributes(request);
-        log.info("User " + authentication.getName() + " logged in .");
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        try {
+
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String token = tokenService.generateToken(userDetails);
+            Cookie cookie = new Cookie("token", token);
+            cookie.setHttpOnly(true);
+            cookie.setMaxAge(24 * 60 * 60);
+            response.addCookie(cookie);
+            response.sendRedirect("/flavour-compass/");
+
+        } catch (Exception e) {
+            log.error("Error during authentication", e);
+        }
     }
 
     protected void handle(
@@ -70,19 +91,20 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
             log.debug("Response has already been committed. Unable to redirect to " + targetUrl);
             return;
         }
+
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
     protected String determineTargetUrl(final Authentication authentication) {
 
         String email = authentication.getName();
-        Optional<Long> userId = userService.findByEmail(email).map(User::getUserId);
+        Optional<Integer> userId = userService.findByEmail(email).map(UserEntity::getUserId);
         if (userId.isPresent()) {
-            Long id = userId.get();
+            Integer id = userId.get();
             Map<String, String> roleTargetUrlMap = new HashMap<>();
-            roleTargetUrlMap.put("OWNER", "/owner/" + id);
-            roleTargetUrlMap.put("REST_API", "/api/" + id);
-            roleTargetUrlMap.put("CUSTOMER", "/customer/" + id);
+            roleTargetUrlMap.put("OWNER", "/owner");
+            roleTargetUrlMap.put("REST_API", "/api");
+            roleTargetUrlMap.put("CUSTOMER", "/customer");
             final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (final GrantedAuthority grantedAuthority : authorities) {
                 String authorityName = grantedAuthority.getAuthority();
@@ -92,8 +114,9 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
                 }
             }
         } else {
-           throw new NotFoundException(String.format("user with id: [%s] not found", userId));
-        } throw new IllegalStateException();
+            throw new NotFoundException(String.format("user with id: [%s] not found", userId));
+        }
+        throw new IllegalStateException();
     }
 
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
