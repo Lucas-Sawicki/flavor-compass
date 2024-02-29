@@ -22,7 +22,7 @@ public class OpeningHoursEntity {
     @Id
     @Column(name = "opening_hours_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long openingHoursId;
+    private Integer openingHoursId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "day_of_the_week")

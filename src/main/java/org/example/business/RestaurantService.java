@@ -2,6 +2,7 @@ package org.example.business;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.business.dao.AddressDAO;
 import org.example.business.dao.RestaurantDAO;
 import org.example.domain.Address;
@@ -13,9 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class RestaurantService {
 
@@ -31,7 +32,7 @@ public class RestaurantService {
 //        return restaurantDAO.findAvailableRestaurantsByOwner(getOwner);
 //    }
     @Transactional
-    public Restaurant addRestaurant(Restaurant restaurant) {
+    public void addRestaurant(Restaurant restaurant) {
         Map<DayOfWeek, OpeningHours> savedOpeningHours = new TreeMap<>();
         for (Map.Entry<DayOfWeek, OpeningHours> entry : restaurant.getOpeningHours().entrySet()) {
             OpeningHours openingHours = entry.getValue();
@@ -42,9 +43,24 @@ public class RestaurantService {
         Restaurant finalRestaurant = restaurant
                 .withOpeningHours(savedOpeningHours)
                 .withAddress(address);
-        return restaurantDAO.saveRestaurant(finalRestaurant);
+        restaurantDAO.saveRestaurant(finalRestaurant);
     }
     public Boolean existsByEmail(String email) {
         return restaurantRepository.existsByEmail(email);
+    }
+
+    public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+    @Transactional
+    public List<Restaurant> findRestaurantsByOwnerId(Integer ownerId) {
+        Owner ownerById = ownerService.findOwnerById(ownerId);
+        List<Restaurant> restaurants = restaurantRepository.findAvailableRestaurantsByOwner(ownerById);
+        log.info("Available restaurant's: [{}]", restaurants.size());
+        return restaurants;
+    }
+
+    public Restaurant findRestaurantsByEmail(String email) {
+        return restaurantRepository.findRestaurantsByEmail(email);
     }
 }

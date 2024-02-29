@@ -23,5 +23,11 @@ private final MenuItemEntityMapper menuItemEntityMapper;
                 .map(menuItemEntityMapper::mapFromEntity);
     }
 
+    @Override
+    public void saveMenuItem(MenuItem menuItem) {
+        MenuItemEntity toSave = menuItemEntityMapper.mapToEntity(menuItem);
+        menuItemJpaRepository.saveAndFlush(toSave);
+    }
+
 
 }

@@ -24,4 +24,5 @@ public class OpeningHoursDTO {
     String deliveryStartTime;
     String deliveryEndTime;
 
+    Boolean status;
 }

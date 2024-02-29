@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Restauracja</title>
 </head>
 <body>
-<h1>Informacje o restauracji</h1>
+<section layout:fragment="section" class="py-5 bg-light">
+    <h1>Informacje o restauracji</h1>
 
-<p>Nazwa: <span th:text="${restaurant.localName}"></span></p>
-<p>Strona internetowa: <span th:text="${restaurant.website}"></span></p>
-<p>Telefon: <span th:text="${restaurant.phone}"></span></p>
-<p>Email: <span th:text="${restaurant.email}"></span></p>
+    <p>Local name: <span th:text="${restaurantDTO.localName}"></span></p>
+    <p>Website: <span th:text="${restaurantDTO.website}"></span></p>
+    <p>Phone: <span th:text="${restaurantDTO.phone}"></span></p>
+    <p>Email: <span th:text="${restaurantDTO.email}"></span></p>
 
-<h2>Adres</h2>
-<p>Kraj: <span th:text="${restaurant.address.country}"></span></p>
-<p>Miasto: <span th:text="${restaurant.address.city}"></span></p>
-<p>Kod pocztowy: <span th:text="${restaurant.address.postalCode}"></span></p>
-<p>Ulica: <span th:text="${restaurant.address.street}"></span></p>
+    <h2>Address</h2>
+    <p>Country: <span th:text="${restaurantDTO.addressDTO.country}"></span></p>
+    <p>City: <span th:text="${restaurantDTO.addressDTO.city}"></span></p>
+    <p>Postal code: <span th:text="${restaurantDTO.addressDTO.postalCode}"></span></p>
+    <p>Street: <span th:text="${restaurantDTO.addressDTO.street}"></span></p>
 
-<h2>Godziny otwarcia</h2>
-<table>
-    <tr>
-        <th>Dzień tygodnia</th>
-        <th>Otwarcie</th>
-        <th>Zamknięcie</th>
-    </tr>
-    <tr th:each="entry : ${restaurant.openingHours.entrySet()}">
-        <td th:text="${entry.key}"></td>
-        <td th:text="${entry.value.open}"></td>
-        <td th:text="${entry.value.close}"></td>
-    </tr>
-</table>
+    <h2>Opening hours
+    </h2>
+    <table>
+        <tr>
+            <th>Day:</th>
+            <th>Open: </th>
+            <th>Closed:</th>
+        </tr>
+        <tr th:each="entry : ${restaurantDTO.openingHours.entrySet()}">
+            <td th:text="${entry.key}"></td>
+            <td th:text="${entry.value.openTime}"></td>
+            <td th:text="${entry.value.closeTime}"></td>
+            <td th:text="${entry.value.deliveryStartTime}"></td>
+            <td th:text="${entry.value.deliveryEndTime}"></td>
+        </tr>
+    </table>
+</section>
+
 </body>
 </html>

@@ -14,7 +14,7 @@ import java.util.Set;
 @ToString
 public class OpeningHours {
 
-    Long openingHoursId;
+    Integer openingHoursId;
     DayOfWeek dayOfWeek;
     LocalTime openTime;
     LocalTime closeTime;

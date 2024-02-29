@@ -3,6 +3,8 @@ package org.example.infrastructure.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.domain.OpeningHours;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.time.DayOfWeek;
 import java.time.OffsetDateTime;
@@ -23,7 +25,7 @@ public class RestaurantEntity {
     @Id
     @Column(name = "restaurant_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long restaurantId;
+    private Integer restaurantId;
 
     @Column(name = "local_name")
     private String localName;
@@ -46,17 +48,19 @@ public class RestaurantEntity {
     private OwnerEntity owner;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    private Set<MenuItemEntity> menuItems;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private Set<OpinionEntity> opinions;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    private Set<OrdersEntity> orders;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "restaurant_opening_hours",
             joinColumns = @JoinColumn(name = "restaurant_id"),
             inverseJoinColumns = @JoinColumn(name = "opening_hours_id"))
     @MapKeyEnumerated(EnumType.STRING)
     private Map<DayOfWeek, OpeningHoursEntity> openingHours;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private Set<OrdersEntity> orders;
-
 
 }

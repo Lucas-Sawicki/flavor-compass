@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Orders {
 
-    Long orderId;
+    Integer orderId;
     OffsetDateTime orderDate;
     Long orderNumber;
     String status;

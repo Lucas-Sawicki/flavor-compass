@@ -13,7 +13,7 @@ import java.util.Set;
 public class Role {
 
 
-    int roleId;
+    Integer roleId;
     String role;
     Set<User> users;
 }

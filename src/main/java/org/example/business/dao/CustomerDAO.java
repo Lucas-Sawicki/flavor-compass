@@ -11,4 +11,5 @@ public interface CustomerDAO {
     Customer saveCustomer(Customer customer);
 
 
+    Customer findCustomerById(Long id);
 }

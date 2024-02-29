@@ -2,9 +2,6 @@ package org.example.infrastructure.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.business.TokenService;
-import org.example.infrastructure.security.utils.JwtAuthenticationFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,12 +25,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Slf4j
-public class SecurityConfiguration {
+public class SecurityConfiguration  {
 
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private final CustomUserDetailsService customUserDetailsService;
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -51,7 +52,7 @@ public class SecurityConfiguration {
     @Bean
     public AuthenticationProvider authenticationProvider() throws Exception {
         DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
-        daoProvider.setUserDetailsService(customUserDetailsService);
+        daoProvider.setUserDetailsService(userDetailsService());
         daoProvider.setPasswordEncoder(passwordEncoder());
         return daoProvider;
     }
@@ -69,7 +70,7 @@ public class SecurityConfiguration {
         http
                 .csrf((AbstractHttpConfigurer::disable))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/error", "/login", "/registration", "/api/login", "/api/registration", "/swagger-ui/**", "/images/oh_no.png").permitAll()
+                        .requestMatchers("/", "/error", "/login", "/registration", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**").hasRole("CUSTOMER")
                         .requestMatchers("/api/**").hasRole("REST_API")
@@ -77,7 +78,7 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling((exceptionHandling) ->
@@ -90,7 +91,6 @@ public class SecurityConfiguration {
                         .usernameParameter("email")
                         .successHandler(customAuthenticationHandler())
                         .failureHandler(customAuthenticationHandler())
-
                         .permitAll())
                 .logout(configuration -> configuration
                         .logoutSuccessHandler(new CustomLogoutSuccessHandler())

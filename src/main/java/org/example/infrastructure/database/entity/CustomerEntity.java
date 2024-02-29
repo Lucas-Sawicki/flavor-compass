@@ -20,7 +20,7 @@ public class CustomerEntity {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
+    private Integer customerId;
 
     @Column(name = "name")
     private String name;

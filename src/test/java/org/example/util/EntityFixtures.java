@@ -1,25 +1,24 @@
 package org.example.util;
 
 import lombok.experimental.UtilityClass;
-import org.example.infrastructure.database.entity.AddressEntity;
-import org.example.infrastructure.database.entity.CustomerEntity;
-import org.example.infrastructure.database.entity.OwnerEntity;
-import org.example.infrastructure.database.entity.UserEntity;
+import org.example.infrastructure.database.entity.*;
+
+import java.util.Set;
 
 @UtilityClass
 public class EntityFixtures {
     public static OwnerEntity someOwner1() {
-            return OwnerEntity.builder()
-                    .name("Marek")
-                    .surname("Ogarek")
-                    .phone("+48 777 666 555")
-                    .user(UserEntity.builder()
-                            .email("m.ogarek@com.pl")
-                            .password("test")
-                            .active(true)
-                            .build())
-                    .build();
-        }
+        return OwnerEntity.builder()
+                .name("Marek")
+                .surname("Ogarek")
+                .phone("+48 777 666 555")
+                .user(UserEntity.builder()
+                        .email("m.ogarek@com.pl")
+                        .password("test")
+                        .active(true)
+                        .build())
+                .build();
+    }
 
     public static OwnerEntity someOwner2() {
         return OwnerEntity.builder()
@@ -46,6 +45,7 @@ public class EntityFixtures {
                         .build())
                 .build();
     }
+
     public static CustomerEntity someCustomer1() {
         return CustomerEntity.builder()
                 .name("Romek")
@@ -64,6 +64,7 @@ public class EntityFixtures {
                         .build())
                 .build();
     }
+
     public static CustomerEntity someCustomer2() {
         return CustomerEntity.builder()
                 .name("Ada")
@@ -82,6 +83,7 @@ public class EntityFixtures {
                         .build())
                 .build();
     }
+
     public static CustomerEntity someCustomer3() {
         return CustomerEntity.builder()
                 .name("Monika")

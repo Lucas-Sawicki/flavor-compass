@@ -19,4 +19,5 @@ public interface UserEntityMapper {
 
     UserEntity mapToEntity(User user);
 
+
 }

@@ -2,6 +2,8 @@ package org.example.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -20,7 +22,7 @@ public class OpinionEntity {
     @Id
     @Column(name = "opinion_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long opinionId;
+    private Integer opinionId;
 
     @Column(name = "stars")
     private String stars;
@@ -40,6 +42,7 @@ public class OpinionEntity {
     private MenuItemEntity menuItem;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 

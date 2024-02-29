@@ -12,7 +12,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "opinionId")
 public class Opinion {
 
-    Long opinionId;
+    Integer opinionId;
     String stars;
     String comment;
     OffsetDateTime opinionDate;

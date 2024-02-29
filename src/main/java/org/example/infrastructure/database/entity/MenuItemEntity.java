@@ -20,7 +20,7 @@ public class MenuItemEntity {
     @Id
     @Column(name = "menu_item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long menuItemId;
+    private Integer menuItemId;
 
     @Column(name = "name")
     private String name;
@@ -42,6 +42,10 @@ public class MenuItemEntity {
 
     @OneToOne(fetch = FetchType.LAZY,mappedBy = "menuItem")
     private OrderItemEntity orderItem;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private RestaurantEntity restaurant;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuItem")
     private Set<OpinionEntity> opinions;

@@ -1,9 +1,14 @@
 package org.example.api.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.business.OwnerService;
+import org.example.business.TokenService;
 import org.example.domain.Owner;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -24,13 +29,15 @@ public class OwnerController {
 
     private final OwnerService ownerService;
 
-    @GetMapping("/owner")
-    public String owner(@RequestHeader(name="Authorization") String token) {
+    @PreAuthorize(value = "hasRole('OWNER')")
+    @GetMapping(value = OWNER)
+    public String owner(Model model) {
 
         return "owner_portal";
     }
+
     @GetMapping("/owner/{ownerID}")
-    public String showOwner(@PathVariable Long ownerID, Model model) {
+    public String showOwner(@PathVariable Integer ownerID, Model model) {
         Owner findOwner = ownerService.findOwnerById(ownerID);
         log.info("Owner found");
         if (findOwner != null) {

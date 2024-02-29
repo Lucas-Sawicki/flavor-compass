@@ -15,10 +15,12 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    public Optional<UserEntity> findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
+    public Optional<UserEntity> findEntityByEmail(String email) {
+        return userRepository.findEntityByEmail(email);
+    }
 
     public Boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);

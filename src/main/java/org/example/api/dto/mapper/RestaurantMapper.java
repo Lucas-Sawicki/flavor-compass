@@ -6,8 +6,10 @@ import org.example.api.dto.OpeningHoursDTO;
 import org.example.api.dto.RestaurantDTO;
 import org.example.domain.Address;
 import org.example.domain.OpeningHours;
+import org.example.domain.Owner;
 import org.example.domain.Restaurant;
 import org.mapstruct.Mapper;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.DayOfWeek;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.TreeMap;
 @Mapper(componentModel = "spring")
 public interface RestaurantMapper extends LocalTimeMapper {
 
-    default Restaurant map(RestaurantDTO restaurantDTO, AddressDTO addressDTO) {
+    default Restaurant map(RestaurantDTO restaurantDTO, AddressDTO addressDTO, Owner owner) {
         Restaurant restaurant = Restaurant.builder()
                 .localName(restaurantDTO.getRestaurantName())
                 .website(restaurantDTO.getRestaurantWebsite())
@@ -28,6 +30,12 @@ public interface RestaurantMapper extends LocalTimeMapper {
                         .city(addressDTO.getAddressCity())
                         .postalCode(addressDTO.getAddressPostalCode())
                         .street(addressDTO.getAddressStreet())
+                        .build())
+                .owner(Owner.builder()
+                        .name(owner.getName())
+                        .surname(owner.getSurname())
+                        .phone(owner.getPhone())
+                        .ownerId(owner.getOwnerId())
                         .build())
                 .build();
 
@@ -48,4 +56,5 @@ public interface RestaurantMapper extends LocalTimeMapper {
         }
         return restaurant.withOpeningHours(openingHoursMap);
     }
+
 }

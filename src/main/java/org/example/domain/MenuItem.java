@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.infrastructure.database.entity.RestaurantEntity;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ import java.util.Set;
 @ToString(of = {"menuItemId", "name", "category", "price"})
 public class MenuItem {
 
-     Long menuItemId;
+     Integer menuItemId;
      String name;
      String category;
      String description;
@@ -22,6 +23,7 @@ public class MenuItem {
      String photoUrl;
      Boolean available;
      OrderItem orderItem;
+     Restaurant restaurant;
      Set<Opinion> opinions;
      Set<Orders> orders;
 

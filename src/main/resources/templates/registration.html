@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Registration panel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,137 +11,129 @@
           crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0 flex-grow-1">
+    <section layout:fragment="section" class="py-5 bg-light">
+        <form action="#" th:action="@{/registration}" th:object="${registrationDTO}" method="POST" class="bg-light text-dark">
+            <div class="container px-4 px-lg-5">
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <h1>Create new account</h1>
+                        <p>Please enter data:</p>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="name">Name:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="name"
+                                       th:field="*{name}" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="surname">Surname:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="surname"
+                                       th:field="*{surname}" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="phone">Phone number:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="tel" id="phone"
+                                       th:field="*{phone}" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="email" id="email" th:field="*{email}" required/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="password" id="password" th:field="*{password}" required/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="confirmPassword">Confirm password</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="password" id="confirmPassword" th:field="*{matchingPassword}" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div th:object="${registrationDTO.addressDTO}"  class="container py-3">
+                        <div class="form-group">
+                            <p>You are a customer or restaurant owner?</p>
 
-<form action="#" th:action="@{/registration}" th:object="${registrationDTO}" method="POST">
-    <div class="container">
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <h1>Create new account</h1>
-                <p>Please enter data:</p>
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="name">Name:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="name"
-                               th:field="*{name}" required>
+                            <select id="userType" th:field="*{customer}" class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 border-0 shadow w-220px" data-bs-theme="dark">
+                                <option class="dropdown-item rounded-2 active" value="true">Customer</option>
+                                <option class="dropdown-item rounded-2" value="false">Owner</option>
+                            </select>
+                            <div id="countryField" style="display: none;">
+                                <div class="form-group">
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <label for="addressCountry">Country:</label>
+                                            <input type="text" id="addressCountry" th:field="*{addressCountry}"
+                                                   class="form-control" required disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <label for="addressCity">City:</label>
+                                            <input type="text" id="addressCity" th:field="*{addressCity}"
+                                                   class="form-control" required disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <label for="addressStreet">Street:</label>
+                                            <input type="text" id="addressStreet" th:field="*{addressStreet}"
+                                                   class="form-control" required disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3">
+                                            <label for="addressPostalCode">Postal code:</label>
+                                            <input type="text" id="addressPostalCode"
+                                                   th:field="*{addressPostalCode}"
+                                                   class="form-control" required disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="surname">Surname:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="surname"
-                               th:field="*{surname}" required>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="phone">Phone number:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="tel" id="phone"
-                               th:field="*{phone}" required>
-                    </div>
-                </div>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="email" id="email" th:field="*{email}" required/>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="password" id="password" th:field="*{password}" required/>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="confirmPassword">Confirm password</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="password" id="confirmPassword" th:field="*{matchingPassword}" required/>
-                        </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success">Create!</button>
                     </div>
                 </div>
                 <br>
-            <div th:object="${registrationDTO.addressDTO}">
-                <div class="form-group">
-                    <p>You are a customer or restaurant owner?</p>
-                    <select id="userType" th:field="*{customer}" class="form-control">
-                        <option value="true">Customer</option>
-                        <option value="false">Owner</option>
-                    </select>
-                    <div id="countryField" style="display: none;">
-                        <div class="form-group">
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <label for="addressCountry">Country:</label>
-                                    <input type="text" id="addressCountry" th:field="*{addressCountry}"
-                                           class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <label for="addressCity">City:</label>
-                                    <input type="text" id="addressCity" th:field="*{addressCity}"
-                                           class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <label for="addressStreet">Street:</label>
-                                    <input type="text" id="addressStreet" th:field="*{addressStreet}"
-                                           class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-3">
-                                    <label for="addressPostalCode">Postal code:</label>
-                                    <input type="text" id="addressPostalCode"
-                                           th:field="*{addressPostalCode}"
-                                           class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
+                <br>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <a th:href="@{/home}" class="btn btn-warning" role="button">Go back to the main page</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <input type="submit" value="Create!" class="btn btn-success">
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <a th:href="@{/}" class="btn btn-info" role="button">Go back to the main page</a>
-            </div>
-        </div>
-
-    </div>
-    <br>
-
-</form>
-<script>
-$(document).ready(function() {
-    $('#userType').change(function() {
-        if ($(this).val() == 'true') {
-            $('#countryField').show();
-        } else {
-            $('#countryField').hide();
-        }
-    });
-});
-</script>
+            <br>
+        </form>
+    </section>
+</main>
 </body>
+
 </html>

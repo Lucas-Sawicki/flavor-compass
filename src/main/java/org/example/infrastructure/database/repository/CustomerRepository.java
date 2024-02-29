@@ -3,6 +3,7 @@ package org.example.infrastructure.database.repository;
 import lombok.AllArgsConstructor;
 import org.example.business.dao.CustomerDAO;
 import org.example.domain.Customer;
+import org.example.domain.exception.NotFoundException;
 import org.example.infrastructure.database.entity.CustomerEntity;
 import org.example.infrastructure.database.repository.jpa.CustomerJpaRepository;
 import org.example.infrastructure.database.repository.mapper.CustomerEntityMapper;
@@ -20,5 +21,12 @@ public class CustomerRepository implements CustomerDAO {
         CustomerEntity toSave = customerEntityMapper.mapToEntity(customer);
         CustomerEntity saved = customerJpaRepository.saveAndFlush(toSave);
         return customerEntityMapper.mapFromEntity(saved);
+    }
+
+    @Override
+    public Customer findCustomerById(Long id) {
+        CustomerEntity customerEntity = customerJpaRepository.findById(id.intValue())
+                .orElseThrow(() -> new NotFoundException("Customer not found"));
+        return customerEntityMapper.mapFromEntity(customerEntity);
     }
 }

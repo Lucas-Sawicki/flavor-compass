@@ -12,7 +12,7 @@ import java.util.Set;
 @ToString(of = {"userId", "email", "active"})
 public class User {
 
-    Long userId;
+    Integer userId;
     String email;
     String password;
     Boolean active;

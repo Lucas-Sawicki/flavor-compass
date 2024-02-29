@@ -5,6 +5,8 @@ import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.LoginDTO;
 import org.example.api.dto.RegistrationDTO;
 import org.example.business.AuthenticationService;
+import org.example.business.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +18,18 @@ public class AuthenticationRestController {
     public static final String REGISTER = "/registration";
     public static final String LOGIN = "/login";
     private final AuthenticationService authenticationService;
+    private final UserService userService;
 
 
 
     @PostMapping(value = REGISTER)
-    public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody RegistrationDTO body){
+    public ResponseEntity<String> register(@RequestBody RegistrationDTO body){
+        if (userService.existsByEmail(body.getEmail())){
+            return new ResponseEntity<>("Email is taken!", HttpStatus.BAD_REQUEST);
+        }
         body.setRestApiUser(true);
-        return ResponseEntity.ok(authenticationService.registerUser(body));
+        authenticationService.registerUser(body);
+        return ResponseEntity.ok("User registered success");
     }
 
     @PostMapping(value = LOGIN)

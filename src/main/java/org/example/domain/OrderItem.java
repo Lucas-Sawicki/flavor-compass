@@ -9,7 +9,7 @@ import lombok.*;
 @ToString(of = {"orderItemId", "menuItem", "quantity", "order"})
 public class OrderItem {
 
-    Long orderItemId;
+    Integer orderItemId;
     Integer quantity;
     MenuItem menuItem;
     Orders order;

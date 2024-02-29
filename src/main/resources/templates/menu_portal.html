@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout}">
+<head>
+    <title>Add menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+</head>
+
+<body>
+<section layout:fragment="section" class="py-5 bg-light">
+
+    <div class="col-md-6">
+        <label for="restaurantsList">Choose restaurant:</label>
+        <select id="restaurantsList" th:field="*{restaurantsList}">
+            <option th:each="restaurantsList : ${restaurantsList}"
+                    th:value="${restaurantsList}" th:text="${restaurantsList.localName}"></option>
+
+        </select>
+    </div>
+
+    <div class="row gx-5">
+        <div class="col-lg-5 col-md-6 mb-5">
+            <div class="card card-raised border-top border-4 border-primary h-100">
+                <div class="card-body p-5">
+                    <p class="card-text mb-4">Add food information: </p>
+                    <form th:action="@{owner/add/menu}" th:object="${menuItemDTO}" method="post">
+                        <div class="col-md-6">
+                            <label for="name" class="text-muted fst-italic">Name:</label>
+                            <input type="text" id="name" th:field="*{name}">
+
+                            <label for="category" class="text-muted fst-italic">Category:</label>
+                            <input type="text" id="category" th:field="*{category}">
+
+                            <label for="description" class="text-muted fst-italic">Description:</label>
+                            <input type="text" id="description" th:field="*{description}">
+
+                            <label for="price" class="text-muted fst-italic">Price:</label>
+                            <input type="text" id="price" th:field="*{price}">
+
+                            <label for="photoUrl" class="text-muted fst-italic">Photo URL:</label>
+                            <input type="text" id="photoUrl" th:field="*{photoUrl}">
+
+                            <button type="submit">Add Menu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-6 mb-5">
+            <div class="card card-raised bg-primary bg-gradient text-white h-100">
+                <div class="card-body p-5">
+                    <div class="text-center">
+                        <div class="overline text-white-50 mb-4">Add photo</div>
+                        <input type="file" id="photoUpload">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

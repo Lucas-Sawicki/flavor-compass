@@ -14,11 +14,11 @@
     <h1>Sorry mate, seems that You can't use this webapp properly!</h1>
     <b><span th:if="${errorMessage}" th:text="${errorMessage}">Error</span></b>
     <br>
-    <img th:src="@{/images/oh_no.png}" alt="OH NO" width="auto" height="auto"/>
+    <img th:src="@{/images/oh_no.png}" alt="OH NO" width="50" height="50"/>
     <br>
     <br>
     <p>
-        <a th:href="@{/}" class="btn btn-info" role="button">Back to the main page</a>
+        <a th:href="@{/home}" class="btn btn-warning" role="button">Back to the main page</a>
     </p>
 </div>
 </body>

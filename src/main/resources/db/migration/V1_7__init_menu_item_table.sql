@@ -6,10 +6,11 @@ CREATE TABLE menu_item
     description     TEXT          NOT NULL,
     price           DECIMAL(7, 2) NOT NULL,
     available       BOOLEAN       NOT NULL,
-    opinion_id      INT,
     photo_url       VARCHAR(200),
+    restaurant_id   INT,
+
     PRIMARY KEY (menu_item_id),
-    CONSTRAINT fk_menu_item_opinion
-            FOREIGN KEY (opinion_id)
-                REFERENCES opinion (opinion_id)
+    CONSTRAINT fk_menu_item_restaurant
+            FOREIGN KEY (restaurant_id)
+                REFERENCES restaurant (restaurant_id)
 );

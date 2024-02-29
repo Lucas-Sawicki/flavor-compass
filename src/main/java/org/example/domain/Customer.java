@@ -14,7 +14,7 @@ import java.util.Set;
 @ToString(of = {"customerId", "name", "surname", "phone"})
 public class Customer {
 
-    Long customerId;
+    Integer customerId;
     String name;
     String surname;
     String phone;

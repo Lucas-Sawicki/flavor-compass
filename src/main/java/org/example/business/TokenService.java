@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,25 +23,30 @@ public class TokenService {
     private CustomUserDetailsService customUserDetailsService;
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
-
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String email = extractUserEmail(token);
-        return (email.equals(userDetails.getUsername()));
-    }
-
-    public String generateToken(
-            Map<String, Object> extraClaims,
-            UserDetails userDetails
-    ) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", userDetails.getAuthorities());
+        Date currentDate = new Date();
+        Date expireDate = new Date(currentDate.getTime() + 300000);
         return Jwts
                 .builder()
-                .claims(extraClaims)
+                .claims(claims)
                 .subject(userDetails.getUsername())
+                .expiration(expireDate)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .signWith(getSignInKey(), Jwts.SIG.HS256)
                 .compact();
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUserEmail(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+    private Boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(Date.from(Instant.now()));
     }
 
     public String extractUserEmail(String token) {
@@ -59,7 +65,6 @@ public class TokenService {
                 .parseSignedClaims(token)
                 .getPayload();
     }
-
 
     private SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);

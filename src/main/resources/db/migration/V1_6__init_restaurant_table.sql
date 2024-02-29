@@ -6,7 +6,7 @@ CREATE TABLE restaurant (
     email               VARCHAR(32)     NOT NULL,
     website             VARCHAR(64),
     owner_id            INT             NOT NULL,
-    opinion_id          INT,
+
 
     PRIMARY KEY (restaurant_id),
       UNIQUE (phone),
@@ -16,10 +16,7 @@ CREATE TABLE restaurant (
             REFERENCES address (address_id),
     CONSTRAINT fk_restaurant_owner
         FOREIGN KEY (owner_id)
-            REFERENCES owner (owner_id),
-    CONSTRAINT fk_restaurant_opinion
-                FOREIGN KEY (opinion_id)
-                    REFERENCES opinion (opinion_id)
+            REFERENCES owner (owner_id)
 );
 
 CREATE TABLE restaurant_opening_hours (

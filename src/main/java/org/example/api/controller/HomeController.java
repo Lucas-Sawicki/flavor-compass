@@ -24,20 +24,17 @@ import java.security.Principal;
 @AllArgsConstructor
 public class HomeController {
 
-    static final String HOME = "/";
-    private TokenService tokenService;
-    @GetMapping("/")
-    public String home(HttpServletRequest req, Model model) {
+    static final String HOME = "/home";
+
+    @GetMapping(value = HOME)
+    public String home(HttpServletRequest req, Model model, Authentication authentication) {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
 
-                    UserDetails currentUser = tokenService.getUserFromToken(token);
-
                     model.addAttribute("token", token);
-                    model.addAttribute("currentUser", currentUser);
                 }
             }
         }

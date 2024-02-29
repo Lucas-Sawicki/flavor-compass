@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
@@ -27,18 +28,20 @@ public class RegistrationController {
         model.addAttribute("registrationDTO", new RegistrationDTO());
         return "/registration";
     }
+    @GetMapping("/success_register")
+    public String successCreateAccount(Model model) {
+        return "success_register.html";
+    }
 
     @PostMapping(value = REGISTER)
-    public ResponseEntity<String> register(@ModelAttribute RegistrationDTO registrationDTO,
+    public ModelAndView register(@ModelAttribute RegistrationDTO registrationDTO,
                                            BindingResult bindingResult
     ) {
         if (userService.existsByEmail(registrationDTO.getEmail())) {
-            return new ResponseEntity<>("Email is already taken", HttpStatus.BAD_REQUEST);
+            return new ModelAndView("error", HttpStatus.BAD_REQUEST);
         }
         authenticationService.registerUser(registrationDTO);
-        return ResponseEntity.ok("success_register");
+        return new ModelAndView("redirect:/success_register");
     }
-
-
 }
 

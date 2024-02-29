@@ -13,7 +13,7 @@ import java.util.*;
 @ToString(of = {"restaurantId", "localName", "website", "phone", "owner", "email"})
 public class Restaurant {
 
-     Long restaurantId;
+     Integer restaurantId;
      String localName;
      String website;
      String phone;
@@ -32,17 +32,17 @@ public class Restaurant {
      public Set<Opinion> getOpinions() {
           return  Objects.isNull(opinions) ? new HashSet<>() : opinions;
      }
-     public Map<DayOfWeek, Long> getOpeningHoursId(Map<DayOfWeek, OpeningHours> openingHours) {
-          Map<DayOfWeek, Long> openingHoursIdMap = new TreeMap<>();
+     public Map<DayOfWeek, Integer> getOpeningHoursId(Map<DayOfWeek, OpeningHours> openingHours) {
+          Map<DayOfWeek, Integer> openingHoursIdMap = new TreeMap<>();
           for (Map.Entry<DayOfWeek, OpeningHours> entry : openingHours.entrySet()) {
                openingHoursIdMap.put(entry.getKey(), entry.getValue().getOpeningHoursId());
           }
           return openingHoursIdMap;
      }
-     public Restaurant withOpeningHoursId(Map<DayOfWeek, Long> openingHoursIdMap) {
+     public Restaurant withOpeningHoursId(Map<DayOfWeek, Integer> openingHoursIdMap) {
           Map<DayOfWeek, OpeningHours> newOpeningHours = new HashMap<>();
-          Long firstOpeningHoursId = openingHoursIdMap.values().stream().findFirst().orElse(null);
-          for (Map.Entry<DayOfWeek, Long> entry : openingHoursIdMap.entrySet()) {
+          Integer firstOpeningHoursId = openingHoursIdMap.values().stream().findFirst().orElse(null);
+          for (Map.Entry<DayOfWeek, Integer> entry : openingHoursIdMap.entrySet()) {
                OpeningHours openingHours = OpeningHours.builder()
                        .openingHoursId(firstOpeningHoursId)
                        .build();
