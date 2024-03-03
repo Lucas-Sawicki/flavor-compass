@@ -34,14 +34,8 @@ public class MenuItemEntity {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column (name = "available")
-    private Boolean available;
-
     @Column(name = "photo_url")
     private String photoUrl;
-
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "menuItem")
-    private OrderItemEntity orderItem;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
@@ -51,6 +45,5 @@ public class MenuItemEntity {
     private Set<OpinionEntity> opinions;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuItem")
-    private Set<OrdersEntity> orders;
-
+    private Set<OrderItemEntity> orderItems;
 }

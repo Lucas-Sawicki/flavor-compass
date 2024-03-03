@@ -34,7 +34,7 @@ public class AuthenticationRestController {
 
     @PostMapping(value = LOGIN)
     public ResponseEntity<AuthenticationResponseDTO> loginUser(@RequestBody LoginDTO body){
-        return ResponseEntity.ok(authenticationService.loginUser(body));
+        return ResponseEntity.ok(authenticationService.loginUser(body.getEmail(),body.getPassword()));
     }
 
 }

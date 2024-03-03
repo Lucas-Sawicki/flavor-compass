@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,8 +17,7 @@ public class OrdersDTO {
     Long orderNumber;
     String status;
     String deliveryTime;
-    String customer;
-    String restaurant;
-    String menuItem;
-
+    Integer customerId;
+    Integer restaurantId;
+    List<OrderItemDTO> orderItems;
 }

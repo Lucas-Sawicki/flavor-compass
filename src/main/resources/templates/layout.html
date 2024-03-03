@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script th:src="@{/js/scripts.js}"></script>
+    <script src="https://kit.fontawesome.com/3c0e7cb761.js" crossorigin="anonymous"></script>
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Flavor Compass</title>
 </head>
 <header class="p-3 text-bg-dark">
@@ -24,6 +25,7 @@
                 <li><a th:href="@{/home}" class="nav-link px-2 text-white">My account</a></li>
                 <li><a th:href="@{/owner/add/restaurant}" class="nav-link px-2 text-white">Restaurant</a></li>
                 <li><a th:href="@{/owner/add/menu}" class="nav-link px-2 text-white">Menu</a></li>
+                <li><a th:href="@{/customer/find}" class="nav-link px-2 text-white">Find food</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -33,17 +35,19 @@
             <div class="text-end">
                 <a th:href="@{/login}" class="btn btn-outline-light me-2">Login</a>
                 <a th:href="@{/registration}" class="btn btn-warning">Sign-up</a>
-                <button class="btn btn-outline-light" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
-                </button>
+                <form th:action="@{/cart}" method="get">
+                    <button type="submit" class="btn btn-outline-light">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </header>
-<body>
-    <section layout:fragment="section" class="py-5 bg-light">
+<body class="d-flex flex-column h-100 bg-dark2">
+    <section layout:fragment="section" class="mx-auto my-5">
 
     </section>
 
@@ -51,6 +55,4 @@
     <div layout:fragment="custom-footer" class="container"><p class="m-0 text-center text-white">Łukasz Sawicki; Project for zajavka.pl</p></div>
 </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/scripts.js"></script>
 </html>

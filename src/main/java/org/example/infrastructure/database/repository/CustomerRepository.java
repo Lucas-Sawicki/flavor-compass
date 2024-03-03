@@ -24,8 +24,8 @@ public class CustomerRepository implements CustomerDAO {
     }
 
     @Override
-    public Customer findCustomerById(Long id) {
-        CustomerEntity customerEntity = customerJpaRepository.findById(id.intValue())
+    public Customer findCustomerById(Integer id) {
+        CustomerEntity customerEntity = customerJpaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Customer not found"));
         return customerEntityMapper.mapFromEntity(customerEntity);
     }

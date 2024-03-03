@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Find menu page</title>
+</head>
+<body>
+<section layout:fragment="section" class="py-5 bg-light">
+    <div class="containerpx-5 my-5 d-flex justify-content: center" style="max-width: 100%; ">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            <div th:each="menuItem : ${pagination}" style="width: 350px;">
+                <div class="col mb-5 ">
+                    <div class="card h-100 bg-dark2 bg-gradient">
+                        <div class="border 3px">
+                            <img class="card-img-top" th:src="${menuItem.photoUrl}" width="300"
+                                 height="300"/>
+                            <!-- Product details-->
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 th:text="${menuItem.name}"
+                                    class="h3 text-decoration-none link-dark text-warning"
+                                    style="business-style-title"></h5>
+                                <!-- Product reviews-->
+                                <hr class="text-warning">
+                                <a th:text="${menuItem.category}"
+                                   class="h3 text-decoration-none link-dark text-warning"
+                                   style="font-style: italic; font-size: 16px;"></a>
+                                <!-- Product price-->
+                                <hr class="text-warning">
+                                <a th:text="${menuItem.price}"
+                                   class="h3 text-decoration-none link-dark text-warning"
+                                   style="font-style: italic; font-size: 16px;"></a>
+
+                                <hr class="text-warning">
+                                <div class="text-warning" style="h-auto; overflow-y: auto; font-size: 12px;" th:text="${menuItem.description}"></div>
+                                <hr class="text-warning">
+                                <form th:action="@{/add-to-cart}" method="post">
+                                    <input type="hidden" th:value="${menuItem.menuItemId}" name="id">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" id="quantity" th:value="${orderItemDTO.quantity}" name="quantity" min="1" value="1">
+                                    <button type="submit" class="btn btn-outline-warning">Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container px-5 my-5 d-flex justify-content-center" style="max-width: 100%;">
+        <ul class="pagination">
+            <li class="page-item" th:class="${pagination.first ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/owner/restaurant/{id}(id=${restaurantDTO.id}, page=${pagination.number-1})}">Previous</a>
+            </li>
+            <li class="page-item"
+                th:each="pageNumber : ${#numbers.sequence(0, pagination.totalPages-1)}"
+                th:class="${pageNumber == pagination.number ? 'active' : ''}">
+                <a class="page-link" th:href="@{/owner/restaurant/{id}(id=${restaurantDTO.id}, page=${pageNumber})}"><span th:text="${pageNumber + 1}">1</span></a>
+            </li>
+            <li class="page-item" th:class="${pagination.last ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/owner/restaurant/{id}(id=${restaurantDTO.id}, page=${pagination.number+1})}">Next</a>
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

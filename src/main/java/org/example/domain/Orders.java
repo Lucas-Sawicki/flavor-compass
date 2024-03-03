@@ -2,16 +2,16 @@ package org.example.domain;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Value
 @With
-@EqualsAndHashCode(of = "orderNumber")
 @Builder
-@ToString(of = {"orderId", "orderDate", "orderNumber", "status", "customer", "restaurant"})
-
+@EqualsAndHashCode(of = "orderNumber")
+@ToString(of = {"orderId", "orderDate", "status", "deliveryTime"})
 public class Orders {
 
     Integer orderId;
@@ -21,14 +21,15 @@ public class Orders {
     LocalTime deliveryTime;
     Customer customer;
     Restaurant restaurant;
-    MenuItem menuItem;
     List<OrderItem> orderItems;
 
     public String getStatus() {
-        if(status == null){
-            return withStatus("pending").status;
-        } else {
-            return this.status;
-        }
+        return status == null ? withStatus("pending").status : this.status;
+    }
+
+    public BigDecimal getTotalCost() {
+        return orderItems.stream()
+                .map(orderItem -> orderItem.getMenuItem().getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

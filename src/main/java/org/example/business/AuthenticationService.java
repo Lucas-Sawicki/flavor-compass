@@ -20,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 
@@ -64,20 +65,25 @@ public class AuthenticationService {
         }
     }
 
-    public AuthenticationResponseDTO loginUser(LoginDTO loginDTO) {
+    public AuthenticationResponseDTO loginUser(String email, String password) {
 
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword())
+                    new UsernamePasswordAuthenticationToken(email, password)
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            var user = userService.findEntityByEmail(loginDTO.getEmail())
+            var user = userService.findEntityByEmail(email)
                     .orElseThrow(() -> new EntityNotFoundException("User not found!"));
             UserDetails userDetails = new CustomUserDetails(user);
             var jwtToken = tokenService.generateToken(userDetails);
-            return AuthenticationResponseDTO.builder()
+            AuthenticationResponseDTO responseDTO = AuthenticationResponseDTO.builder()
                     .token(jwtToken)
                     .build();
+
+            if (user.getCustomer() != null) {
+                responseDTO.setIsCustomer(true);
+            }
+            return responseDTO;
         } catch (AuthenticationException e) {
             throw new AuthenticationException("Something goes wrong!", e) {
             };

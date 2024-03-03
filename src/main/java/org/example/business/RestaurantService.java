@@ -3,17 +3,24 @@ package org.example.business;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.business.dao.AddressDAO;
+import org.example.api.dto.RestaurantDTO;
+import org.example.api.dto.mapper.RestaurantMapper;
 import org.example.business.dao.RestaurantDAO;
 import org.example.domain.Address;
 import org.example.domain.OpeningHours;
 import org.example.domain.Owner;
 import org.example.domain.Restaurant;
-import org.example.infrastructure.database.repository.RestaurantRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Slf4j
@@ -21,8 +28,7 @@ import java.util.*;
 public class RestaurantService {
 
     private final RestaurantDAO restaurantDAO;
-    private final AddressDAO addressDAO;
-    private final RestaurantRepository restaurantRepository;
+    private final RestaurantMapper restaurantMapper;
     private final OwnerService ownerService;
     private final OpeningHoursService openingHoursService;
 
@@ -46,21 +52,44 @@ public class RestaurantService {
         restaurantDAO.saveRestaurant(finalRestaurant);
     }
     public Boolean existsByEmail(String email) {
-        return restaurantRepository.existsByEmail(email);
+        return restaurantDAO.existsByEmail(email);
     }
 
     public List<Restaurant> findAll() {
-        return restaurantRepository.findAll();
+        return restaurantDAO.findAllByRestaurantId();
     }
     @Transactional
     public List<Restaurant> findRestaurantsByOwnerId(Integer ownerId) {
         Owner ownerById = ownerService.findOwnerById(ownerId);
-        List<Restaurant> restaurants = restaurantRepository.findAvailableRestaurantsByOwner(ownerById);
+        List<Restaurant> restaurants = restaurantDAO.findAvailableRestaurantsByOwner(ownerById);
         log.info("Available restaurant's: [{}]", restaurants.size());
         return restaurants;
     }
 
     public Restaurant findRestaurantsByEmail(String email) {
-        return restaurantRepository.findRestaurantsByEmail(email);
+        return restaurantDAO.findRestaurantsByEmail(email);
     }
+
+    public String findEmailFromString(String restaurant) {
+        Pattern emailPattern = Pattern.compile("email=([^,]*)");
+        Matcher matcher = emailPattern.matcher(restaurant);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+    public RestaurantDTO findRestaurantById(Integer restaurantId) {
+        Restaurant restaurantById = restaurantDAO.findRestaurantById(restaurantId);
+        return restaurantMapper.map(restaurantById);
+    }
+
+
+    public Page<Restaurant> pagination(int page, int size, String sortBy) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortBy));
+        return restaurantDAO.findAllByRestaurantId(pageRequest);
+    }
+
+
+
 }

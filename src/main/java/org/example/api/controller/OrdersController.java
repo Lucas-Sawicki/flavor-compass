@@ -1,86 +1,66 @@
-//package org.example.api.controller;
-//
-//import jakarta.websocket.server.PathParam;
-//import lombok.RequiredArgsConstructor;
-//import org.example.business.dao.OrdersDAO;
-//import org.example.domain.Orders;
-//import org.example.domain.exception.NotFoundException;
-//import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
-//
-//@Controller
-//@RequiredArgsConstructor
-//public class OrdersController {
-//
-//    public static final String ORDERS = "/orders";
-//    private static final String ORDERS_BY_ID = "/orders/id";
-//
-//    private final OrdersDAO ordersDAO;
-//
-//    @PostMapping(value = ORDERS)
-//        @Consumes(MediaType.APPLICATION_JSON)
-//        public ResponseEntity<String> createOrder(Orders order) throws ApplicationException {
-//            if (!order.isValid()) {
-//                throw new ApplicationException("Order is invalid!");
-//            }
-//
-//            ordersDAO.createOrder(order);
-//
-//            return ResponseEntity.ok("The order has been created.");
-//        }
-//
-//        @GetMapping(value = ORDERS_BY_ID)
-//        @Produces(MediaType.APPLICATION_JSON)
-//        public ResponseEntity<String> getOrderById(@PathParam("id") Integer id) throws NotFoundException {
-//
-//            Orders order = ordersDAO.findById(id);
-//
-//            if (null == order) {
-//                throw new NotFoundException("No Order found with Id " + id);
-//            }
-//
-//            return ResponseEntity.ok("Order found");
-//        }
-//
-//        @GetMapping
-//        @Path("/table/{table}")
-//        @Produces(MediaType.APPLICATION_JSON)
-//        public Response getAllOrdersByTable(@PathParam("table") Integer table) throws ResourceNotFoundException {
-//            // TODO: Change to Dependency Injection
-//            OrderDao orderDao = new OrderDaoImpl(new MongoDBManager());
-//
-//            List<Orders> orders = orderDao.findAllByTable(table);
-//
-//            if (null == orders) {
-//                throw new ResourceNotFoundException("No Orders found for table " + table);
-//            }
-//
-//            return Response.status(Status.OK).entity(orders).build();
-//        }
-//
-//        @PutMapping
-//        @Path("/{id}/{status}")
-//        public Response putOrderStatusByOrderId(@PathParam("id") String id, @PathParam("status") String status) throws ResourceNotFoundException, ApplicationException {
-//            // TODO: Change to Dependency Injection
-//            OrderDao orderDao = new OrderDaoImpl(new MongoDBManager());
-//
-//            Order order = orderDao.findById(id);
-//
-//            if (null == order) {
-//                throw new ResourceNotFoundException("No Order found with Id " + id);
-//            }
-//
-//            if (!EnumUtils.isValidEnum(OrderStatus.class, status)) {
-//                throw new ApplicationException("Status is invalid!");
-//            }
-//
-//            return Response.status(Status.NO_CONTENT).build();
-//        }
-//    }
-//
-//
-//}
+package org.example.api.controller;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import org.example.api.dto.OrdersDTO;
+import org.example.business.CartService;
+import org.example.business.CustomerService;
+import org.example.business.OrdersService;
+import org.example.business.dao.OrdersDAO;
+import org.example.business.dao.RestaurantDAO;
+import org.example.domain.Cart;
+import org.example.domain.Customer;
+import org.example.domain.Orders;
+import org.example.domain.Restaurant;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/order")
+@RequiredArgsConstructor
+public class OrdersController {
+
+    public static final String ORDERS = "/orders";
+    private static final String ORDERS_BY_ID = "/orders/id";
+    private final OrdersService ordersService;
+    private final CustomerService customerService;
+    private final RestaurantDAO restaurantDAO;
+    private final CartService cartService;
+    private final OrdersDAO ordersDAO;
+
+
+    @GetMapping("/checkout")
+    public String checkout(Model model) {
+        Cart cart = cartService.getCart();
+        if (cart == null) {
+            return "redirect:/cart";
+        }
+        model.addAttribute("order", new OrdersDTO());
+        model.addAttribute("cart", cart);
+        return "checkout";
+    }
+
+    @PostMapping("/placeOrder")
+    public String placeOrder(@ModelAttribute("order") OrdersDTO orderDTO, BindingResult bindingResult, HttpSession session) {
+        if (bindingResult.hasErrors()) {
+            return "checkout";
+        }
+        Customer customer = (Customer) session.getAttribute("customer");
+        Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
+        if (customer == null) {
+            return "redirect:/login";
+        }
+
+        cartService.placeOrder(cartService.getCart(), customer, restaurant);
+        return "redirect:/order/confirmation";
+    }
+
+    @GetMapping("/confirmation")
+    public String confirmation(Model model) {
+        // Dodaj dane potwierdzenia do modelu
+        // ...
+        return "confirmation";
+    }
+}

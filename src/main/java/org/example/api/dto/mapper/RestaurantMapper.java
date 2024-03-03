@@ -12,9 +12,11 @@ import org.mapstruct.Mapper;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.DayOfWeek;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface RestaurantMapper extends LocalTimeMapper {
@@ -57,4 +59,31 @@ public interface RestaurantMapper extends LocalTimeMapper {
         return restaurant.withOpeningHours(openingHoursMap);
     }
 
+    default RestaurantDTO map(Restaurant restaurant) {
+        return RestaurantDTO.builder()
+                .id(restaurant.getRestaurantId().toString())
+                .restaurantEmail(restaurant.getEmail())
+                .restaurantName(restaurant.getLocalName())
+                .restaurantPhone(restaurant.getPhone())
+                .restaurantWebsite(restaurant.getWebsite())
+                .addressDTO(AddressDTO.builder()
+                        .addressCountry(restaurant.getAddress().getCountry())
+                        .addressCity(restaurant.getAddress().getCity())
+                        .addressStreet(restaurant.getAddress().getStreet())
+                        .addressPostalCode(restaurant.getAddress().getPostalCode())
+                        .build())
+                .openingHours(restaurant.getOpeningHours().entrySet().stream()
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                entry -> OpeningHoursDTO.builder()
+                                        .day(entry.getValue().getDayOfWeek())
+                                        .openTime(entry.getValue().getOpenTime().toString())
+                                        .closeTime(entry.getValue().getCloseTime().toString())
+                                        .deliveryStartTime(entry.getValue().getDeliveryStartTime().toString())
+                                        .deliveryEndTime(entry.getValue().getDeliveryEndTime().toString())
+                                        .build(), (oldValue, newValue) -> oldValue,
+                                LinkedHashMap::new)))
+
+                .build();
+    }
 }

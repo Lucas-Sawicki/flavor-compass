@@ -54,16 +54,8 @@ public class OrdersRepository implements OrdersDAO {
 
 
     @Override
-    public void saveOrder(Customer customer) {
-        List<OrdersEntity> orders = customer.getOrders().stream()
-                .map(ordersEntityMapper::mapToEntity)
-                .toList();
-
-        orders.forEach(request -> request.setCustomer(customerEntityMapper.mapToEntity(customer)));
-        ordersJpaRepository.saveAllAndFlush(orders);
+    public void saveOrder(Orders orders) {
+        OrdersEntity ordersEntity = ordersEntityMapper.mapToEntity(orders);
+        ordersJpaRepository.saveAndFlush(ordersEntity);
     }
-
-//    @Override
-//    public void updateStatusById(String id, OrderStatus status) {
-
 }

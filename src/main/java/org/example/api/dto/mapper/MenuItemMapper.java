@@ -20,4 +20,16 @@ public interface MenuItemMapper {
 
         return menuItem.withRestaurant(restaurant);
     }
+    default MenuItemDTO map(MenuItem menuItem) {
+
+        return MenuItemDTO.builder()
+                .id(menuItem.getMenuItemId().toString())
+                .name(menuItem.getName())
+                .category(menuItem.getCategory())
+                .description(menuItem.getDescription())
+                .price(menuItem.getPrice().toString())
+                .photoUrl(menuItem.getPhotoUrl())
+                .restaurantsList(menuItem.getRestaurant().getLocalName())
+                .build();
+    }
 }

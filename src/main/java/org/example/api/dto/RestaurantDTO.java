@@ -23,6 +23,7 @@ import java.util.TreeMap;
 public class RestaurantDTO {
 
 
+    private String id;
     private String restaurantName;
     private String restaurantWebsite;
     @Pattern(regexp = "^[+]\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$")

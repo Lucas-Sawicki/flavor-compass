@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MenuItemEntityMapper {
-    @Mapping(target = "orderItem", ignore = true)
+
     @Mapping( target = "opinions", ignore = true)
-    @Mapping(target = "orders", ignore = true)
+    @Mapping(target = "restaurant.address", ignore = true)
+    @Mapping(target = "restaurant.openingHours", ignore = true)
+    @Mapping(target = "restaurant.owner", ignore = true)
     MenuItem mapFromEntity(MenuItemEntity entity);
     @Mapping( target = "opinions", ignore = true)
-    @Mapping(target = "orderItem", ignore = true)
-    @Mapping(target = "orders", ignore = true)
     MenuItemEntity mapToEntity(MenuItem menuItem);
 
 

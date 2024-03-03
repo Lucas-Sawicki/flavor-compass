@@ -9,131 +9,124 @@
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body class="d-flex flex-column h-100">
-<main class="flex-shrink-0 flex-grow-1">
-    <section layout:fragment="section" class="py-5 bg-light">
-        <form action="#" th:action="@{/registration}" th:object="${registrationDTO}" method="POST" class="bg-light text-dark">
-            <div class="container px-4 px-lg-5">
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <h1>Create new account</h1>
-                        <p>Please enter data:</p>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="name">Name:</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" id="name"
-                                       th:field="*{name}" required>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="surname">Surname:</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" id="surname"
-                                       th:field="*{surname}" required>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="phone">Phone number:</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="tel" id="phone"
-                                       th:field="*{phone}" required>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="email" id="email" th:field="*{email}" required/>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="password">Password</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="password" id="password" th:field="*{password}" required/>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <label for="confirmPassword">Confirm password</label>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="password" id="confirmPassword" th:field="*{matchingPassword}" required/>
-                            </div>
+<body class="d-flex flex-column h-100 bg-dark2">
+<section layout:fragment="section" class="mx-auto my-5" style="max-width: 23rem;">
+    <form action="#" th:action="@{/registration}" th:object="${registrationDTO}" method="POST"
+          class="bg-light text-dark border-0">
+        <main class="flex-shrink-0 flex-grow-1 bg-dark2">
+            <div class="card card-form mt-2 mb-4 bg-dark2">
+                <div class="card-body rounded-top pink darken-4 border-0">
+                    <h3 class="font-weight-bold text-center text-uppercase text-black my-4">Sign up</h3>
+
+                    <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="far fa-user fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="text" id="name" class="form-control" th:field="*{name}" required/>
+                            <label class="form-label" for="name">First name</label>
                         </div>
                     </div>
-                    <br>
-                    <div th:object="${registrationDTO.addressDTO}"  class="container py-3">
-                        <div class="form-group">
-                            <p>You are a customer or restaurant owner?</p>
-
-                            <select id="userType" th:field="*{customer}" class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 border-0 shadow w-220px" data-bs-theme="dark">
-                                <option class="dropdown-item rounded-2 active" value="true">Customer</option>
-                                <option class="dropdown-item rounded-2" value="false">Owner</option>
-                            </select>
-                            <div id="countryField" style="display: none;">
-                                <div class="form-group">
-                                    <div class="row mt-3">
-                                        <div class="col-md-3">
-                                            <label for="addressCountry">Country:</label>
-                                            <input type="text" id="addressCountry" th:field="*{addressCountry}"
-                                                   class="form-control" required disabled>
-                                        </div>
+                    <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="far fa-hand-point-right fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="text" id="surname" class="form-control" th:field="*{surname}" required/>
+                            <label class="form-label" for="surname">Last name</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="fas fa-phone fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="tel" id="phone" class="form-control" th:field="*{phone}" required/>
+                            <label class="form-label" for="phone">Phone number</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="far fa-envelope fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="email" id="email" class="form-control" th:field="*{email}" required/>
+                            <label class="form-label" for="email">E-mail</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center pb-3">
+                        <i class="far fa-star fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="password" id="password" class="form-control" th:field="*{password}"
+                                   required/>
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center pb-3">
+                        <i class="far fa-star fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="password" id="confirmPassword" class="form-control"
+                                   th:field="*{matchingPassword}" required/>
+                            <label class="form-label" for="confirmPassword">Confirm password</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div th:object="${registrationDTO.addressDTO}" class="container py-3">
+                        <p class="text-center strong">You are a customer or restaurant owner?</p>
+                        <div class="text-center">
+                        <select id="userType" th:field="*{customer}"
+                                class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0 ">
+                            <option class="btn btn-outline-warning" value="true">Customer</option>
+                            <option class="btn btn-outline-warning" value="false">Owner</option>
+                        </select>
+                        </div>
+                        <div id="countryField" style="display: none;">
+                            <p class="text-center strong">Please enter your delivery address:</p>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-start align-items-center pb-3">
+                                    <i class="far fa-solid fa-house-flag text-black fa-fw me-3"></i>
+                                    <div class="form-outline w-100">
+                                        <input type="text" id="addressCountry" class="form-control"
+                                               th:field="*{addressCountry}" required disabled/>
+                                        <label class="form-label" for="addressCountry">Country</label>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-3">
-                                            <label for="addressCity">City:</label>
-                                            <input type="text" id="addressCity" th:field="*{addressCity}"
-                                                   class="form-control" required disabled>
-                                        </div>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center pb-3">
+                                    <i class="far fa-solid fa-city text-black fa-fw me-3"></i>
+                                    <div class="form-outline w-100">
+                                        <input type="text" id="addressCity" class="form-control"
+                                               th:field="*{addressCity}" required disabled/>
+                                        <label class="form-label" for="addressCity">City</label>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-3">
-                                            <label for="addressStreet">Street:</label>
-                                            <input type="text" id="addressStreet" th:field="*{addressStreet}"
-                                                   class="form-control" required disabled>
-                                        </div>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center pb-3">
+                                    <i class="far fa-solid fa-house text-black fa-fw me-3"></i>
+                                    <div class="form-outline w-100">
+                                        <input type="text" id="addressStreet" class="form-control"
+                                               th:field="*{addressStreet}" required disabled/>
+                                        <label class="form-label" id="hideLabel" for="addressStreet">Street</label>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-3">
-                                            <label for="addressPostalCode">Postal code:</label>
-                                            <input type="text" id="addressPostalCode"
-                                                   th:field="*{addressPostalCode}"
-                                                   class="form-control" required disabled>
-                                        </div>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center pb-3">
+                                    <i class="far fa-solid fa-box text-black fa-fw me-3"></i>
+                                    <div class="form-outline w-100">
+                                        <input type="text" id="addressPostalCode" class="form-control"
+                                               th:field="*{addressPostalCode}"  required disabled />
+                                        <label class="form-label" for="addressPostalCode">Postal code</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-success">Create!</button>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row mt-3">
-                    <div class="col-md-4">
-                        <a th:href="@{/home}" class="btn btn-warning" role="button">Go back to the main page</a>
+                    <hr>
+                    <div class="card card-form-2 mb-0 z-depth-0 bg-warning border-0">
+                        <div class="card-body text-center border-0">
+                            <button class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0"
+                                    type="submit">Sign in
+                            </button>
+                            <hr>
+                            <a th:href="@{/home}"
+                               class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0"
+                               role="button">Go back to the main page</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
-        </form>
-    </section>
-</main>
+        </main>
+    </form>
+</section>
 </body>
-
 </html>

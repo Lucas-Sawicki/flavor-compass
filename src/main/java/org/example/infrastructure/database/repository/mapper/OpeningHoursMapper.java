@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface OpeningHoursMapper {
+public interface  OpeningHoursMapper {
 
 
     OpeningHours mapFromEntity(OpeningHoursEntity entity);

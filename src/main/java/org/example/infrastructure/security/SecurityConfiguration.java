@@ -70,7 +70,7 @@ public class SecurityConfiguration  {
         http
                 .csrf((AbstractHttpConfigurer::disable))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/error", "/login", "/registration", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**").permitAll()
+                        .requestMatchers("/home", "/error", "/login", "/registration", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**").hasRole("CUSTOMER")
                         .requestMatchers("/api/**").hasRole("REST_API")
@@ -89,7 +89,6 @@ public class SecurityConfiguration  {
                         .loginPage("/login")
                         .failureUrl("/error")
                         .usernameParameter("email")
-                        .successHandler(customAuthenticationHandler())
                         .failureHandler(customAuthenticationHandler())
                         .permitAll())
                 .logout(configuration -> configuration

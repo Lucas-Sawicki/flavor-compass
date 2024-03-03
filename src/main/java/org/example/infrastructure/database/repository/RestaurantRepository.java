@@ -4,11 +4,15 @@ import lombok.AllArgsConstructor;
 import org.example.business.dao.RestaurantDAO;
 import org.example.domain.Owner;
 import org.example.domain.Restaurant;
+import org.example.domain.exception.NotFoundException;
 import org.example.infrastructure.database.entity.OwnerEntity;
 import org.example.infrastructure.database.entity.RestaurantEntity;
 import org.example.infrastructure.database.repository.jpa.RestaurantJpaRepository;
 import org.example.infrastructure.database.repository.mapper.OwnerEntityMapper;
 import org.example.infrastructure.database.repository.mapper.RestaurantEntityMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -42,7 +46,7 @@ public class RestaurantRepository implements RestaurantDAO {
     }
 
     @Override
-    public List<Restaurant> findAll() {
+    public List<Restaurant> findAllByRestaurantId() {
         return restaurantJpaRepository.findAll().stream()
                 .map(restaurantEntityMapper::mapFromEntity)
                 .toList();
@@ -52,5 +56,17 @@ public class RestaurantRepository implements RestaurantDAO {
     public Restaurant findRestaurantsByEmail(String email) {
         RestaurantEntity entity = restaurantJpaRepository.findByEmail(email);
         return restaurantEntityMapper.mapFromEntity(entity);
+    }
+
+    @Override
+    public Restaurant findRestaurantById(Integer restaurantId) {
+        RestaurantEntity entity = restaurantJpaRepository.findById(restaurantId)
+                .orElseThrow(() -> new NotFoundException("Restaurant not found"));
+        return restaurantEntityMapper.mapFromEntity(entity);
+    }
+
+    @Override
+    public Page<Restaurant> findAllByRestaurantId(PageRequest pageRequest) {
+        return restaurantJpaRepository.findAll(pageRequest).map(restaurantEntityMapper::mapFromEntity);
     }
 }

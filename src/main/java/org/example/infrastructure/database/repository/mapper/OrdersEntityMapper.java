@@ -19,10 +19,8 @@ import java.util.stream.Collectors;
 public interface OrdersEntityMapper {
     @Mapping(target = "customer", ignore = true)
     @Mapping(target = "restaurant", ignore = true)
-    @Mapping(target = "menuItem", ignore = true)
     @Mapping(target = "orderItems", ignore = true)
     Orders mapFromEntity(OrdersEntity entity);
-    @Mapping(target = "menuItem", ignore = true)
     @Mapping(target = "orderItems", ignore = true)
     @Mapping(target = "customer", ignore = true)
     @Mapping(target = "restaurant", ignore = true)

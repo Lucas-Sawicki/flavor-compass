@@ -9,7 +9,10 @@ import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.LoginDTO;
 import org.example.api.dto.RegistrationDTO;
 import org.example.business.AuthenticationService;
+import org.example.business.CustomerService;
 import org.example.business.TokenService;
+import org.example.domain.Customer;
+import org.example.domain.Restaurant;
 import org.example.infrastructure.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -37,6 +37,8 @@ public class AuthenticationController {
 
     private CustomUserDetailsService userDetailsService;
     private TokenService tokenService;
+    private CustomerService customerService;
+
 
     @GetMapping(value = LOGIN)
     public String login(Model model){
@@ -45,18 +47,16 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = LOGIN)
-    public ModelAndView processLogin(@ModelAttribute LoginDTO loginDTO, HttpServletResponse res) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getEmail());
-        String token = tokenService.generateToken(userDetails);
-        Cookie cookie = new Cookie("token", token);
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(24 * 60 * 60);
-        res.addCookie(cookie);
-        ModelAndView mv = new ModelAndView("login");
-        mv.addObject("token", token);
-        return mv;
+    public String login(@RequestParam String email, @RequestParam String password, HttpSession session) {
+        AuthenticationResponseDTO token = authenticationService.loginUser(email, password);
+        session.setAttribute("token" , token);
+        if (token.getIsCustomer()) {
+            session.setAttribute("customer", token.getUser().getCustomer());
+        } else {
+            session.setAttribute("owner", token.getUser().getOwner());
+        }
+        return "redirect:/home";
     }
-
     @GetMapping(value = LOGOUT)
     public String logout(HttpSession session) {
         session.invalidate();

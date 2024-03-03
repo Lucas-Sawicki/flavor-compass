@@ -37,7 +37,7 @@ import java.util.*;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CustomAuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
+public class CustomAuthenticationHandler implements  AuthenticationFailureHandler {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Autowired
@@ -65,19 +65,19 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
         response.sendRedirect("/flavour-compass/error");
     }
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        try {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String token = tokenService.generateToken(userDetails);
-            Cookie cookie = new Cookie("token", token);
-            cookie.setHttpOnly(true);
-            cookie.setSecure(true);
-            cookie.setMaxAge(24 * 60 * 60);
-            response.addCookie(cookie);
-            response.sendRedirect("/flavour-compass");
-        } catch (Exception e) {
-            log.error("Error during authentication", e);
-        }
-    }
+//    @Override
+//    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+//        try {
+//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//            String token = tokenService.generateToken(userDetails);
+//            Cookie cookie = new Cookie("token", token);
+//            cookie.setHttpOnly(true);
+//            cookie.setSecure(true);
+//            cookie.setMaxAge(24 * 60 * 60);
+//            response.addCookie(cookie);
+//            response.sendRedirect("/flavour-compass");
+//        } catch (Exception e) {
+//            log.error("Error during authentication", e);
+//        }
+//    }
 }

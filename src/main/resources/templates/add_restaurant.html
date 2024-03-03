@@ -97,7 +97,6 @@
             <table>
                 <tr>
                     <th>Dzień tygodnia</th>
-                    <th>Status</th>
                     <th>Opening hour <button type="button" onclick="fillColumn('openTime')" class="btn btn-dark rounded">Fill</button></th>
                     <th>Godzina zamknięcia <button type="button" onclick="fillColumn('closeTime')" class="btn btn-dark rounded">Fill</button></th>
                     <th>Początek dostawy <button type="button" onclick="fillColumn('deliveryStartTime')" class="btn btn-dark rounded">Fill</button></th>
@@ -105,12 +104,6 @@
                 </tr>
                 <tr th:each="entry : *{openingHours}">
                     <td th:text="${entry.key}"></td>
-                    <td>
-                        <select th:field="*{openingHours[__${entry.key}__].status}" onchange="toggleTimeFields(this, '${entry.key}')">
-                            <option value="true">Open</option>
-                            <option value="false">Closed</option>
-                        </select>
-                    </td>
                     <td class="time-field-${entry.key}"><input type="time" th:field="*{openingHours[__${entry.key}__].openTime}" /></td>
                     <td class="time-field-${entry.key}"><input type="time" th:field="*{openingHours[__${entry.key}__].closeTime}" /></td>
                     <td class="time-field-${entry.key}"><input type="time" th:field="*{openingHours[__${entry.key}__].deliveryStartTime}" /></td>

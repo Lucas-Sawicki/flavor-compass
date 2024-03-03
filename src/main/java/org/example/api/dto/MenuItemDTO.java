@@ -16,9 +16,11 @@ import java.math.BigDecimal;
 @PasswordMatches
 public class MenuItemDTO {
 
+    private String id;
     private String name;
     private String category;
     private String description;
     private String price;
     private String photoUrl;
+    private String restaurantsList;
 }

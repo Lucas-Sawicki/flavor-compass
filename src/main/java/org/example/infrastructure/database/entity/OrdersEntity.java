@@ -44,10 +44,6 @@ public class OrdersEntity {
     @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_item_id")
-    private MenuItemEntity menuItem;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItemEntity> orderItems;
 }

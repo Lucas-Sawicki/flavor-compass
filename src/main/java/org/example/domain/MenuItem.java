@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
 import org.example.infrastructure.database.entity.RestaurantEntity;
 
@@ -19,21 +20,20 @@ public class MenuItem {
      String name;
      String category;
      String description;
+     @DecimalMin(value = "0.0", inclusive = false)
      BigDecimal price;
      String photoUrl;
-     Boolean available;
      OrderItem orderItem;
      Restaurant restaurant;
      Set<Opinion> opinions;
      Set<Orders> orders;
 
-
-
      public Set<Opinion> getOpinions() {
-          return Objects.isNull(opinions) ? new HashSet<>() : opinions;
-     }
-     public Set<Orders> getOrders() {
-          return Objects.isNull(orders) ? new HashSet<>() : orders;
+          return opinions == null ? new HashSet<>() : opinions;
      }
 
+     public Set<Orders> getOrders() {
+          return orders == null ? new HashSet<>() : orders;
+     }
 }
+

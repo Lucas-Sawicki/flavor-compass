@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Find restaurant</title>
+</head>
+<body>
+<section layout:fragment="section" class="py-5 bg-light ">
+    <div class="text-center mb-5">
+        <h1 class="fw-bolder">Find food for you</h1>
+    </div>
+    <div class="container px-5 my-5 d-flex justify-content: center" style="max-width: 100%; ">
+        <section class="row mx-auto my-5">
+            <div th:each="restaurant : ${restaurants}" class="col-5 mb-5" style="width: 15rem;">
+                <div class="card booking-card rounded-bottom border-0 bg-warning text-center" style="max-width: 100%;">
+                    <div class="card-header bg-warning" data-mdb-ripple-color="light">
+                        <a th:text="${restaurant.restaurantName}" class="business-style-title text-white"
+                           th:href="@{/owner/restaurant/{id}(id=${restaurant.id})}">Title</a>
+                    </div>
+                    <div class="card-body bg-dark2 bg-gradient text-warning rounded-bottom" style="max-width: 50rem;">
+                        <ul class="list-unstyled list-inline mb-2">
+                            <li class="list-inline-item me-0"><i class="fa fa-star fa-xs"> </i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star fa-xs"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star fa-xs"></i></li>
+                            <li class="list-inline-item me-0"><i class="fa fa-star fa-xs"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-half-alt fa-xs"></i></li>
+                        </ul>
+                        <hr class="my-4">
+                        <i class="fas fa-globe fa-lg" style="color: #FFD43B;"></i>
+                        <a th:text="${restaurant.restaurantWebsite}"
+                           class="h3 text-decoration-none link-dark text-warning"
+                           style="font-style: italic; font-size: 16px;"
+                           href="restaurant">Website</a>
+                        <hr class="my-4">
+                        <i class="fa-solid fa-phone-volume fa-lg" style="color: #FFD43B;"></i>
+                        <a th:text="${restaurant.restaurantPhone}"
+                           class="h3 text-decoration-none link-dark text-warning"
+                           style="font-style: italic; font-size: 16px;"
+                           href="restaurant">Phone</a>
+                        <hr class="my-4">
+                        <i class="fa-solid fa-map-location-dot fa-lg" style="color: #FFD43B;"></i>
+                        <a th:text="${restaurant.addressDTO.addressStreet}"
+                           class="h3 text-decoration-none link-dark text-warning"
+                           style="font-style: italic; font-size: 16px;"
+                           href="restaurant">Phone</a>
+                        <hr class="my-4">
+                        <i class="fas fa-calendar-days fa-lg" style="color: #FFD43B;"></i>
+                        <br>
+                        <p class="h5 font-weight-bold mb-4" style="font-size: 14px;">Opening hours:</p>
+                        <ul class="align-items-center mb-0" style="height: 200px; overflow-y: auto; font-size: 12px;">
+                            <div th:each="entry : ${restaurantGroupedHours.get(restaurant.restaurantName)}"
+                                 class="text-center">
+                                <p>
+                                    <span th:text="${entry.key}"></span> :
+                                    <span th:text="${entry.value}"></span>
+                                </p>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container px-5 my-5 d-flex justify-content-center" style="max-width: 100%;">
+        <ul class="pagination">
+            <li class="page-item" th:class="${pagination.first ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/customer/find(page=${pagination.number-1})}">Previous</a>
+            </li>
+            <li class="page-item"
+                th:each="pageNumber : ${#numbers.sequence(0, pagination.totalPages-1)}"
+                th:class="${pageNumber == pagination.number ? 'active' : ''}">
+                <a class="page-link" th:href="@{/customer/find(page=${pageNumber})}"><span
+                        th:text="${pageNumber + 1}">1</span></a>
+            </li>
+            <li class="page-item" th:class="${pagination.last ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/customer/find(page=${pagination.number+1})}">Next</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+</body>
+</html>

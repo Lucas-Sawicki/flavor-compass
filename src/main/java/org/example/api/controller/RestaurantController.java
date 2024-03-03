@@ -4,18 +4,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.MenuItemDTO;
 import org.example.api.dto.OpeningHoursDTO;
+import org.example.api.dto.OrderItemDTO;
 import org.example.api.dto.RestaurantDTO;
 import org.example.api.dto.mapper.RestaurantMapper;
 import org.example.business.*;
+import org.example.domain.MenuItem;
 import org.example.domain.Owner;
 import org.example.domain.Restaurant;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.DayOfWeek;
@@ -24,13 +25,12 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 public class RestaurantController {
-
-    public static final String ADD_MENU = "/owner/add/menu";
     private static final String ADD_RESTAURANT = "/owner/add/restaurant";
+    private static final String RESTAURANT_BY_ID = "/owner/restaurant/{id}";
     private final RestaurantService restaurantService;
+    private final MenuItemService menuItemService;
     private final OwnerService ownerService;
     private final TokenService tokenService;
-    private MenuItemService menuItemService;
     private final RestaurantMapper restaurantMapper;
 
 
@@ -51,28 +51,6 @@ public class RestaurantController {
 
     }
 
-    @GetMapping(value = ADD_MENU)
-    public String addMenu(Model model) {
-        MenuItemDTO menuItemDTO = new MenuItemDTO();
-        Owner owner = ownerService.findOwnerByUser("ssawikk@gmail.com");
-        List<Restaurant> restaurants = restaurantService.findRestaurantsByOwnerId(owner.getOwnerId());
-        model.addAttribute("restaurantsList", restaurants);
-        model.addAttribute("menuItemDTO", menuItemDTO);
-        return "menu_portal";
-    }
-//    @GetMapping("/restaurant/{id}")
-//    public String showRestaurant(@PathVariable Long id, Model model) {
-//        RestaurantDTO restaurantDTO = restaurantService.getRestaurant(id);
-//        Restaurant restaurant = restaurantMapper.map(restaurantDTO);
-//        model.addAttribute("restaurant", restaurant);
-//        return "restaurant";
-//    }
-        @PostMapping(value = ADD_MENU)
-        public String addMenu(@ModelAttribute MenuItemDTO menuItemDTO) {
-            Restaurant restaurantsByEmail = restaurantService.findRestaurantsByEmail("savona@gmail.com");
-            menuItemService.addMenuItem(menuItemDTO, restaurantsByEmail);
-        return "redirect:/success_register";
-}
     @PostMapping(value = ADD_RESTAURANT)
     public ModelAndView addRestaurant(
             @ModelAttribute RestaurantDTO restaurantDTO,
@@ -83,13 +61,31 @@ public class RestaurantController {
         if (restaurantService.existsByEmail(restaurantDTO.getRestaurantEmail())) {
             return new ModelAndView("Email is already taken", HttpStatus.BAD_REQUEST);
         }
-
         Owner owner = ownerService.findOwnerByUser("ssawikk@gmail.com");
         Restaurant restaurant = restaurantMapper.map(restaurantDTO, restaurantDTO.getAddressDTO(), owner);
         restaurantService.addRestaurant(restaurant);
 
         return new ModelAndView("redirect:/success_register");
     }
+
+    @GetMapping(value = RESTAURANT_BY_ID)
+    public String showMenuItems(@PathVariable Integer id,
+                                 @RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "7") int size,
+                                 @RequestParam(defaultValue = "name") String sortBy,
+                                 Model model) {
+        Page<MenuItem> menu = menuItemService.pagination(page, size, sortBy, id);
+        RestaurantDTO restaurantDTO = restaurantService.findRestaurantById(id);
+        List<MenuItemDTO> menuItems = menuItemService.findMenuByRestaurant(id);
+        OrderItemDTO orderItemDTO = new OrderItemDTO();
+        model.addAttribute("pagination", menu);
+        model.addAttribute("orderItemDTO", orderItemDTO);
+        model.addAttribute("restaurantDTO", restaurantDTO);
+        model.addAttribute("menuItems", menuItems);
+        return "restaurant_portal";
+    }
+
+
 }
 
 

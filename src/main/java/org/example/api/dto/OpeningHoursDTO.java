@@ -4,13 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.domain.Restaurant;
-
 import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.Locale;
+import java.time.format.TextStyle;
 
 @Data
 @Builder
@@ -25,4 +21,9 @@ public class OpeningHoursDTO {
     String deliveryEndTime;
 
     Boolean status;
+
+    public String getDayDisplayName() {
+        String displayName = day.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        return displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+    }
 }

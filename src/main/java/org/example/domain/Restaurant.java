@@ -1,7 +1,6 @@
 package org.example.domain;
 
 import lombok.*;
-import org.example.infrastructure.database.entity.OpeningHoursEntity;
 
 import java.time.DayOfWeek;
 import java.util.*;

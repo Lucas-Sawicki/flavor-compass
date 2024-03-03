@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="section" class="mx-auto my-5">
+    <h1>Your Cart</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cart.items}">
+            <td th:text="${item.menuItem.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.menuItem.price}"></td>
+            <td>
+                <form th:action="@{/cart/remove}" method="post">
+                    <input type="hidden" th:value="${item.menuItem.menuItemId}" name="menuItemId">
+                    <input type="submit" value="Remove">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form th:action="@{/order/placeOrder}" method="get">
+        <input type="submit" value="Place order">
+    </form>
+</section>
+
+</body>
+</html>

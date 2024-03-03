@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Add menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column h-100 bg-dark2">
+<section layout:fragment="section" class="mx-auto my-5 d-flex" style="display: flex;flex-wrap: wrap;">
+    <div class="card-body rounded-top pink darken-4 border-0 d-flex justify-content-start align-items-center pb-3">
+        <div class="container px-5 px-lg-7" style="flex: 1; margin: 3px; text-align: center;">
+            <div class="card bg-dark2 bg-gradient text-warning text-center col-md-10"
+                 style="text-align: center;">
+                <h2 class="form-control-lg selector">Add photo first and wait until reload!</h2>
+                <p class="text-muted fst-italic">(300px X 300 px)</p>
+                <form action="#"
+                      th:action="@{/upload}"
+                      method="post"
+                      enctype="multipart/form-data"
+                      class="bg-dark2 bg-gradient text-warning mb-4">
+                        <input type="file"
+                               id="image"
+                               name="image"
+                               placeholder="upload file"
+                               class="text-warning my-4 z-depth-0">
+                        <i class="fa-regular fa-floppy-disk fa-lg" style="color: #FFD43B;"></i>
+                        <input class="btn btn-outline-warning btn-rounded my-4 z-depth-0 "
+                               type="submit"
+                               value="Send">
+                    <hr>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <img th:src="@{${imageUrl}}"
+                             style="height: 300px; width: 300px; display: block;display: flex; justify-content: center; align-items: center;border: 2px solid color: #FFD43B;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-image fa-2xl" style="display: none; color: #FFD43B;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container bg-warning px-5 px-lg-7 pink darken-4" style="flex: 1; margin: 3px; text-align: center;">
+
+            <h3 class="font-weight-bold text-center text-uppercase text-black my-4">
+                Add food information:
+            </h3>
+            <form action="#" th:action="@{/owner/add/menu}"
+                  th:object="${menuItemDTO}"
+                  method="post"
+                  class="text-dark border-0 pink darken-4">
+                <div class="pink darken-4">
+
+                    <div class="flex-shrink-0 flex-grow-1 bg-warning text-black ">
+                        <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="far fa-hand-point-left fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="text" id="photoUrl" class="form-control" th:field="*{photoUrl}"
+                                   readonly
+                                   style="background-color: #e9ecef;"
+                                   placeholder="Add photo" required/>
+                            <label class="form-label" for="photoUrl"></label>
+                        </div>
+                    </div>
+                        <hr>
+                        <i class="far fa-hand-point-right fa-lg text-black fa-fw me-3"></i>
+                        <label for="restaurantsList">
+                            Choose restaurant:
+                        </label>
+                        <select id="restaurantsList"
+                                name="restaurantsList"
+                                th:field="*{restaurantsList}"
+                                class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0">
+                            <option th:each="restaurantsList : ${restaurantsList}"
+                                    th:value="${restaurantsList}"
+                                    th:text="${restaurantsList.localName + ' - ' + restaurantsList.email}"
+                                    class="btn btn-outline-warning ">
+                            </option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="flex-shrink-0 flex-grow-1 bg-warning text-black ">
+                        <i class="far fa-hand-point-right fa-lg text-black fa-fw me-3"></i>
+                        <label for="category" class="text-dark text-black my-4">Category:</label>
+                        <select id="category"
+                                name="category"
+                                th:field="*{category}"
+                                class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0">
+                            <option class="btn btn-outline-warning" value="Appetizer">Appetizer</option>
+                            <option class="btn btn-outline-warning" value="Soup">Soup</option>
+                            <option class="btn btn-outline-warning" value="Main course">Main course</option>
+                            <option class="btn btn-outline-warning" value="Dessert">Dessert</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group justify-content-start align-items-center pink darken-4 border-0">
+                    <div class="d-flex justify-content-start align-items-center mb-4">
+                        <i class="far fa-hand-point-right fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="text" id="name" name="name" class="form-control" th:field="*{name}" required/>
+                            <label class="form-label" for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center pb-3">
+                        <i class="far fa-hand-point-right fa-lg text-black fa-fw me-3"></i>
+                        <div class="form-outline w-100">
+                            <input type="number" id="price" name="price" class="form-control"
+                                   th:field="*{price}" required step="0.01" min="0"/>
+                            <label class="form-label" for="price">Price</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-start align-items-center pink darken-4 border-0">
+                    <div class="form-outline form-black w-100 border-0">
+                        <i class="far fa-hand-point-down fa-lg text-black fa-fw me-3"></i>
+                        <label for="description" class="form-label">Description:</label>
+                        <br>
+                        <textarea id="description"
+                                  name="name"
+                                  th:field="*{description}"
+                                  maxlength="1000"
+                                  style="height: 300px; width: 300px;" required></textarea>
+                    </div>
+                </div>
+                <div class="pink darken-4 border-0 d-flex justify-content-start align-items-center pb-3">
+                    <div class="card-body text-center border-0 pink darken-4">
+                        <button class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0"
+                                type="submit">
+                            Add menu item
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr>
+    </div>
+</section>
+</body>
+</html>

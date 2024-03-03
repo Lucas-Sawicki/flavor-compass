@@ -12,7 +12,7 @@ public interface OrdersDAO {
     List<Orders> findOrdersByRestaurantEmail(String email);
 
     Orders findById(Integer id);
-    void saveOrder(Customer customer);
+    void saveOrder(Orders orders);
 
 //    public void updateStatusById(String id, OrderStatus status);
 }
