@@ -1,7 +1,5 @@
 package org.example.api.controller;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +9,10 @@ import org.example.api.dto.RegistrationDTO;
 import org.example.business.AuthenticationService;
 import org.example.business.CustomerService;
 import org.example.business.TokenService;
-import org.example.domain.Customer;
-import org.example.domain.Restaurant;
+import org.example.business.UserService;
 import org.example.infrastructure.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,41 +21,72 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Slf4j
+@RequestMapping(AuthenticationController.BASE_PATH)
 @RequiredArgsConstructor
 public class AuthenticationController {
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";
-
+    public static final String BASE_PATH = "/auth";
+    public static final String SUCCESS = "/success_register";
+    public static final String ACCESS_DENIED = "/access_denied";
+    public static final String REGISTER = "/registration";
     @Autowired
     private AuthenticationService authenticationService;
-
     private CustomUserDetailsService userDetailsService;
     private TokenService tokenService;
     private CustomerService customerService;
-
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = LOGIN)
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("loginDTO", new LoginDTO());
         return "login";
     }
 
+    @GetMapping(value = ACCESS_DENIED)
+    public String accessDenied(Model model) {
+        return "access_denied";
+    }
+
     @PostMapping(value = LOGIN)
-    public String login(@RequestParam String email, @RequestParam String password, HttpSession session) {
-        AuthenticationResponseDTO token = authenticationService.loginUser(email, password);
-        session.setAttribute("token" , token);
+    public String login(@ModelAttribute LoginDTO loginDTO, HttpSession session) {
+        AuthenticationResponseDTO token = authenticationService.loginUser(loginDTO.getEmail(), loginDTO.getPassword());
+        session.setAttribute("token", token);
         if (token.getIsCustomer()) {
             session.setAttribute("customer", token.getUser().getCustomer());
         } else {
             session.setAttribute("owner", token.getUser().getOwner());
         }
-        return "redirect:/home";
+        return "home";
     }
+
     @GetMapping(value = LOGOUT)
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "home";
     }
 
+    @GetMapping(value = REGISTER)
+    public String createOwnerPage(Model model) {
+        model.addAttribute("registrationDTO", new RegistrationDTO());
+        return "registration";
+    }
+
+    @GetMapping(value = SUCCESS)
+    public String successCreateAccount(Model model) {
+        return "success_register.html";
+    }
+
+    @PostMapping(value = REGISTER)
+    public ModelAndView register(@ModelAttribute RegistrationDTO registrationDTO,
+                                 BindingResult bindingResult
+    ) {
+        if (userService.existsByEmail(registrationDTO.getEmail())) {
+            return new ModelAndView("error", HttpStatus.BAD_REQUEST);
+        }
+        authenticationService.registerUser(registrationDTO);
+        return new ModelAndView("redirect:/auth/success_register");
+    }
 }
 

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,14 +43,14 @@ public class AuthenticationService {
         if (registrationDTO.isRestApiUser()) {
             User user = userMapper.mapApiUser(registrationDTO);
             String password = user.getPassword();
-            Role rest_api = roleService.findByRole("REST_API");
+            Role rest_api = roleService.findByRole("ROLE_REST_API");
             userService.createUser(user
                     .withPassword(passwordEncoder.encode(password))
                     .withRoles(Collections.singleton(rest_api)));
         } else if (registrationDTO.getAddressDTO().isCustomer()) {
             Customer customer = userMapper.mapCustomer(registrationDTO, registrationDTO.getAddressDTO());
             String password = customer.getUser().getPassword();
-            Role role = roleService.findByRole("CUSTOMER");
+            Role role = roleService.findByRole("ROLE_CUSTOMER");
             User user = customer.getUser()
                     .withPassword(passwordEncoder.encode(password))
                     .withRoles(Collections.singleton(role));
@@ -57,7 +58,7 @@ public class AuthenticationService {
         } else {
             Owner owner = userMapper.mapOwner(registrationDTO);
             String password = owner.getUser().getPassword();
-            Role role = roleService.findByRole("OWNER");
+            Role role = roleService.findByRole("ROLE_OWNER");
             User user = owner.getUser()
                     .withPassword(passwordEncoder.encode(password))
                     .withRoles(Collections.singleton(role));
@@ -76,7 +77,9 @@ public class AuthenticationService {
                     .orElseThrow(() -> new EntityNotFoundException("User not found!"));
             UserDetails userDetails = new CustomUserDetails(user);
             var jwtToken = tokenService.generateToken(userDetails);
+            Optional<User> userOptional = userService.findByEmail(user.getEmail());
             AuthenticationResponseDTO responseDTO = AuthenticationResponseDTO.builder()
+                    .user(userOptional.get())
                     .token(jwtToken)
                     .build();
 

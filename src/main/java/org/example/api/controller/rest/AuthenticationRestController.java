@@ -1,11 +1,13 @@
 package org.example.api.controller.rest;
 
 import lombok.AllArgsConstructor;
+import org.example.api.dto.AddressDTO;
 import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.LoginDTO;
 import org.example.api.dto.RegistrationDTO;
 import org.example.business.AuthenticationService;
 import org.example.business.UserService;
+import org.example.domain.Owner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

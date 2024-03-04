@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.time.DayOfWeek;
 import java.util.*;
 
@@ -26,7 +27,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class RestaurantController {
     private static final String ADD_RESTAURANT = "/owner/add/restaurant";
-    private static final String RESTAURANT_BY_ID = "/owner/restaurant/{id}";
+    private static final String RESTAURANT_BY_ID = "/restaurant/{id}";
     private final RestaurantService restaurantService;
     private final MenuItemService menuItemService;
     private final OwnerService ownerService;
@@ -55,17 +56,19 @@ public class RestaurantController {
     public ModelAndView addRestaurant(
             @ModelAttribute RestaurantDTO restaurantDTO,
             @ModelAttribute OpeningHoursDTO openingHoursDTO,
+            Principal principal,
             HttpServletRequest req,
             BindingResult bindingResult
     ) {
         if (restaurantService.existsByEmail(restaurantDTO.getRestaurantEmail())) {
             return new ModelAndView("Email is already taken", HttpStatus.BAD_REQUEST);
         }
-        Owner owner = ownerService.findOwnerByUser("ssawikk@gmail.com");
+        String email = principal.getName();
+        Owner owner = ownerService.findOwnerByUser(email);
         Restaurant restaurant = restaurantMapper.map(restaurantDTO, restaurantDTO.getAddressDTO(), owner);
         restaurantService.addRestaurant(restaurant);
 
-        return new ModelAndView("redirect:/success_register");
+        return new ModelAndView("redirect:/auth/success_register");
     }
 
     @GetMapping(value = RESTAURANT_BY_ID)

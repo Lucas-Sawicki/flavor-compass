@@ -9,7 +9,7 @@
 <main class="flex-shrink-0">
     <section layout:fragment="section" class="py-5 bg-light">
         <div class="login-form">
-            <form th:action="@{/login}" th:object="${loginDTO}" method="post">
+            <form th:action="@{/auth/login}" th:object="${loginDTO}" method="post">
                 <div class="container">
                     <h1>Login page</h1>
                     <div class="row mt-3">

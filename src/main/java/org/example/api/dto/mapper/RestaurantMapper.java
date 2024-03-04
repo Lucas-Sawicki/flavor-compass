@@ -86,4 +86,36 @@ public interface RestaurantMapper extends LocalTimeMapper {
 
                 .build();
     }
+
+    default Restaurant mapForApi(RestaurantDTO restaurantDTO, AddressDTO addressDTO){
+       Restaurant restaurant = Restaurant.builder()
+                .localName(restaurantDTO.getRestaurantName())
+                .website(restaurantDTO.getRestaurantWebsite())
+                .phone(restaurantDTO.getRestaurantPhone())
+                .email(restaurantDTO.getRestaurantEmail())
+                .address(Address.builder()
+                        .country(addressDTO.getAddressCountry())
+                        .city(addressDTO.getAddressCity())
+                        .postalCode(addressDTO.getAddressPostalCode())
+                        .street(addressDTO.getAddressStreet())
+                        .build())
+
+                .build();
+        Map<DayOfWeek, OpeningHours> openingHoursMap = new TreeMap<>();
+        for (Map.Entry<DayOfWeek, OpeningHoursDTO> entry : restaurantDTO.getOpeningHours().entrySet()) {
+            DayOfWeek key = entry.getKey();
+            OpeningHoursDTO dto = entry.getValue();
+            OpeningHours openingHours = OpeningHours.builder()
+                    .dayOfWeek(key)
+                    .openTime(mapLocalTimeFromString(dto.getOpenTime()))
+                    .closeTime(mapLocalTimeFromString(dto.getCloseTime()))
+                    .deliveryStartTime(mapLocalTimeFromString(dto.getDeliveryStartTime()))
+                    .deliveryEndTime(mapLocalTimeFromString(dto.getDeliveryEndTime()))
+                    .build();
+
+            openingHoursMap.put(entry.getKey(), openingHours);
+
+    }
+        return restaurant.withOpeningHours(openingHoursMap);
+    }
 }

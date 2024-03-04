@@ -1,5 +1,6 @@
 package org.example.infrastructure.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -70,23 +71,24 @@ public class SecurityConfiguration  {
         http
                 .csrf((AbstractHttpConfigurer::disable))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/home", "/error", "/login", "/registration", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**").permitAll()
+                        .requestMatchers("/home", "/error", "/auth/**", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**", "/css/**" , "/js/**", "/restaurant/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**").hasRole("CUSTOMER")
                         .requestMatchers("/api/**").hasRole("REST_API")
-                        .requestMatchers("/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(ex ->
+                        ex.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling((exceptionHandling) ->
                         exceptionHandling
-                                .accessDeniedPage("/access_denied.html")
+                                .accessDeniedPage("access_denied.html")
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login")
+                        .loginPage("/auth/login")
                         .failureUrl("/error")
                         .usernameParameter("email")
                         .failureHandler(customAuthenticationHandler())

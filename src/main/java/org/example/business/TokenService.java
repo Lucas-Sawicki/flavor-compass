@@ -18,7 +18,7 @@ import java.util.function.Function;
 
 @Service
 public class TokenService {
-    public static final String SECRET_KEY = "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb";
+    public static final String SECRET_KEY = "iM0hCLU0fZc885zfkFPX3UJwSHbYyam9ji0WglnT3fc=";
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
@@ -66,7 +66,7 @@ public class TokenService {
                 .getPayload();
     }
 
-    private SecretKey getSignInKey() {
+    public static SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }

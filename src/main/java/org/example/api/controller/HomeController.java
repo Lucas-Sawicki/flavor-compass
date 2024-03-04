@@ -25,8 +25,9 @@ import java.security.Principal;
 public class HomeController {
 
     static final String HOME = "/home";
+    static final String HOME2 = "/";
 
-    @GetMapping(value = HOME)
+    @GetMapping(value = {HOME, HOME2 })
     public String home(HttpServletRequest req, Model model, Authentication authentication) {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {

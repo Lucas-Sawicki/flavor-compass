@@ -3,6 +3,7 @@ package org.example.util;
 import lombok.experimental.UtilityClass;
 import org.example.infrastructure.database.entity.*;
 
+import java.util.Collections;
 import java.util.Set;
 
 @UtilityClass
@@ -100,6 +101,16 @@ public class EntityFixtures {
                         .street("plac Defilad 1")
                         .postalCode("19-200")
                         .build())
+                .build();
+    }
+    public static UserEntity someUser1() {
+        return UserEntity.builder()
+                .email("test@example.com")
+                .password("test")
+                .active(true)
+                .roles(Collections.singleton(RoleEntity.builder()
+                                .role("ROLE_CUSTOMER")
+                        .build()))
                 .build();
     }
 }

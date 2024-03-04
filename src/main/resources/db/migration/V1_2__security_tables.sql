@@ -24,5 +24,5 @@ CREATE TABLE users_roles (
 );
 
 
-insert into roles (role_id, role) values (1, 'OWNER'), (2,'CUSTOMER'), (3, 'REST_API'), (4, 'ADMIN');
+insert into roles (role_id, role) values (1, 'ROLE_OWNER'), (2,'ROLE_CUSTOMER'), (3, 'ROLE_REST_API'), (4, 'ROLE_ADMIN');
 
