@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Access denied</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +13,7 @@
 </head>
 <body>
 <section layout:fragment="section" class="mx-auto my-5">
-<h2>Sorry, you do not have permission to view this page.</h2>
+<h2 class="text-warning">Sorry, you do not have permission to view this page.</h2>
     <div class="row mt-3">
         <div class="col-md-4">
             <a th:href="@{/home}" class="btn btn-warning" role="button">Go back to the main page</a>

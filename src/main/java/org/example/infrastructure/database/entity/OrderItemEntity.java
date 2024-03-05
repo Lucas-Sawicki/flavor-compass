@@ -29,7 +29,7 @@ public class OrderItemEntity {
     @JoinColumn(name = "menu_item_id")
     private MenuItemEntity menuItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     private OrdersEntity order;
 }

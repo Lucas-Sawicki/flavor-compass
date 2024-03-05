@@ -2,17 +2,26 @@ package org.example.business.dao;
 
 import org.example.domain.Customer;
 import org.example.domain.Orders;
+import org.example.domain.Owner;
 
 import java.util.List;
 
 public interface OrdersDAO {
-    public void createOrder(Orders order);
 
     List<Orders> findOrdersByCustomerEmail(String email);
     List<Orders> findOrdersByRestaurantEmail(String email);
 
-    Orders findById(Integer id);
-    void saveOrder(Orders orders);
+    Orders getOrderByOrderNumber(Long orderNumber);
 
-//    public void updateStatusById(String id, OrderStatus status);
+    Orders findById(Integer id);
+    Orders saveOrder(Orders orders);
+
+    void delete(Long orderNumber);
+
+    List<Orders> findByCustomer(Customer customer);
+
+    List<Orders> findByOwner(Owner owner);
+
+
+    void completeOrder(Long orderNumber);
 }

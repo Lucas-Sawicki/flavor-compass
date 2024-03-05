@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>We're sorry</title>
+</head>
+<body>
+<section layout:fragment="section" class="py-5 bg-light text-warning text-center">
+    <div  class="container px-5 my-5">
+        <p style="font-size: 2em; font-weight: bold;">We're sorry, but your order is already being processed or delivered and cannot be canceled.</p>
+        <form th:action="@{/order/history}" method="get">
+            <button type="submit" class="btn btn-outline-warning">View Order History</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

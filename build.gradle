@@ -38,6 +38,8 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0'
     implementation 'junit:junit:4.13.1'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.1'
+
 
     //uploadImages
     implementation "com.cloudinary:cloudinary-http44:$cloudinaryVersion"

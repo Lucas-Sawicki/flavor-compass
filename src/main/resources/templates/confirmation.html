@@ -8,11 +8,25 @@
     <title>Thank You</title>
 </head>
 <body>
-<section layout:fragment="section" class="mx-auto my-5">
+<section layout:fragment="section" class="mx-auto my-5 text-warning text-center">
     <h1>Order Confirmation</h1>
     <p>Thank you for your order!</p>
-
+    <br>
+    <h2>Order Details</h2>
+    <div th:each="order : ${orders}">
+        <p>Restaurant: <span th:text="${order.restaurant.localName}"></span></p>
+        <p>Order Number: <span th:text="${order.orderNumber}"></span></p>
+        <p>Total Cost: <span th:text="${order.totalCost}"></span></p>
+        <form class="btn btn-delete" th:action="@{/order/cancel}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="hidden" name="orderNumber" th:value="${order.orderNumber}" />
+            <input type="submit" value="Cancel Order" />
+        </form>
+        <hr class="text-warning">
+    </div>
+    <form th:action="@{/order/history}" method="get">
+        <button type="submit" class="btn btn-outline-warning">View Order History</button>
+    </form>
 </section>
-
 </body>
 </html>

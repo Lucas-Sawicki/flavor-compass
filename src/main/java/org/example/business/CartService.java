@@ -1,15 +1,15 @@
 package org.example.business;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.api.dto.OrderItemDTO;
-import org.example.api.dto.RestaurantDTO;
-import org.example.api.dto.mapper.RestaurantMapper;
 import org.example.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -17,7 +17,8 @@ public class CartService {
     private final HttpSession httpSession;
     private final MenuItemService menuItemService;
     private final OrdersService ordersService;
-    private final RestaurantMapper restaurantMapper;
+    private final OrderItemService orderItemService;
+
 
     public Cart getCart() {
         Cart cart = (Cart) httpSession.getAttribute("cart");
@@ -47,25 +48,38 @@ public class CartService {
         cart.getItems().removeIf(item -> item.getMenuItem().getMenuItemId().equals(orderItemDTO.getMenuItemId()));
     }
 
-    public Orders placeOrder(Cart cart, Customer customer, Restaurant restaurant) {
+    @Transactional
+    public List<Orders> placeOrder(Cart cart, Customer customer, List<Restaurant> restaurants) {
+        List<Orders> ordersList = new ArrayList<>();
         OffsetDateTime date = OffsetDateTime.now();
-        Orders order = Orders.builder()
-                .restaurant(restaurant)
-                .orderNumber(ordersService.generateOrderRequestNumber(date))
-                .orderDate(date)
-                .status("NEW")
-                .customer(customer)
-                .build();
-        for (OrderItem item : cart.getItems()) {
-            OrderItem orderItem = OrderItem.builder()
-                    .menuItem(item.getMenuItem())
-                    .quantity(item.getQuantity())
-                    .order(order)
+        for (Restaurant restaurant : restaurants) {
+            List<OrderItem> orderItemsList = new ArrayList<>();
+            Orders order = Orders.builder()
+                    .restaurant(restaurant)
+                    .orderNumber(ordersService.generateOrderRequestNumber(date))
+                    .orderDate(date)
+                    .status("PENDING")
+                    .customer(customer)
+                    .orderItems(orderItemsList)
                     .build();
-            order.getOrderItems().add(orderItem);
+
+            Orders savedOrder = ordersService.saveOrder(order);
+
+            for (OrderItem item : cart.getItems()) {
+                if (item.getMenuItem().getRestaurant().equals(restaurant)) {
+                    OrderItem orderItem = OrderItem.builder()
+                            .menuItem(item.getMenuItem())
+                            .quantity(item.getQuantity())
+                            .order(savedOrder)
+                            .build();
+                    orderItemsList.add(orderItem);
+                }
+            }
+            Orders withOrderItems = savedOrder.withOrderItems(orderItemsList);
+            withOrderItems.getOrderItems().forEach(orderItemService::save);
+            ordersList.add(withOrderItems);
         }
-        ordersService.saveOrder(order);
         httpSession.removeAttribute("cart");
-        return order;
+        return ordersList;
     }
 }

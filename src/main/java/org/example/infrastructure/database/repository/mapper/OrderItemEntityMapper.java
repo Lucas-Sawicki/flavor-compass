@@ -17,11 +17,9 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderItemEntityMapper {
 
-    @Mapping(target = "menuItem", ignore = true)
-    @Mapping(target = "order", ignore = true)
+    @Mapping(target = "order.orderItems", ignore = true)
     OrderItem mapFromEntity(OrderItemEntity entity);
-    @Mapping(target = "order", ignore = true)
-    @Mapping(target = "menuItem", ignore = true)
+    @Mapping(target = "order.orderItems", ignore = true)
     OrderItemEntity mapToEntity(OrderItem orderItem);
 
 

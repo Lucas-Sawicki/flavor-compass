@@ -1,6 +1,6 @@
 CREATE TABLE order_item
 (
-    order_item_id   INT           NOT NULL,
+    order_item_id   SERIAL           NOT NULL,
     quantity        INT           NOT NULL,
     order_id        INT           NOT NULL,
     menu_item_id    INT           NOT NULL,

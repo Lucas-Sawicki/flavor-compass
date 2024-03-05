@@ -7,6 +7,7 @@ import org.example.domain.Restaurant;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -24,28 +25,23 @@ public interface ObjectMapper {
                 .map(odt -> odt.format(DATE_FORMAT))
                 .orElse(null);
     }
-    @Named("mapCustomerToString")
-    default String mapCustomerToString(Customer customer){
+    @Named("mapDeliveryTimeToString")
+    default String mapCustomerToString(LocalTime time){
+        return Optional.ofNullable(time)
+                .map(String::valueOf)
+                .orElse(null);
+    }
+    @Named("mapCustomer")
+    default Integer mapCustomer(Customer customer){
         return Optional.ofNullable(customer)
-                .map(Customer::getName)
+                .map(Customer::getCustomerId)
                 .orElse(null);
     }
-    @Named("mapOwnerToString")
-    default String mapOwnerToString(Owner owner){
-        return Optional.ofNullable(owner)
-                .map(Owner::getName)
-                .orElse(null);
-    }
-    @Named("mapRestaurantToString")
-    default String mapCustomerToString(Restaurant restaurant){
+    @Named("mapRestaurant")
+    default Integer mapCustomer(Restaurant restaurant){
         return Optional.ofNullable(restaurant)
-                .map(Restaurant::getLocalName)
+                .map(Restaurant::getRestaurantId)
                 .orElse(null);
     }
-    @Named("mapMenuItemToString")
-    default String mapMenuItemToString(MenuItem menuItem){
-        return Optional.ofNullable(menuItem)
-                .map(MenuItem::getName)
-                .orElse(null);
-    }
+
 }

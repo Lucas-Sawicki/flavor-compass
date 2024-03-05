@@ -23,17 +23,14 @@ public class MenuItem {
      @DecimalMin(value = "0.0", inclusive = false)
      BigDecimal price;
      String photoUrl;
-     OrderItem orderItem;
+     Set<OrderItem> orderItems;
      Restaurant restaurant;
      Set<Opinion> opinions;
-     Set<Orders> orders;
+
 
      public Set<Opinion> getOpinions() {
           return opinions == null ? new HashSet<>() : opinions;
      }
 
-     public Set<Orders> getOrders() {
-          return orders == null ? new HashSet<>() : orders;
-     }
 }
 

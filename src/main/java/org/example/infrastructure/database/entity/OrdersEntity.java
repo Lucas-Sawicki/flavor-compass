@@ -44,6 +44,6 @@ public class OrdersEntity {
     @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE},   mappedBy = "order")
     private List<OrderItemEntity> orderItems;
 }

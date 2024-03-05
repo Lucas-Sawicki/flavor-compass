@@ -27,10 +27,5 @@ W ramach tego tematu trzeba napisać aplikację, która umożliwi użytkownikom 
 
 1.Właściciel lokalu gastronomicznego może podać listę ulic, na które dowozi jedzenie.
 2.Klient może podać ulicę, żeby na tej podstawie aplikacja wyświetliła mu listę lokali gastronomicznych oferujących możliwość zamówienia jedzenia z dowozem.
-5.Klient może złożyć zamówienie, zaznaczając ile i jakich pozycji chce zamówić.
-6.Klient może zobaczyć potwierdzenie złożonego zamówienia na podstawie wygenerowanego numeru zamówienia.
-7.Klient może anulować zamówienie, jeżeli minęło mniej niż 20 minut od jego złożenia.
-8.Właściciel lokalu gastronomicznego może zobaczyć złożone u niego zamówienia, z podziałem na oczekujące i zrealizowane.
-9.Właściciel lokalu zaznacza, że zamówienie zostało zrealizowane..
 
 

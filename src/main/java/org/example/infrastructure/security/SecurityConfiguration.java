@@ -74,6 +74,7 @@ public class SecurityConfiguration  {
                         .requestMatchers("/home", "/error", "/auth/**", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**", "/css/**" , "/js/**", "/restaurant/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**").hasRole("CUSTOMER")
+                        .requestMatchers("/order/**").hasAnyRole("CUSTOMER", "OWNER")
                         .requestMatchers("/api/**").hasRole("REST_API")
                         .anyRequest().authenticated()
                 )
@@ -85,7 +86,7 @@ public class SecurityConfiguration  {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling((exceptionHandling) ->
                         exceptionHandling
-                                .accessDeniedPage("access_denied.html")
+                                .accessDeniedPage("/auth/access_denied")
                 )
                 .formLogin((form) -> form
                         .loginPage("/auth/login")

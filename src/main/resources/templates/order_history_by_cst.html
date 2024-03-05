@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="section" class="mx-auto my-5 text-warning text-center">
+    <table style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th>Order Number</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Restaurant</th>
+            <th>Cost</th>
+            <th>Order Items</th>
+
+        </tr>
+        <tr th:each="order : ${orders}" style="border: 1px solid black;">
+            <td th:text="${order.orderNumber}" style="border: 1px solid black;"></td>
+            <td th:text="${order.orderDate}" style="border: 1px solid black;"></td>
+            <td th:text="${order.status}" style="border: 1px solid black;"></td>
+            <td th:text="${order.restaurant.localName} "style="border: 1px solid black;"></td>
+            <td th:text="${order.totalCost} "style="border: 1px solid black;"></td>
+            <td>
+                <table style="border-collapse: collapse; width: 100%;">
+                    <tr th:each="orderItem : ${order.orderItems}" style="border: 1px solid black;">
+                        <td th:text="${orderItem.quantity}"></td>
+                        <td th:text="${orderItem.menuItem.name}"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <form class="btn btn-delete" th:action="@{/order/cancel}" method="post" th:if="${order.status != 'COMPLETED'}">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="orderNumber" th:value="${order.orderNumber}" />
+                    <input type="submit" value="Cancel Order" />
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</section>
+</body>
+</html>

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -21,11 +22,13 @@ import java.util.Map;
 
 @Controller
 @Slf4j
+@RequestMapping(CustomerController.BASE_PATH)
 @RequiredArgsConstructor
 public class CustomerController {
 
-    public static final String CUSTOMER_ID = "/customer/{customerID}";
-    public static final String FIND = "/customer/find";
+    public static final String CUSTOMER_ID = "/{customerID}";
+    public static final String FIND = "/find";
+    public static final String BASE_PATH = "/customer";
 
     private final CustomerService customerService;
     private final RestaurantService restaurantService;

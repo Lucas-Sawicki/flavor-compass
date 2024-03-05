@@ -8,6 +8,7 @@ import org.example.business.dao.CustomerDAO;
 import org.example.business.dao.UserDAO;
 import org.example.domain.Customer;
 import org.example.domain.User;
+import org.example.domain.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class CustomerService {
     private final RestaurantMapper restaurantMapper;
     @Transactional
     public Customer findCustomerByEmail(String email) {
-        Optional<User> customer = userDAO.findByEmail(email);
-        return customer.get().getCustomer();
+        User customer = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
+        return customer.getCustomer();
     }
 
     @Transactional

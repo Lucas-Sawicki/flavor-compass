@@ -19,7 +19,7 @@ public class OwnerService {
 
     @Transactional
     public Owner findOwnerByUser(String email) {
-        User user = userDAO.findByEmail(email).orElseThrow(()-> new NotFoundException("User not found"));
+        User user = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
         Owner owner = ownerDAO.findOwnerByUser(user);
         return owner;
     }
@@ -35,4 +35,9 @@ public class OwnerService {
 
     }
 
+    @Transactional
+    public Owner findOwnerByEmail(String email) {
+        User owner = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
+        return owner.getOwner();
+    }
 }

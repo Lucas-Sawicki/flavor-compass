@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Error page!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,15 +13,18 @@
 </head>
 <body>
 <div class="container">
-    <h1>Sorry mate, seems that You can't use this webapp properly!</h1>
-    <b><span th:if="${errorMessage}" th:text="${errorMessage}">Error</span></b>
-    <br>
-    <img th:src="@{/images/oh_no.png}" alt="OH NO" width="50" height="50"/>
-    <br>
-    <br>
-    <p>
-        <a th:href="@{/home}" class="btn btn-warning" role="button">Back to the main page</a>
-    </p>
+
+    <section layout:fragment="section" class="mx-auto my-5">
+        <h1>Sorry, seems that You can't use this webapp properly!</h1>
+        <b><span th:if="${errorMessage}" th:text="${errorMessage}">Error</span></b>
+        <br>
+        <img th:src="@{/images/oh_no.png}" alt="OH NO" width="50" height="50"/>
+        <br>
+        <br>
+        <p>
+            <a th:href="@{/home}" class="btn btn-warning" role="button">Back to the main page</a>
+        </p>
+    </section>
 </div>
 </body>
 </html>

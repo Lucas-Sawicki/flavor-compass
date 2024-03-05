@@ -21,6 +21,8 @@ public interface MenuItemEntityMapper {
     @Mapping(target = "restaurant.address", ignore = true)
     @Mapping(target = "restaurant.openingHours", ignore = true)
     @Mapping(target = "restaurant.owner", ignore = true)
+    @Mapping(target = "restaurant.orders", ignore = true)
+    @Mapping(target = "orderItems", ignore = true)
     MenuItem mapFromEntity(MenuItemEntity entity);
     @Mapping( target = "opinions", ignore = true)
     MenuItemEntity mapToEntity(MenuItem menuItem);
