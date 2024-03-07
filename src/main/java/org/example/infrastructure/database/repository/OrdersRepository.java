@@ -27,21 +27,6 @@ public class OrdersRepository implements OrdersDAO {
     private final CustomerEntityMapper customerEntityMapper;
     private final OwnerEntityMapper ownerEntityMapper;
 
-
-    @Override
-    public List<Orders> findOrdersByCustomerEmail(String email) {
-        return ordersJpaRepository.findOrdersByCustomerEmail(email).stream()
-                .map(ordersEntityMapper::mapFromEntity)
-                .toList();
-    }
-
-    @Override
-    public List<Orders> findOrdersByRestaurantEmail(String email) {
-        return ordersJpaRepository.findOrdersByRestaurantEmail(email).stream()
-                .map(ordersEntityMapper::mapFromEntity)
-                .toList();
-    }
-
     @Override
     public Orders getOrderByOrderNumber(Long orderNumber) {
         OrdersEntity entity = ordersJpaRepository.findByOrderNumber(orderNumber)

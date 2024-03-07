@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Find restaurant</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <section layout:fragment="section" class="py-5 bg-dark2 text-warning">
+        <div class="login-form">
+            <form th:action="@{/find}" th:object="${deliveryRangeDTO}" method="post">
+                <div class="container">
+                    <h1>Find restaurant</h1>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="city">City</label>:
+                            <input type="text" id="city" th:field="*{city}" name="city" autofocus="autofocus" placeholder="Optional"/>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="street">Street</label>:
+                            <input type="street" id="street" th:field="*{street}" name="street" required/> <br/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <input type="submit" value="Find!" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

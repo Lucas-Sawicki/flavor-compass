@@ -12,7 +12,6 @@ import org.example.infrastructure.database.repository.mapper.OwnerEntityMapper;
 import org.example.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -66,7 +65,9 @@ public class RestaurantRepository implements RestaurantDAO {
     }
 
     @Override
-    public Page<Restaurant> findAllByRestaurantId(PageRequest pageRequest) {
-        return restaurantJpaRepository.findAll(pageRequest).map(restaurantEntityMapper::mapFromEntity);
+    public Page<Restaurant> findByRestaurant(Restaurant restaurant, PageRequest pageRequest) {
+        Page<RestaurantEntity> sorted = restaurantJpaRepository.findByEmail(restaurant.getEmail(), pageRequest);
+        return sorted.map(restaurantEntityMapper::mapFromEntity);
     }
+
 }

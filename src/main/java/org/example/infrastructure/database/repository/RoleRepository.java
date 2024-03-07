@@ -13,16 +13,8 @@ import java.util.Optional;
 @Repository
 @AllArgsConstructor
 public class RoleRepository implements RoleDAO {
-
-    private final RoleEntityMapper roleEntityMapper;
     private final RoleJpaRepository roleJpaRepository;
 
-    @Override
-    public Role saveRole(Role role) {
-        RoleEntity toSave = roleEntityMapper.mapToEntity(role);
-        RoleEntity saved = roleJpaRepository.saveAndFlush(toSave);
-        return roleEntityMapper.mapFromEntity(saved);
-    }
 
     @Override
     public RoleEntity findByRole(String role) {
@@ -32,13 +24,4 @@ public class RoleRepository implements RoleDAO {
             throw new RuntimeException("Sorry, the specified role could not be found");
         }
     }
-//    @Override
-//    public Role findByRole(String role) {
-//        if (roleJpaRepository.findByRole(role).isPresent()) {
-//         RoleEntity roleEntity = roleJpaRepository.findByRole(role).get();
-//         return roleEntityMapper.mapFromEntity(roleEntity);
-//        } else {
-//            throw new RuntimeException("Sorry, the specified role could not be found");
-//        }
-//    }
 }

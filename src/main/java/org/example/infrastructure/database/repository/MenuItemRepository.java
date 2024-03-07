@@ -24,12 +24,6 @@ public class MenuItemRepository implements MenuItemDAO {
     private final MenuItemEntityMapper menuItemEntityMapper;
 
     @Override
-    public Optional<MenuItem> findMenuItemByName(String name) {
-        return menuItemJpaRepository.findMenuItemByName(name)
-                .map(menuItemEntityMapper::mapFromEntity);
-    }
-
-    @Override
     public void saveMenuItem(MenuItem menuItem) {
         MenuItemEntity toSave = menuItemEntityMapper.mapToEntity(menuItem);
         menuItemJpaRepository.saveAndFlush(toSave);

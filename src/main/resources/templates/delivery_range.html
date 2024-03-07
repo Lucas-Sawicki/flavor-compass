@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="section" class="mx-auto my-5">
+    <form id="voivodeships" th:action="@{/owner/delivery}" method="get">
+        <select id="woj-select" name="voi" onchange="document.getElementById('voivodeships').submit();">
+            <option value="">Choose voivodeship</option>
+            <option th:each="voi : ${voivodeships.keySet()}" th:value="${voi}" th:text="${voi}"></option>
+        </select>
+        <select id="pow-select" name="cou" onchange="this.form.submit()"
+                th:if="${counties != null}">
+            <option value="">Choose county</option>
+            <option th:each="cou : ${counties}" th:value="${cou}" th:text="${cou}"></option>
+        </select>
+        <hr style="text-warning">
+        <select id="gmi-select" name="cit"  onchange="this.form.submit()"
+                th:if="${cities != null}">
+            <option value="">Choose city</option>
+            <option th:each="cit : ${cities}" th:value="${cit}" th:text="${cit}" ></option>
+        </select>
+    </form>
+
+
+
+    <div id="source" >
+        <h2>Street name:</h2>
+        <form id="streets-form" th:action="@{/owner/delivery/addStreets}" method="post" onsubmit="this.action += '?cit=' + document.getElementById('gmi-select').value;">
+            <table>
+                <tr th:each="street, iterStat : ${streets}">
+                    <td th:if="${iterStat.index % 10 == 0}" th:each="i: ${#numbers.sequence(0,9)}">
+                        <div th:if="${iterStat.index + i < streets.size()}" th:with="streetValue=${streets.get(iterStat.index + i).cecha} + ' ' + ${streets.get(iterStat.index + i).nazwa_1}">
+                            <input type="checkbox" class="street-checkbox" th:id="${streetValue}" th:value="${streetValue}" name="approvedNames"/>
+                            <label class="text-warning" th:for="${streetValue}" th:text="${streetValue}"></label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button type="button" class="btn btn-warning" onclick="toggleAll()">Select all</button>
+            <select id="restaurantsList"
+                    name="restaurant"
+                    class="btn btn-outline-warning btn-rounded">
+                <option th:each="restaurant : ${restaurantsList}"
+                        th:value="${restaurant}"
+                        th:text="${restaurant.localName + ' - ' + restaurant.email}"
+                        class="btn btn-outline-warning ">
+                </option>
+            </select>
+            <p th:text="${cit}"></p>
+            <input type="hidden" id="cit-input" name="cit" th:value="${cit}">
+            <button type="submit" class="btn btn-warning">Save</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

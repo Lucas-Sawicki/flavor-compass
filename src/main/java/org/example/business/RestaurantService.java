@@ -11,14 +11,13 @@ import org.example.domain.OpeningHours;
 import org.example.domain.Owner;
 import org.example.domain.Restaurant;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,9 +84,16 @@ public class RestaurantService {
     }
 
 
-    public Page<Restaurant> pagination(int page, int size, String sortBy) {
+    public Page<Restaurant> pagination(int page, int size, String sortBy, List<Restaurant> restaurants) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sortBy));
-        return restaurantDAO.findAllByRestaurantId(pageRequest);
+
+        int start = (int) pageRequest.getOffset();
+        int end = Math.min((start + pageRequest.getPageSize()), restaurants.size());
+
+        List<Restaurant> subList = new ArrayList<>(restaurants.subList(start, end));
+        subList.sort(Comparator.comparing(Restaurant::getLocalName));
+
+        return new PageImpl<>(subList, pageRequest, restaurants.size());
     }
 
 

@@ -26,10 +26,10 @@ public interface RestaurantEntityMapper {
     @Mapping(target = "owner.user", ignore = true)
     @Mapping(target = "owner.restaurants", ignore = true)
     @Mapping(source = "orders", target = "orders", qualifiedByName = "mapFromOrders")
+    @Mapping(source = "openingHours", target = "openingHours", qualifiedByName = "mapOpeningHours")
     Restaurant mapFromEntity(RestaurantEntity restaurant);
 
     RestaurantEntity mapToEntity(Restaurant restaurant);
-
 
     @Named("mapOpeningHours")
     default Map<DayOfWeek, OpeningHours> mapOpeningHours(Map<DayOfWeek, OpeningHoursEntity> dayOfWeekOpeningHoursMap) {
@@ -44,6 +44,7 @@ public interface RestaurantEntityMapper {
     }
     @Mapping(target = "restaurants", ignore = true)
     OpeningHours mapFromEntity(OpeningHoursEntity entity);
+
 
     @Named("mapFromOrders")
     default Set<Orders> mapFromOrders(Set<OrdersEntity> ordersEntities) {

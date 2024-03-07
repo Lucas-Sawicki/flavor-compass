@@ -2,12 +2,9 @@ package org.example.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.domain.OpeningHours;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import java.time.DayOfWeek;
-import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +44,7 @@ public class RestaurantEntity {
     @JoinColumn(name = "owner_id")
     private OwnerEntity owner;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<MenuItemEntity> menuItems;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
@@ -63,4 +60,7 @@ public class RestaurantEntity {
     @MapKeyEnumerated(EnumType.STRING)
     private Map<DayOfWeek, OpeningHoursEntity> openingHours;
 
+
+    @ManyToMany(mappedBy = "restaurants")
+    private List<DeliveryRangeEntity> deliveryRange;
 }

@@ -71,7 +71,7 @@ public class SecurityConfiguration  {
         http
                 .csrf((AbstractHttpConfigurer::disable))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/home", "/error", "/auth/**", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**", "/css/**" , "/js/**", "/restaurant/**").permitAll()
+                        .requestMatchers("/home", "/error", "/auth/**", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**", "/css/**" , "/js/**", "/restaurant/**", "/find/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**").hasRole("CUSTOMER")
                         .requestMatchers("/order/**").hasAnyRole("CUSTOMER", "OWNER")

@@ -18,10 +18,10 @@ public class UserRepository implements UserDAO {
     private final UserEntityMapper userEntityMapper;
 
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         UserEntity userEntity = userEntityMapper.mapToEntity(user);
         UserEntity saved = userJpaRepository.save(userEntity);
-        return userEntityMapper.mapFromEntity(saved);
+        userEntityMapper.mapFromEntity(saved);
     }
 
     @Override

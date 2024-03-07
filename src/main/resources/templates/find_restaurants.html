@@ -65,16 +65,16 @@
     <div class="container px-5 my-5 d-flex justify-content-center" style="max-width: 100%;">
         <ul class="pagination">
             <li class="page-item" th:class="${pagination.first ? 'disabled' : ''}">
-                <a class="page-link" th:href="@{/customer/find(page=${pagination.number-1})}">Previous</a>
+                <a class="page-link" th:href="@{/find(page=${pagination.number-1})}">Previous</a>
             </li>
             <li class="page-item"
                 th:each="pageNumber : ${#numbers.sequence(0, pagination.totalPages-1)}"
                 th:class="${pageNumber == pagination.number ? 'active' : ''}">
-                <a class="page-link" th:href="@{/customer/find(page=${pageNumber})}"><span
+                <a class="page-link" th:href="@{/find(page=${pageNumber})}"><span
                         th:text="${pageNumber + 1}">1</span></a>
             </li>
             <li class="page-item" th:class="${pagination.last ? 'disabled' : ''}">
-                <a class="page-link" th:href="@{/customer/find(page=${pagination.number+1})}">Next</a>
+                <a class="page-link" th:href="@{/find(page=${pagination.number+1})}">Next</a>
             </li>
         </ul>
     </div>

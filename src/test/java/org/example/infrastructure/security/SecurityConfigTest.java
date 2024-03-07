@@ -3,6 +3,7 @@ package org.example.infrastructure.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.example.api.dto.DeliveryRangeDTO;
 import org.example.business.TokenService;
 import org.example.infrastructure.database.entity.CustomerEntity;
 import org.example.infrastructure.database.entity.OwnerEntity;
@@ -69,7 +70,7 @@ public class SecurityConfigTest {
                 user.getPassword(),
                 user.getRoles().stream()
                         .map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList()));
-     SecretKey key = getSignInKey();
+        SecretKey key = getSignInKey();
         String token = Jwts.builder()
                 .subject(userDetails.getUsername())
                 .claim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
@@ -78,9 +79,12 @@ public class SecurityConfigTest {
                 .signWith(key)
                 .compact();
 
-        mockMvc.perform(get("/customer").header("Authorization", "Bearer " + token))
+        mockMvc.perform(get("/customer")
+                        .header("Authorization", "Bearer " + token)
+                        .flashAttr("deliveryRangeDTO", new DeliveryRangeDTO()))
                 .andExpect(status().isOk());
     }
+
     @Test
     @WithMockUser(username = "owner1", roles = {"OWNER"})
     public void givenOwnerRole_whenGetOwnerPage_thenOk() throws Exception {

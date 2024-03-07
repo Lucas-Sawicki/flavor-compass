@@ -1,0 +1,714 @@
+WOJ;POW;GMI;RODZ;SYM
+DOLNOŚLĄSKIE;bolesławiecki;Nowogrodziec;miasto;0936262
+DOLNOŚLĄSKIE;dzierżoniowski;Pieszyce;miasto;0984396
+DOLNOŚLĄSKIE;dzierżoniowski;Niemcza;miasto;0984232
+DOLNOŚLĄSKIE;górowski;Góra;miasto;0954449
+DOLNOŚLĄSKIE;górowski;Wąsosz;miasto;0954662
+DOLNOŚLĄSKIE;jaworski;Bolków;miasto;0935995
+DOLNOŚLĄSKIE;kamiennogórski;Lubawka;miasto;0936180
+DOLNOŚLĄSKIE;kłodzki;Bystrzyca Kłodzka;miasto;0983899
+DOLNOŚLĄSKIE;kłodzki;Lądek-Zdrój;miasto;0984203
+DOLNOŚLĄSKIE;kłodzki;Międzylesie;miasto;0984226
+DOLNOŚLĄSKIE;kłodzki;Radków;miasto;0984539
+DOLNOŚLĄSKIE;kłodzki;Stronie Śląskie;miasto;0984545
+DOLNOŚLĄSKIE;kłodzki;Szczytna;miasto;0984597
+DOLNOŚLĄSKIE;legnicki;Prochowice;miasto;0954171
+DOLNOŚLĄSKIE;lubański;Leśna;miasto;0936121
+DOLNOŚLĄSKIE;lubański;Olszyna;miasto;0191684
+DOLNOŚLĄSKIE;lubiński;Ścinawa;miasto;0954202
+DOLNOŚLĄSKIE;lwówecki;Gryfów Śląski;miasto;0936003
+DOLNOŚLĄSKIE;lwówecki;Lubomierz;miasto;0936210
+DOLNOŚLĄSKIE;lwówecki;Lwówek Śląski;miasto;0936227
+DOLNOŚLĄSKIE;lwówecki;Mirsk;miasto;0936233
+DOLNOŚLĄSKIE;lwówecki;Wleń;miasto;0936500
+DOLNOŚLĄSKIE;milicki;Milicz;miasto;0987130
+DOLNOŚLĄSKIE;oleśnicki;Bierutów;miasto;0987035
+DOLNOŚLĄSKIE;oleśnicki;Międzybórz;miasto;0937037
+DOLNOŚLĄSKIE;oleśnicki;Syców;miasto;0937379
+DOLNOŚLĄSKIE;oleśnicki;Twardogóra;miasto;0987390
+DOLNOŚLĄSKIE;oławski;Jelcz-Laskowice;miasto;0987118
+DOLNOŚLĄSKIE;polkowicki;Chocianów;miasto;0954060
+DOLNOŚLĄSKIE;polkowicki;Polkowice;miasto;0954165
+DOLNOŚLĄSKIE;polkowicki;Przemków;miasto;0954194
+DOLNOŚLĄSKIE;strzeliński;Strzelin;miasto;0987331
+DOLNOŚLĄSKIE;strzeliński;Wiązów;miasto;0987437
+DOLNOŚLĄSKIE;średzki;Miękinia;miasto;0877424
+DOLNOŚLĄSKIE;średzki;Środa Śląska;miasto;0987348
+DOLNOŚLĄSKIE;świdnicki;Jaworzyna Śląska;miasto;0984019
+DOLNOŚLĄSKIE;świdnicki;Strzegom;miasto;0984551
+DOLNOŚLĄSKIE;świdnicki;Żarów;miasto;0984746
+DOLNOŚLĄSKIE;trzebnicki;Oborniki Śląskie;miasto;0987182
+DOLNOŚLĄSKIE;trzebnicki;Prusice;miasto;0879914
+DOLNOŚLĄSKIE;trzebnicki;Trzebnica;miasto;0987383
+DOLNOŚLĄSKIE;trzebnicki;Żmigród;miasto;0987503
+DOLNOŚLĄSKIE;wałbrzyski;Głuszyca;miasto;0984002
+DOLNOŚLĄSKIE;wałbrzyski;Mieroszów;miasto;0984210
+DOLNOŚLĄSKIE;wołowski;Brzeg Dolny;miasto;0987064
+DOLNOŚLĄSKIE;wołowski;Wołów;miasto;0987466
+DOLNOŚLĄSKIE;wrocławski;Kąty Wrocławskie;miasto;0987124
+DOLNOŚLĄSKIE;wrocławski;Sobótka;miasto;0987294
+DOLNOŚLĄSKIE;wrocławski;Siechnice;miasto;0881160
+DOLNOŚLĄSKIE;wrocławski;Siechnice;miasto;0881160
+DOLNOŚLĄSKIE;ząbkowicki;Bardo;miasto;0983801
+DOLNOŚLĄSKIE;ząbkowicki;Kamieniec Ząbkowicki;miasto;0852631
+DOLNOŚLĄSKIE;ząbkowicki;Ząbkowice Śląskie;miasto;0984692
+DOLNOŚLĄSKIE;ząbkowicki;Ziębice;miasto;0984700
+DOLNOŚLĄSKIE;ząbkowicki;Złoty Stok;miasto;0984723
+DOLNOŚLĄSKIE;zgorzelecki;Bogatynia;miasto;0935908
+DOLNOŚLĄSKIE;zgorzelecki;Pieńsk;miasto;0936351
+DOLNOŚLĄSKIE;zgorzelecki;Węgliniec;miasto;0936492
+DOLNOŚLĄSKIE;złotoryjski;Świerzawa;miasto;0936486
+KUJAWSKO-POMORSKIE;brodnicki;Górzno;miasto;0983244
+KUJAWSKO-POMORSKIE;brodnicki;Jabłonowo Pomorskie;miasto;0983474
+KUJAWSKO-POMORSKIE;bydgoski;Koronowo;miasto;0929285
+KUJAWSKO-POMORSKIE;bydgoski;Solec Kujawski;miasto;0929552
+KUJAWSKO-POMORSKIE;golubsko-dobrzyński;Kowalewo Pomorskie;miasto;0983540
+KUJAWSKO-POMORSKIE;grudziądzki;Łasin;miasto;0983557
+KUJAWSKO-POMORSKIE;grudziądzki;Radzyń Chełmiński;miasto;0983630
+KUJAWSKO-POMORSKIE;inowrocławski;Gniewkowo;miasto;0928937
+KUJAWSKO-POMORSKIE;inowrocławski;Janikowo;miasto;0929109
+KUJAWSKO-POMORSKIE;inowrocławski;Kruszwica;miasto;0929380
+KUJAWSKO-POMORSKIE;inowrocławski;Pakość;miasto;0929517
+KUJAWSKO-POMORSKIE;lipnowski;Bobrowniki;miasto;0858480
+KUJAWSKO-POMORSKIE;lipnowski;Dobrzyń nad Wisłą;miasto;0985651
+KUJAWSKO-POMORSKIE;lipnowski;Kikół;miasto;0863480
+KUJAWSKO-POMORSKIE;lipnowski;Skępe;miasto;0869583
+KUJAWSKO-POMORSKIE;mogileński;Mogilno;miasto;0929428
+KUJAWSKO-POMORSKIE;mogileński;Strzelno;miasto;0929598
+KUJAWSKO-POMORSKIE;nakielski;Kcynia;miasto;0929233
+KUJAWSKO-POMORSKIE;nakielski;Mrocza;miasto;0929440
+KUJAWSKO-POMORSKIE;nakielski;Nakło nad Notecią;miasto;0929463
+KUJAWSKO-POMORSKIE;nakielski;Szubin;miasto;0929612
+KUJAWSKO-POMORSKIE;radziejowski;Piotrków Kujawski;miasto;0867510
+KUJAWSKO-POMORSKIE;sępoleński;Kamień Krajeński;miasto;0929210
+KUJAWSKO-POMORSKIE;sępoleński;Sępólno Krajeńskie;miasto;0929546
+KUJAWSKO-POMORSKIE;sępoleński;Więcbork;miasto;0929820
+KUJAWSKO-POMORSKIE;świecki;Nowe;miasto;0929492
+KUJAWSKO-POMORSKIE;świecki;Pruszcz;miasto;0094024
+KUJAWSKO-POMORSKIE;świecki;Świecie;miasto;0929664
+KUJAWSKO-POMORSKIE;tucholski;Tuchola;miasto;0929724
+KUJAWSKO-POMORSKIE;włocławski;Brześć Kujawski;miasto;0985444
+KUJAWSKO-POMORSKIE;włocławski;Chodecz;miasto;0985562
+KUJAWSKO-POMORSKIE;włocławski;Izbica Kujawska;miasto;0985734
+KUJAWSKO-POMORSKIE;włocławski;Lubień Kujawski;miasto;0985898
+KUJAWSKO-POMORSKIE;włocławski;Lubraniec;miasto;0985929
+KUJAWSKO-POMORSKIE;żniński;Barcin;miasto;0928825
+KUJAWSKO-POMORSKIE;żniński;Gąsawa;miasto;0085189
+KUJAWSKO-POMORSKIE;żniński;Janowiec Wielkopolski;miasto;0929167
+KUJAWSKO-POMORSKIE;żniński;Łabiszyn;miasto;0929405
+KUJAWSKO-POMORSKIE;żniński;Żnin;miasto;0929865
+LUBELSKIE;bialski;Piszczac;miasto;0017124
+LUBELSKIE;biłgorajski;Frampol;miasto;0887196
+LUBELSKIE;biłgorajski;Goraj;miasto;0887693
+LUBELSKIE;biłgorajski;Józefów;miasto;0987897
+LUBELSKIE;biłgorajski;Tarnogród;miasto;0988069
+LUBELSKIE;biłgorajski;Turobin;miasto;0903200
+LUBELSKIE;chełmski;Siedliszcze;miasto;0107821
+LUBELSKIE;chełmski;Rejowiec;miasto;0105667
+LUBELSKIE;janowski;Janów Lubelski;miasto;0980493
+LUBELSKIE;janowski;Modliborzyce;miasto;0799760
+LUBELSKIE;krasnostawski;Izbica;miasto;0889700
+LUBELSKIE;kraśnicki;Annopol;miasto;0786213
+LUBELSKIE;kraśnicki;Urzędów;miasto;0392684
+LUBELSKIE;lubartowski;Kamionka;miasto;0382480
+LUBELSKIE;lubartowski;Kock;miasto;0956069
+LUBELSKIE;lubartowski;Ostrów Lubelski;miasto;0956690
+LUBELSKIE;lubelski;Bełżyce;miasto;0955555
+LUBELSKIE;lubelski;Bychawa;miasto;0955621
+LUBELSKIE;łęczyński;Łęczna;miasto;0956388
+LUBELSKIE;opolski;Józefów nad Wisłą;miasto;0382036
+LUBELSKIE;opolski;Opole Lubelskie;miasto;0956550
+LUBELSKIE;opolski;Poniatowa;miasto;0956744
+LUBELSKIE;parczewski;Parczew;miasto;0922254
+LUBELSKIE;puławski;Kazimierz Dolny;miasto;0955905
+LUBELSKIE;puławski;Nałęczów;miasto;0956454
+LUBELSKIE;radzyński;Czemierniki;miasto;0011179
+LUBELSKIE;rycki;Ryki;miasto;0956980
+LUBELSKIE;świdnicki;Piaski;miasto;0389386
+LUBELSKIE;tomaszowski;Lubycza Królewska;miasto;0892889
+LUBELSKIE;tomaszowski;Łaszczów;miasto;0893742
+LUBELSKIE;tomaszowski;Tyszowce;miasto;0903676
+LUBELSKIE;zamojski;Krasnobród;miasto;0891281
+LUBELSKIE;zamojski;Szczebrzeszyn;miasto;0987934
+LUBELSKIE;zamojski;Zwierzyniec;miasto;0988253
+LUBUSKIE;gorzowski;Witnica;miasto;0935794
+LUBUSKIE;krośnieński;Krosno Odrzańskie;miasto;0988460
+LUBUSKIE;międzyrzecki;Międzyrzecz;miasto;0935529
+LUBUSKIE;międzyrzecki;Skwierzyna;miasto;0935699
+LUBUSKIE;międzyrzecki;Trzciel;miasto;0935771
+LUBUSKIE;nowosolski;Bytom Odrzański;miasto;0988359
+LUBUSKIE;nowosolski;Kożuchów;miasto;0988454
+LUBUSKIE;nowosolski;Nowe Miasteczko;miasto;0988566
+LUBUSKIE;nowosolski;Otyń;miasto;0912824
+LUBUSKIE;słubicki;Cybinka;miasto;0988365
+LUBUSKIE;słubicki;Ośno Lubuskie;miasto;0935587
+LUBUSKIE;słubicki;Rzepin;miasto;0935682
+LUBUSKIE;słubicki;Słubice;miasto;0935736
+LUBUSKIE;strzelecko-drezdenecki;Dobiegniew;miasto;0935334
+LUBUSKIE;strzelecko-drezdenecki;Drezdenko;miasto;0935400
+LUBUSKIE;strzelecko-drezdenecki;Strzelce Krajeńskie;miasto;0935742
+LUBUSKIE;sulęciński;Lubniewice;miasto;0182969
+LUBUSKIE;sulęciński;Sulęcin;miasto;0935759
+LUBUSKIE;sulęciński;Torzym;miasto;0915484
+LUBUSKIE;świebodziński;Świebodzin;miasto;0988626
+LUBUSKIE;świebodziński;Zbąszynek;miasto;0988649
+LUBUSKIE;zielonogórski;Babimost;miasto;0988342
+LUBUSKIE;zielonogórski;Czerwieńsk;miasto;0988371
+LUBUSKIE;zielonogórski;Kargowa;miasto;0988448
+LUBUSKIE;zielonogórski;Nowogród Bobrzański;miasto;0988572
+LUBUSKIE;zielonogórski;Sulechów;miasto;0988595
+LUBUSKIE;żagański;Iłowa;miasto;0988402
+LUBUSKIE;żagański;Małomice;miasto;0988514
+LUBUSKIE;żagański;Szprotawa;miasto;0988603
+LUBUSKIE;żarski;Brody;miasto;0908030
+LUBUSKIE;żarski;Jasień;miasto;0988431
+LUBUSKIE;żarski;Lubsko;miasto;0988490
+LUBUSKIE;wschowski;Sława;miasto;0988589
+LUBUSKIE;wschowski;Szlichtyngowa;miasto;0954640
+LUBUSKIE;wschowski;Wschowa;miasto;0954685
+ŁÓDZKIE;bełchatowski;Zelów;miasto;0968664
+ŁÓDZKIE;kutnowski;Dąbrowice;miasto;0562880
+ŁÓDZKIE;kutnowski;Krośniewice;miasto;0969095
+ŁÓDZKIE;kutnowski;Żychlin;miasto;0969391
+ŁÓDZKIE;łaski;Łask;miasto;0976296
+ŁÓDZKIE;łęczycki;Grabów;miasto;0284003
+ŁÓDZKIE;łęczycki;Piątek;miasto;0573256
+ŁÓDZKIE;łowicki;Kiernozia;miasto;0566894
+ŁÓDZKIE;łódzki wschodni;Koluszki;miasto;0967831
+ŁÓDZKIE;łódzki wschodni;Rzgów;miasto;0415787
+ŁÓDZKIE;łódzki wschodni;Tuszyn;miasto;0968569
+ŁÓDZKIE;opoczyński;Białaczów;miasto;0536350
+ŁÓDZKIE;opoczyński;Drzewica;miasto;0973346
+ŁÓDZKIE;opoczyński;Opoczno;miasto;0967943
+ŁÓDZKIE;opoczyński;Żarnów;miasto;0558274
+ŁÓDZKIE;pabianicki;Lutomiersk;miasto;0705893
+ŁÓDZKIE;pajęczański;Działoszyn;miasto;0703026
+ŁÓDZKIE;pajęczański;Pajęczno;miasto;0932330
+ŁÓDZKIE;piotrkowski;Rozprza;miasto;0550717
+ŁÓDZKIE;piotrkowski;Sulejów;miasto;0968233
+ŁÓDZKIE;piotrkowski;Wolbórz;miasto;0556648
+ŁÓDZKIE;poddębicki;Poddębice;miasto;0976400
+ŁÓDZKIE;poddębicki;Uniejów;miasto;0949359
+ŁÓDZKIE;radomszczański;Kamieńsk;miasto;0541180
+ŁÓDZKIE;radomszczański;Przedbórz;miasto;0968026
+ŁÓDZKIE;rawski;Biała Rawska;miasto;0977019
+ŁÓDZKIE;sieradzki;Błaszki;miasto;0976267
+ŁÓDZKIE;sieradzki;Warta;miasto;0976557
+ŁÓDZKIE;sieradzki;Złoczew;miasto;0976830
+ŁÓDZKIE;skierniewicki;Bolimów;miasto;0725068
+ŁÓDZKIE;tomaszowski;Inowłódz;miasto;0540989
+ŁÓDZKIE;tomaszowski;Ujazd;miasto;0554721
+ŁÓDZKIE;wieluński;Osjaków;miasto;0708420
+ŁÓDZKIE;wieluński;Wieluń;miasto;0976586
+ŁÓDZKIE;wieruszowski;Bolesławiec;miasto;0194330
+ŁÓDZKIE;wieruszowski;Lututów;miasto;0706651
+ŁÓDZKIE;wieruszowski;Wieruszów;miasto;0937400
+ŁÓDZKIE;zduńskowolski;Szadek;miasto;0976451
+ŁÓDZKIE;zgierski;Aleksandrów Łódzki;miasto;0958654
+ŁÓDZKIE;zgierski;Parzęczew;miasto;0415340
+ŁÓDZKIE;zgierski;Stryków;miasto;0959240
+ŁÓDZKIE;brzeziński;Jeżów;miasto;0728658
+MAŁOPOLSKIE;bocheński;Nowy Wiśnicz;miasto;0824936
+MAŁOPOLSKIE;brzeski;Brzesko;miasto;0981966
+MAŁOPOLSKIE;brzeski;Czchów;miasto;0816871
+MAŁOPOLSKIE;chrzanowski;Alwernia;miasto;0314454
+MAŁOPOLSKIE;chrzanowski;Chrzanów;miasto;0938982
+MAŁOPOLSKIE;chrzanowski;Libiąż;miasto;0940938
+MAŁOPOLSKIE;chrzanowski;Trzebinia;miasto;0944149
+MAŁOPOLSKIE;dąbrowski;Dąbrowa Tarnowska;miasto;0982167
+MAŁOPOLSKIE;dąbrowski;Szczucin;miasto;0831149
+MAŁOPOLSKIE;gorlicki;Biecz;miasto;0952752
+MAŁOPOLSKIE;gorlicki;Bobowa;miasto;0417728
+MAŁOPOLSKIE;krakowski;Krzeszowice;miasto;0951570
+MAŁOPOLSKIE;krakowski;Skała;miasto;0951860
+MAŁOPOLSKIE;krakowski;Skawina;miasto;0951876
+MAŁOPOLSKIE;krakowski;Słomniki;miasto;0952077
+MAŁOPOLSKIE;krakowski;Świątniki Górne;miasto;0337774
+MAŁOPOLSKIE;miechowski;Książ Wielki;miasto;0246617
+MAŁOPOLSKIE;miechowski;Miechów;miasto;0947225
+MAŁOPOLSKIE;myślenicki;Dobczyce;miasto;0951505
+MAŁOPOLSKIE;myślenicki;Myślenice;miasto;0951617
+MAŁOPOLSKIE;myślenicki;Sułkowice;miasto;0952137
+MAŁOPOLSKIE;nowosądecki;Krynica-Zdrój;miasto;0960390
+MAŁOPOLSKIE;nowosądecki;Muszyna;miasto;0961283
+MAŁOPOLSKIE;nowosądecki;Piwniczna-Zdrój;miasto;0961768
+MAŁOPOLSKIE;nowosądecki;Stary Sącz;miasto;0963359
+MAŁOPOLSKIE;nowotarski;Szczawnica;miasto;0963454
+MAŁOPOLSKIE;nowotarski;Czarny Dunajec;miasto;0421629
+MAŁOPOLSKIE;nowotarski;Rabka-Zdrój;miasto;0962503
+MAŁOPOLSKIE;olkuski;Olkusz;miasto;0941777
+MAŁOPOLSKIE;olkuski;Wolbrom;miasto;0945315
+MAŁOPOLSKIE;oświęcimski;Brzeszcze;miasto;0938120
+MAŁOPOLSKIE;oświęcimski;Chełmek;miasto;0924098
+MAŁOPOLSKIE;oświęcimski;Kęty;miasto;0924365
+MAŁOPOLSKIE;oświęcimski;Zator;miasto;0927576
+MAŁOPOLSKIE;proszowicki;Koszyce;miasto;0244630
+MAŁOPOLSKIE;proszowicki;Nowe Brzesko;miasto;0329705
+MAŁOPOLSKIE;proszowicki;Proszowice;miasto;0951818
+MAŁOPOLSKIE;suski;Maków Podhalański;miasto;0924537
+MAŁOPOLSKIE;tarnowski;Ciężkowice;miasto;0815239
+MAŁOPOLSKIE;tarnowski;Radłów;miasto;0827923
+MAŁOPOLSKIE;tarnowski;Ryglice;miasto;0829098
+MAŁOPOLSKIE;tarnowski;Tuchów;miasto;0982457
+MAŁOPOLSKIE;tarnowski;Wojnicz;miasto;0836276
+MAŁOPOLSKIE;tarnowski;Zakliczyn;miasto;0837436
+MAŁOPOLSKIE;tarnowski;Żabno;miasto;0982641
+MAŁOPOLSKIE;wadowicki;Andrychów;miasto;0924023
+MAŁOPOLSKIE;wadowicki;Kalwaria Zebrzydowska;miasto;0924253
+MAŁOPOLSKIE;wadowicki;Wadowice;miasto;0926921
+MAŁOPOLSKIE;wielicki;Niepołomice;miasto;0951675
+MAŁOPOLSKIE;wielicki;Wieliczka;miasto;0952232
+MAZOWIECKIE;białobrzeski;Białobrzegi;miasto;0973286
+MAZOWIECKIE;białobrzeski;Wyśmierzyce;miasto;0974044
+MAZOWIECKIE;ciechanowski;Glinojeck;miasto;0114620
+MAZOWIECKIE;garwoliński;Maciejowice;miasto;0680503
+MAZOWIECKIE;garwoliński;Pilawa;miasto;0975753
+MAZOWIECKIE;garwoliński;Żelechów;miasto;0975983
+MAZOWIECKIE;gostyniński;Sanniki;miasto;0574511
+MAZOWIECKIE;grodziski;Grodzisk Mazowiecki;miasto;0920380
+MAZOWIECKIE;grójecki;Grójec;miasto;0973352
+MAZOWIECKIE;grójecki;Mogielnica;miasto;0973665
+MAZOWIECKIE;grójecki;Nowe Miasto nad Pilicą;miasto;0973725
+MAZOWIECKIE;grójecki;Warka;miasto;0973978
+MAZOWIECKIE;kozienicki;Głowaczów;miasto;0619366
+MAZOWIECKIE;kozienicki;Kozienice;miasto;0973524
+MAZOWIECKIE;kozienicki;Magnuszew;miasto;0628833
+MAZOWIECKIE;legionowski;Serock;miasto;0921645
+MAZOWIECKIE;lipski;Ciepielów;miasto;0617203
+MAZOWIECKIE;lipski;Lipsko;miasto;0973613
+MAZOWIECKIE;lipski;Sienno;miasto;0636650
+MAZOWIECKIE;lipski;Solec nad Wisłą;miasto;0637921
+MAZOWIECKIE;łosicki;Łosice;miasto;0922120
+MAZOWIECKIE;makowski;Różan;miasto;0966412
+MAZOWIECKIE;miński;Cegłów;miasto;0668956
+MAZOWIECKIE;miński;Dobre;miasto;0670278
+MAZOWIECKIE;miński;Halinów;miasto;0002766
+MAZOWIECKIE;miński;Kałuszyn;miasto;0975380
+MAZOWIECKIE;miński;Latowicz;miasto;0677636
+MAZOWIECKIE;miński;Mrozy;miasto;0682940
+MAZOWIECKIE;miński;Siennica;miasto;0687273
+MAZOWIECKIE;nowodworski;Nasielsk;miasto;0930740
+MAZOWIECKIE;nowodworski;Zakroczym;miasto;0921869
+MAZOWIECKIE;ostrołęcki;Myszyniec;miasto;0514928
+MAZOWIECKIE;ostrowski;Brok;miasto;0966151
+MAZOWIECKIE;otwocki;Karczew;miasto;0920500
+MAZOWIECKIE;otwocki;Osieck;miasto;0683192
+MAZOWIECKIE;piaseczyński;Góra Kalwaria;miasto;0920321
+MAZOWIECKIE;piaseczyński;Konstancin-Jeziorna;miasto;0920634
+MAZOWIECKIE;piaseczyński;Piaseczno;miasto;0921438
+MAZOWIECKIE;piaseczyński;Tarczyn;miasto;0009478
+MAZOWIECKIE;płocki;Bodzanów;miasto;0560213
+MAZOWIECKIE;płocki;Drobin;miasto;0563223
+MAZOWIECKIE;płocki;Gąbin;miasto;0968871
+MAZOWIECKIE;płocki;Wyszogród;miasto;0969356
+MAZOWIECKIE;płoński;Czerwińsk nad Wisłą;miasto;0561885
+MAZOWIECKIE;płoński;Nowe Miasto;miasto;0120900
+MAZOWIECKIE;płoński;Sochocin;miasto;0125954
+MAZOWIECKIE;pruszkowski;Brwinów;miasto;0920284
+MAZOWIECKIE;przasnyski;Chorzele;miasto;0966270
+MAZOWIECKIE;przysuski;Gielniów;miasto;0618817
+MAZOWIECKIE;przysuski;Odrzywół;miasto;0630110
+MAZOWIECKIE;przysuski;Przysucha;miasto;0973777
+MAZOWIECKIE;pułtuski;Pułtusk;miasto;0930816
+MAZOWIECKIE;radomski;Iłża;miasto;0973375
+MAZOWIECKIE;radomski;Jedlnia-Letnisko;miasto;0625444
+MAZOWIECKIE;radomski;Przytyk;miasto;0634348
+MAZOWIECKIE;radomski;Skaryszew;miasto;0973820
+MAZOWIECKIE;siedlecki;Mordy;miasto;0975747
+MAZOWIECKIE;sokołowski;Kosów Lacki;miasto;0676128
+MAZOWIECKIE;szydłowiecki;Jastrząb;miasto;0623988
+MAZOWIECKIE;szydłowiecki;Szydłowiec;miasto;0973895
+MAZOWIECKIE;warszawski zachodni;Błonie;miasto;0920249
+MAZOWIECKIE;warszawski zachodni;Łomianki;miasto;0920864
+MAZOWIECKIE;warszawski zachodni;Ożarów Mazowiecki;miasto;0921415
+MAZOWIECKIE;węgrowski;Łochów;miasto;0975492
+MAZOWIECKIE;wołomiński;Jadów;miasto;0673220
+MAZOWIECKIE;wołomiński;Radzymin;miasto;0921591
+MAZOWIECKIE;wołomiński;Tłuszcz;miasto;0966441
+MAZOWIECKIE;wołomiński;Wołomin;miasto;0921792
+MAZOWIECKIE;wyszkowski;Wyszków;miasto;0966470
+MAZOWIECKIE;zwoleński;Zwoleń;miasto;0974096
+MAZOWIECKIE;żuromiński;Bieżuń;miasto;0111981
+MAZOWIECKIE;żuromiński;Lubowidz;miasto;0118606
+MAZOWIECKIE;żuromiński;Żuromin;miasto;0930851
+MAZOWIECKIE;żyrardowski;Mszczonów;miasto;0977054
+MAZOWIECKIE;żyrardowski;Wiskitki;miasto;0739656
+MAZOWIECKIE;Warszawa;Warszawa;gmina miejska, miasto stołeczne;0918123
+OPOLSKIE;brzeski;Grodków;miasto;0965401
+OPOLSKIE;brzeski;Lewin Brzeski;miasto;0965720
+OPOLSKIE;głubczycki;Baborów;miasto;0965200
+OPOLSKIE;głubczycki;Głubczyce;miasto;0965329
+OPOLSKIE;głubczycki;Kietrz;miasto;0965602
+OPOLSKIE;kluczborski;Byczyna;miasto;0965275
+OPOLSKIE;kluczborski;Kluczbork;miasto;0965619
+OPOLSKIE;kluczborski;Wołczyn;miasto;0965996
+OPOLSKIE;krapkowicki;Gogolin;miasto;0965364
+OPOLSKIE;krapkowicki;Krapkowice;miasto;0965677
+OPOLSKIE;krapkowicki;Strzeleczki;miasto;0503600
+OPOLSKIE;krapkowicki;Zdzieszowice;miasto;0966040
+OPOLSKIE;namysłowski;Namysłów;miasto;0965743
+OPOLSKIE;nyski;Głuchołazy;miasto;0965341
+OPOLSKIE;nyski;Korfantów;miasto;0496946
+OPOLSKIE;nyski;Nysa;miasto;0965789
+OPOLSKIE;nyski;Otmuchów;miasto;0965832
+OPOLSKIE;nyski;Paczków;miasto;0965855
+OPOLSKIE;oleski;Dobrodzień;miasto;0931454
+OPOLSKIE;oleski;Gorzów Śląski;miasto;0931490
+OPOLSKIE;oleski;Olesno;miasto;0932293
+OPOLSKIE;oleski;Praszka;miasto;0932353
+OPOLSKIE;opolski;Niemodlin;miasto;0965750
+OPOLSKIE;opolski;Ozimek;miasto;0965849
+OPOLSKIE;opolski;Prószków;miasto;0502523
+OPOLSKIE;opolski;Tułowice;miasto;0504090
+OPOLSKIE;prudnicki;Biała;miasto;0965223
+OPOLSKIE;prudnicki;Głogówek;miasto;0965281
+OPOLSKIE;prudnicki;Prudnik;miasto;0965878
+OPOLSKIE;strzelecki;Kolonowskie;miasto;0965631
+OPOLSKIE;strzelecki;Leśnica;miasto;0965714
+OPOLSKIE;strzelecki;Strzelce Opolskie;miasto;0965915
+OPOLSKIE;strzelecki;Ujazd;miasto;0965967
+OPOLSKIE;strzelecki;Zawadzkie;miasto;0966004
+PODKARPACKIE;bieszczadzki;Ustrzyki Dolne;miasto;0953817
+PODKARPACKIE;brzozowski;Brzozów;miasto;0952841
+PODKARPACKIE;dębicki;Brzostek;miasto;0814493
+PODKARPACKIE;dębicki;Pilzno;miasto;0982345
+PODKARPACKIE;jarosławski;Pruchnik;miasto;0608316
+PODKARPACKIE;jasielski;Kołaczyce;miasto;0353968
+PODKARPACKIE;kolbuszowski;Kolbuszowa;miasto;0974392
+PODKARPACKIE;krośnieński;Dukla;miasto;0952924
+PODKARPACKIE;krośnieński;Iwonicz-Zdrój;miasto;0953007
+PODKARPACKIE;krośnieński;Jedlicze;miasto;0953237
+PODKARPACKIE;krośnieński;Rymanów;miasto;0953421
+PODKARPACKIE;leżajski;Nowa Sarzyna;miasto;0974788
+PODKARPACKIE;lubaczowski;Cieszanów;miasto;0972051
+PODKARPACKIE;lubaczowski;Narol;miasto;0606984
+PODKARPACKIE;lubaczowski;Oleszyce;miasto;0972507
+PODKARPACKIE;mielecki;Przecław;miasto;0658828
+PODKARPACKIE;mielecki;Radomyśl Wielki;miasto;0982411
+PODKARPACKIE;niżański;Nisko;miasto;0980530
+PODKARPACKIE;niżański;Rudnik nad Sanem;miasto;0980850
+PODKARPACKIE;niżański;Ulanów;miasto;0981386
+PODKARPACKIE;przemyski;Bircza;miasto;0598990
+PODKARPACKIE;przemyski;Dubiecko;miasto;0600496
+PODKARPACKIE;przeworski;Jawornik Polski;miasto;0603900
+PODKARPACKIE;przeworski;Kańczuga;miasto;0972424
+PODKARPACKIE;przeworski;Sieniawa;miasto;0972683
+PODKARPACKIE;ropczycko-sędziszowski;Ropczyce;miasto;0974825
+PODKARPACKIE;ropczycko-sędziszowski;Sędziszów Małopolski;miasto;0974937
+PODKARPACKIE;rzeszowski;Błażowa;miasto;0974280
+PODKARPACKIE;rzeszowski;Boguchwała;miasto;0644750
+PODKARPACKIE;rzeszowski;Głogów Małopolski;miasto;0974328
+PODKARPACKIE;rzeszowski;Sokołów Małopolski;miasto;0974966
+PODKARPACKIE;rzeszowski;Tyczyn;miasto;0975078
+PODKARPACKIE;sanocki;Zagórz;miasto;0953881
+PODKARPACKIE;stalowowolski;Zaklików;miasto;0810615
+PODKARPACKIE;strzyżowski;Strzyżów;miasto;0975010
+PODKARPACKIE;tarnobrzeski;Baranów Sandomierski;miasto;0980352
+PODKARPACKIE;tarnobrzeski;Nowa Dęba;miasto;0980636
+PODKARPACKIE;leski;Lesko;miasto;0953409
+PODLASKIE;augustowski;Lipsk;miasto;0977717
+PODLASKIE;białostocki;Choroszcz;miasto;0922811
+PODLASKIE;białostocki;Czarna Białostocka;miasto;0922886
+PODLASKIE;białostocki;Łapy;miasto;0923271
+PODLASKIE;białostocki;Michałowo;miasto;0034507
+PODLASKIE;białostocki;Supraśl;miasto;0923472
+PODLASKIE;białostocki;Suraż;miasto;0923510
+PODLASKIE;białostocki;Tykocin;miasto;0043446
+PODLASKIE;białostocki;Wasilków;miasto;0923526
+PODLASKIE;białostocki;Zabłudów;miasto;0923578
+PODLASKIE;grajewski;Rajgród;miasto;0957465
+PODLASKIE;grajewski;Szczuczyn;miasto;0957560
+PODLASKIE;hajnowski;Kleszczele;miasto;0031727
+PODLASKIE;kolneński;Stawiski;miasto;0957548
+PODLASKIE;łomżyński;Jedwabne;miasto;0957382
+PODLASKIE;łomżyński;Nowogród;miasto;0957459
+PODLASKIE;moniecki;Goniądz;miasto;0957360
+PODLASKIE;moniecki;Knyszyn;miasto;0923213
+PODLASKIE;moniecki;Mońki;miasto;0923348
+PODLASKIE;siemiatycki;Drohiczyn;miasto;0922998
+PODLASKIE;sokólski;Dąbrowa Białostocka;miasto;0922923
+PODLASKIE;sokólski;Krynki;miasto;0032655
+PODLASKIE;sokólski;Sokółka;miasto;0923443
+PODLASKIE;sokólski;Suchowola;miasto;0041312
+PODLASKIE;wysokomazowiecki;Ciechanowiec;miasto;0957324
+PODLASKIE;wysokomazowiecki;Czyżew;miasto;0395984
+PODLASKIE;wysokomazowiecki;Szepietowo;miasto;0407380
+POMORSKIE;bytowski;Bytów;miasto;0977290
+POMORSKIE;bytowski;Miastko;miasto;0977404
+POMORSKIE;chojnicki;Brusy;miasto;0928848
+POMORSKIE;chojnicki;Czersk;miasto;0928920
+POMORSKIE;człuchowski;Czarne;miasto;0977309
+POMORSKIE;człuchowski;Debrzno;miasto;0977338
+POMORSKIE;kartuski;Kartuzy;miasto;0934547
+POMORSKIE;kartuski;Żukowo;miasto;0935127
+POMORSKIE;kwidzyński;Prabuty;miasto;0932962
+POMORSKIE;malborski;Nowy Staw;miasto;0932904
+POMORSKIE;nowodworski;Nowy Dwór Gdański;miasto;0932880
+POMORSKIE;pucki;Jastarnia;miasto;0934518
+POMORSKIE;pucki;Władysławowo;miasto;0935015
+POMORSKIE;słupski;Kępice;miasto;0977344
+POMORSKIE;starogardzki;Czarna Woda;miasto;0162139
+POMORSKIE;starogardzki;Skarszewy;miasto;0934754
+POMORSKIE;tczewski;Gniew;miasto;0934470
+POMORSKIE;tczewski;Pelplin;miasto;0934599
+POMORSKIE;sztumski;Dzierzgoń;miasto;0932726
+POMORSKIE;sztumski;Sztum;miasto;0932991
+ŚLĄSKIE;będziński;Siewierz;miasto;0943204
+ŚLĄSKIE;bielski;Czechowice-Dziedzice;miasto;0939094
+ŚLĄSKIE;bielski;Wilamowice;miasto;0926996
+ŚLĄSKIE;cieszyński;Skoczów;miasto;0925198
+ŚLĄSKIE;cieszyński;Strumień;miasto;0925258
+ŚLĄSKIE;częstochowski;Blachownia;miasto;0931365
+ŚLĄSKIE;częstochowski;Koniecpol;miasto;0931750
+ŚLĄSKIE;częstochowski;Olsztyn;miasto;0140675
+ŚLĄSKIE;częstochowski;Przyrów;miasto;0143550
+ŚLĄSKIE;gliwicki;Sośnicowice;miasto;0221936
+ŚLĄSKIE;gliwicki;Toszek;miasto;0944126
+ŚLĄSKIE;kłobucki;Kłobuck;miasto;0931678
+ŚLĄSKIE;kłobucki;Krzepice;miasto;0931862
+ŚLĄSKIE;lubliniecki;Woźniki;miasto;0932494
+ŚLĄSKIE;myszkowski;Koziegłowy;miasto;0931827
+ŚLĄSKIE;myszkowski;Żarki;miasto;0932643
+ŚLĄSKIE;pszczyński;Pszczyna;miasto;0942222
+ŚLĄSKIE;raciborski;Krzanowice;miasto;0215427
+ŚLĄSKIE;raciborski;Kuźnia Raciborska;miasto;0940884
+ŚLĄSKIE;rybnicki;Czerwionka-Leszczyny;miasto;0939409
+ŚLĄSKIE;zawierciański;Łazy;miasto;0941197
+ŚLĄSKIE;zawierciański;Ogrodzieniec;miasto;0941748
+ŚLĄSKIE;zawierciański;Pilica;miasto;0219566
+ŚLĄSKIE;zawierciański;Szczekociny;miasto;0932413
+ŚLĄSKIE;zawierciański;Włodowice;miasto;0146821
+ŚWIĘTOKRZYSKIE;buski;Busko-Zdrój;miasto;0946651
+ŚWIĘTOKRZYSKIE;buski;Nowy Korczyn;miasto;0256142
+ŚWIĘTOKRZYSKIE;buski;Pacanów;miasto;0258715
+ŚWIĘTOKRZYSKIE;buski;Stopnica;miasto;0272951
+ŚWIĘTOKRZYSKIE;buski;Wiślica;miasto;0277470
+ŚWIĘTOKRZYSKIE;jędrzejowski;Jędrzejów;miasto;0947030
+ŚWIĘTOKRZYSKIE;jędrzejowski;Małogoszcz;miasto;0249343
+ŚWIĘTOKRZYSKIE;jędrzejowski;Sędziszów;miasto;0947610
+ŚWIĘTOKRZYSKIE;jędrzejowski;Wodzisław;miasto;0279686
+ŚWIĘTOKRZYSKIE;kazimierski;Kazimierza Wielka;miasto;0947076
+ŚWIĘTOKRZYSKIE;kazimierski;Opatowiec;miasto;0257963
+ŚWIĘTOKRZYSKIE;kazimierski;Skalbmierz;miasto;0947627
+ŚWIĘTOKRZYSKIE;kielecki;Bodzentyn;miasto;0230102
+ŚWIĘTOKRZYSKIE;kielecki;Chęciny;miasto;0946846
+ŚWIĘTOKRZYSKIE;kielecki;Chmielnik;miasto;0946906
+ŚWIĘTOKRZYSKIE;kielecki;Daleszyce;miasto;0236429
+ŚWIĘTOKRZYSKIE;kielecki;Łagów;miasto;0247670
+ŚWIĘTOKRZYSKIE;kielecki;Łopuszno;miasto;0248622
+ŚWIĘTOKRZYSKIE;kielecki;Morawica;miasto;0254226
+ŚWIĘTOKRZYSKIE;kielecki;Nowa Słupia;miasto;0255510
+ŚWIĘTOKRZYSKIE;kielecki;Piekoszów;miasto;0261746
+ŚWIĘTOKRZYSKIE;kielecki;Pierzchnica;miasto;0262310
+ŚWIĘTOKRZYSKIE;konecki;Gowarczów;miasto;0620659
+ŚWIĘTOKRZYSKIE;konecki;Końskie;miasto;0947136
+ŚWIĘTOKRZYSKIE;konecki;Radoszyce;miasto;0264986
+ŚWIĘTOKRZYSKIE;konecki;Stąporków;miasto;0948271
+ŚWIĘTOKRZYSKIE;opatowski;Iwaniska;miasto;0793673
+ŚWIĘTOKRZYSKIE;opatowski;Opatów;miasto;0980671
+ŚWIĘTOKRZYSKIE;opatowski;Ożarów;miasto;0980777
+ŚWIĘTOKRZYSKIE;ostrowiecki;Ćmielów;miasto;0980435
+ŚWIĘTOKRZYSKIE;ostrowiecki;Kunów;miasto;0947202
+ŚWIĘTOKRZYSKIE;pińczowski;Działoszyce;miasto;0946987
+ŚWIĘTOKRZYSKIE;pińczowski;Pińczów;miasto;0947580
+ŚWIĘTOKRZYSKIE;sandomierski;Klimontów;miasto;0795933
+ŚWIĘTOKRZYSKIE;sandomierski;Koprzywnica;miasto;0796588
+ŚWIĘTOKRZYSKIE;sandomierski;Zawichost;miasto;0981417
+ŚWIĘTOKRZYSKIE;skarżyski;Suchedniów;miasto;0948360
+ŚWIĘTOKRZYSKIE;starachowicki;Wąchock;miasto;0276802
+ŚWIĘTOKRZYSKIE;staszowski;Bogoria;miasto;0788070
+ŚWIĘTOKRZYSKIE;staszowski;Oleśnica;miasto;0257118
+ŚWIĘTOKRZYSKIE;staszowski;Osiek;miasto;0802202
+ŚWIĘTOKRZYSKIE;staszowski;Połaniec;miasto;0980783
+ŚWIĘTOKRZYSKIE;staszowski;Staszów;miasto;0981274
+ŚWIĘTOKRZYSKIE;staszowski;Szydłów;miasto;0275062
+ŚWIĘTOKRZYSKIE;włoszczowski;Włoszczowa;miasto;0948472
+WARMIŃSKO-MAZURSKIE;bartoszycki;Bisztynek;miasto;0964608
+WARMIŃSKO-MAZURSKIE;bartoszycki;Sępopol;miasto;0964985
+WARMIŃSKO-MAZURSKIE;braniewski;Frombork;miasto;0932732
+WARMIŃSKO-MAZURSKIE;braniewski;Pieniężno;miasto;0932956
+WARMIŃSKO-MAZURSKIE;działdowski;Lidzbark;miasto;0930644
+WARMIŃSKO-MAZURSKIE;elbląski;Młynary;miasto;0932873
+WARMIŃSKO-MAZURSKIE;elbląski;Pasłęk;miasto;0932927
+WARMIŃSKO-MAZURSKIE;elbląski;Tolkmicko;miasto;0933000
+WARMIŃSKO-MAZURSKIE;giżycki;Ryn;miasto;0977893
+WARMIŃSKO-MAZURSKIE;iławski;Kisielice;miasto;0932749
+WARMIŃSKO-MAZURSKIE;iławski;Susz;miasto;0932979
+WARMIŃSKO-MAZURSKIE;iławski;Zalewo;miasto;0965000
+WARMIŃSKO-MAZURSKIE;kętrzyński;Korsze;miasto;0964726
+WARMIŃSKO-MAZURSKIE;kętrzyński;Reszel;miasto;0964979
+WARMIŃSKO-MAZURSKIE;lidzbarski;Orneta;miasto;0932910
+WARMIŃSKO-MAZURSKIE;mrągowski;Mikołajki;miasto;0977723
+WARMIŃSKO-MAZURSKIE;nidzicki;Nidzica;miasto;0964904
+WARMIŃSKO-MAZURSKIE;olecki;Olecko;miasto;0977798
+WARMIŃSKO-MAZURSKIE;olsztyński;Barczewo;miasto;0964577
+WARMIŃSKO-MAZURSKIE;olsztyński;Biskupiec;miasto;0964590
+WARMIŃSKO-MAZURSKIE;olsztyński;Dobre Miasto;miasto;0964614
+WARMIŃSKO-MAZURSKIE;olsztyński;Jeziorany;miasto;0964703
+WARMIŃSKO-MAZURSKIE;olsztyński;Olsztynek;miasto;0964910
+WARMIŃSKO-MAZURSKIE;ostródzki;Miłakowo;miasto;0481761
+WARMIŃSKO-MAZURSKIE;ostródzki;Miłomłyn;miasto;0482192
+WARMIŃSKO-MAZURSKIE;ostródzki;Morąg;miasto;0964850
+WARMIŃSKO-MAZURSKIE;piski;Biała Piska;miasto;0977640
+WARMIŃSKO-MAZURSKIE;piski;Orzysz;miasto;0977806
+WARMIŃSKO-MAZURSKIE;piski;Pisz;miasto;0977835
+WARMIŃSKO-MAZURSKIE;piski;Ruciane-Nida;miasto;0977841
+WARMIŃSKO-MAZURSKIE;szczycieński;Pasym;miasto;0485813
+WARMIŃSKO-MAZURSKIE;szczycieński;Wielbark;miasto;0490470
+WARMIŃSKO-MAZURSKIE;gołdapski;Gołdap;miasto;0977700
+WARMIŃSKO-MAZURSKIE;węgorzewski;Węgorzewo;miasto;0977947
+WIELKOPOLSKIE;chodzieski;Budzyń;miasto;0524393
+WIELKOPOLSKIE;chodzieski;Margonin;miasto;0966990
+WIELKOPOLSKIE;chodzieski;Szamocin;miasto;0967096
+WIELKOPOLSKIE;czarnkowsko-trzcianecki;Krzyż Wielkopolski;miasto;0966961
+WIELKOPOLSKIE;czarnkowsko-trzcianecki;Trzcianka;miasto;0967162
+WIELKOPOLSKIE;czarnkowsko-trzcianecki;Wieleń;miasto;0967334
+WIELKOPOLSKIE;gnieźnieński;Czerniejewo;miasto;0970543
+WIELKOPOLSKIE;gnieźnieński;Kłecko;miasto;0970840
+WIELKOPOLSKIE;gnieźnieński;Trzemeszno;miasto;0929701
+WIELKOPOLSKIE;gnieźnieński;Witkowo;miasto;0949388
+WIELKOPOLSKIE;gostyński;Borek Wielkopolski;miasto;0954343
+WIELKOPOLSKIE;gostyński;Gostyń;miasto;0954395
+WIELKOPOLSKIE;gostyński;Krobia;miasto;0954538
+WIELKOPOLSKIE;gostyński;Pogorzela;miasto;0954580
+WIELKOPOLSKIE;gostyński;Poniec;miasto;0954596
+WIELKOPOLSKIE;grodziski;Grodzisk Wielkopolski;miasto;0970810
+WIELKOPOLSKIE;grodziski;Rakoniewice;miasto;0971413
+WIELKOPOLSKIE;grodziski;Wielichowo;miasto;0971620
+WIELKOPOLSKIE;jarociński;Jaraczewo;miasto;0199088
+WIELKOPOLSKIE;jarociński;Jarocin;miasto;0936776
+WIELKOPOLSKIE;jarociński;Żerków;miasto;0937445
+WIELKOPOLSKIE;kaliski;Koźminek;miasto;0201141
+WIELKOPOLSKIE;kaliski;Opatówek;miasto;0205386
+WIELKOPOLSKIE;kaliski;Stawiszyn;miasto;0937327
+WIELKOPOLSKIE;kępiński;Kępno;miasto;0936871
+WIELKOPOLSKIE;kępiński;Rychtal;miasto;0208077
+WIELKOPOLSKIE;kolski;Dąbie;miasto;0948992
+WIELKOPOLSKIE;kolski;Kłodawa;miasto;0949046
+WIELKOPOLSKIE;kolski;Przedecz;miasto;0949129
+WIELKOPOLSKIE;koniński;Golina;miasto;0949017
+WIELKOPOLSKIE;koniński;Kleczew;miasto;0949023
+WIELKOPOLSKIE;koniński;Rychwał;miasto;0949193
+WIELKOPOLSKIE;koniński;Sompolno;miasto;0949253
+WIELKOPOLSKIE;koniński;Ślesin;miasto;0949282
+WIELKOPOLSKIE;kościański;Czempiń;miasto;0970537
+WIELKOPOLSKIE;kościański;Krzywiń;miasto;0954544
+WIELKOPOLSKIE;kościański;Śmigiel;miasto;0954656
+WIELKOPOLSKIE;krotoszyński;Kobylin;miasto;0954478
+WIELKOPOLSKIE;krotoszyński;Koźmin Wielkopolski;miasto;0936925
+WIELKOPOLSKIE;krotoszyński;Krotoszyn;miasto;0936931
+WIELKOPOLSKIE;krotoszyński;Zduny;miasto;0937439
+WIELKOPOLSKIE;leszczyński;Osieczna;miasto;0954567
+WIELKOPOLSKIE;leszczyński;Rydzyna;miasto;0954633
+WIELKOPOLSKIE;międzychodzki;Międzychód;miasto;0935506
+WIELKOPOLSKIE;międzychodzki;Sieraków;miasto;0971436
+WIELKOPOLSKIE;nowotomyski;Lwówek;miasto;0971028
+WIELKOPOLSKIE;nowotomyski;Nowy Tomyśl;miasto;0971175
+WIELKOPOLSKIE;nowotomyski;Opalenica;miasto;0971241
+WIELKOPOLSKIE;nowotomyski;Zbąszyń;miasto;0988655
+WIELKOPOLSKIE;obornicki;Oborniki;miasto;0971181
+WIELKOPOLSKIE;obornicki;Rogoźno;miasto;0967080
+WIELKOPOLSKIE;ostrowski;Nowe Skalmierzyce;miasto;0937089
+WIELKOPOLSKIE;ostrowski;Odolanów;miasto;0937110
+WIELKOPOLSKIE;ostrowski;Raszków;miasto;0937310
+WIELKOPOLSKIE;ostrzeszowski;Grabów nad Prosną;miasto;0936760
+WIELKOPOLSKIE;ostrzeszowski;Mikstat;miasto;0937066
+WIELKOPOLSKIE;ostrzeszowski;Ostrzeszów;miasto;0937250
+WIELKOPOLSKIE;pilski;Kaczory;miasto;0526469
+WIELKOPOLSKIE;pilski;Łobżenica;miasto;0966984
+WIELKOPOLSKIE;pilski;Miasteczko Krajeńskie;miasto;0528132
+WIELKOPOLSKIE;pilski;Ujście;miasto;0967191
+WIELKOPOLSKIE;pilski;Wyrzysk;miasto;0967392
+WIELKOPOLSKIE;pilski;Wysoka;miasto;0967417
+WIELKOPOLSKIE;pleszewski;Chocz;miasto;0195564
+WIELKOPOLSKIE;pleszewski;Dobrzyca;miasto;0196380
+WIELKOPOLSKIE;pleszewski;Pleszew;miasto;0937280
+WIELKOPOLSKIE;poznański;Buk;miasto;0970520
+WIELKOPOLSKIE;poznański;Kostrzyn;miasto;0970885
+WIELKOPOLSKIE;poznański;Kórnik;miasto;0970922
+WIELKOPOLSKIE;poznański;Mosina;miasto;0971057
+WIELKOPOLSKIE;poznański;Murowana Goślina;miasto;0971152
+WIELKOPOLSKIE;poznański;Pobiedziska;miasto;0971287
+WIELKOPOLSKIE;poznański;Stęszew;miasto;0971494
+WIELKOPOLSKIE;poznański;Swarzędz;miasto;0971502
+WIELKOPOLSKIE;rawicki;Bojanowo;miasto;0954308
+WIELKOPOLSKIE;rawicki;Jutrosin;miasto;0954461
+WIELKOPOLSKIE;rawicki;Miejska Górka;miasto;0954550
+WIELKOPOLSKIE;rawicki;Rawicz;miasto;0954604
+WIELKOPOLSKIE;słupecki;Zagórów;miasto;0949431
+WIELKOPOLSKIE;szamotulski;Ostroróg;miasto;0971264
+WIELKOPOLSKIE;szamotulski;Pniewy;miasto;0971270
+WIELKOPOLSKIE;szamotulski;Szamotuły;miasto;0971531
+WIELKOPOLSKIE;szamotulski;Wronki;miasto;0967386
+WIELKOPOLSKIE;średzki;Środa Wielkopolska;miasto;0971614
+WIELKOPOLSKIE;śremski;Dolsk;miasto;0970589
+WIELKOPOLSKIE;śremski;Książ Wielkopolski;miasto;0970968
+WIELKOPOLSKIE;śremski;Śrem;miasto;0971560
+WIELKOPOLSKIE;turecki;Dobra;miasto;0949000
+WIELKOPOLSKIE;turecki;Tuliszków;miasto;0949320
+WIELKOPOLSKIE;wągrowiecki;Gołańcz;miasto;0966820
+WIELKOPOLSKIE;wągrowiecki;Mieścisko;miasto;0588855
+WIELKOPOLSKIE;wągrowiecki;Skoki;miasto;0971459
+WIELKOPOLSKIE;wolsztyński;Wolsztyn;miasto;0988632
+WIELKOPOLSKIE;wrzesiński;Miłosław;miasto;0971034
+WIELKOPOLSKIE;wrzesiński;Nekla;miasto;0590310
+WIELKOPOLSKIE;wrzesiński;Pyzdry;miasto;0949164
+WIELKOPOLSKIE;wrzesiński;Września;miasto;0971637
+WIELKOPOLSKIE;złotowski;Jastrowie;miasto;0966843
+WIELKOPOLSKIE;złotowski;Krajenka;miasto;0966932
+WIELKOPOLSKIE;złotowski;Okonek;miasto;0967044
+ZACHODNIOPOMORSKIE;białogardzki;Karlino;miasto;0949968
+ZACHODNIOPOMORSKIE;białogardzki;Tychowo;miasto;0313839
+ZACHODNIOPOMORSKIE;choszczeński;Choszczno;miasto;0935280
+ZACHODNIOPOMORSKIE;choszczeński;Drawno;miasto;0935357
+ZACHODNIOPOMORSKIE;choszczeński;Pełczyce;miasto;0935601
+ZACHODNIOPOMORSKIE;choszczeński;Recz;miasto;0935653
+ZACHODNIOPOMORSKIE;drawski;Czaplinek;miasto;0949810
+ZACHODNIOPOMORSKIE;drawski;Drawsko Pomorskie;miasto;0949862
+ZACHODNIOPOMORSKIE;drawski;Kalisz Pomorski;miasto;0949916
+ZACHODNIOPOMORSKIE;drawski;Złocieniec;miasto;0950374
+ZACHODNIOPOMORSKIE;goleniowski;Goleniów;miasto;0978929
+ZACHODNIOPOMORSKIE;goleniowski;Maszewo;miasto;0979188
+ZACHODNIOPOMORSKIE;goleniowski;Nowogard;miasto;0979389
+ZACHODNIOPOMORSKIE;goleniowski;Stepnica;miasto;0783864
+ZACHODNIOPOMORSKIE;gryficki;Gryfice;miasto;0979053
+ZACHODNIOPOMORSKIE;gryficki;Płoty;miasto;0979432
+ZACHODNIOPOMORSKIE;gryficki;Trzebiatów;miasto;0979969
+ZACHODNIOPOMORSKIE;gryfiński;Cedynia;miasto;0978734
+ZACHODNIOPOMORSKIE;gryfiński;Chojna;miasto;0978786
+ZACHODNIOPOMORSKIE;gryfiński;Gryfino;miasto;0979076
+ZACHODNIOPOMORSKIE;gryfiński;Mieszkowice;miasto;0979202
+ZACHODNIOPOMORSKIE;gryfiński;Moryń;miasto;0979283
+ZACHODNIOPOMORSKIE;gryfiński;Trzcińsko-Zdrój;miasto;0979952
+ZACHODNIOPOMORSKIE;kamieński;Dziwnów;miasto;0774782
+ZACHODNIOPOMORSKIE;kamieński;Golczewo;miasto;0978881
+ZACHODNIOPOMORSKIE;kamieński;Kamień Pomorski;miasto;0979113
+ZACHODNIOPOMORSKIE;kamieński;Międzyzdroje;miasto;0979248
+ZACHODNIOPOMORSKIE;kamieński;Wolin;miasto;0980079
+ZACHODNIOPOMORSKIE;kołobrzeski;Gościno;miasto;0306236
+ZACHODNIOPOMORSKIE;koszaliński;Bobolice;miasto;0949804
+ZACHODNIOPOMORSKIE;koszaliński;Mielno;miasto;0308353
+ZACHODNIOPOMORSKIE;koszaliński;Polanów;miasto;0950115
+ZACHODNIOPOMORSKIE;koszaliński;Sianów;miasto;0950240
+ZACHODNIOPOMORSKIE;myśliborski;Barlinek;miasto;0935268
+ZACHODNIOPOMORSKIE;myśliborski;Dębno;miasto;0935305
+ZACHODNIOPOMORSKIE;myśliborski;Myślibórz;miasto;0935558
+ZACHODNIOPOMORSKIE;policki;Nowe Warpno;miasto;0979308
+ZACHODNIOPOMORSKIE;policki;Police;miasto;0979449
+ZACHODNIOPOMORSKIE;pyrzycki;Lipiany;miasto;0979120
+ZACHODNIOPOMORSKIE;pyrzycki;Pyrzyce;miasto;0979515
+ZACHODNIOPOMORSKIE;stargardzki;Chociwel;miasto;0978757
+ZACHODNIOPOMORSKIE;stargardzki;Dobrzany;miasto;0978875
+ZACHODNIOPOMORSKIE;stargardzki;Ińsko;miasto;0979099
+ZACHODNIOPOMORSKIE;stargardzki;Suchań;miasto;0979716
+ZACHODNIOPOMORSKIE;szczecinecki;Barwice;miasto;0949649
+ZACHODNIOPOMORSKIE;szczecinecki;Biały Bór;miasto;0949767
+ZACHODNIOPOMORSKIE;szczecinecki;Borne Sulinowo;miasto;0988715
+ZACHODNIOPOMORSKIE;świdwiński;Połczyn-Zdrój;miasto;0950144
+ZACHODNIOPOMORSKIE;wałecki;Człopa;miasto;0966808
+ZACHODNIOPOMORSKIE;wałecki;Mirosławiec;miasto;0967038
+ZACHODNIOPOMORSKIE;wałecki;Tuczno;miasto;0967185
+ZACHODNIOPOMORSKIE;łobeski;Dobra;miasto;0978852
+ZACHODNIOPOMORSKIE;łobeski;Łobez;miasto;0979136
+ZACHODNIOPOMORSKIE;łobeski;Resko;miasto;0979580
+ZACHODNIOPOMORSKIE;łobeski;Węgorzyno;miasto;0980062

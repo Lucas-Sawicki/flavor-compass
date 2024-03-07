@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface MenuItemDAO {
-        Optional<MenuItem> findMenuItemByName(String name);
 
     void saveMenuItem(MenuItem menuItem);
 

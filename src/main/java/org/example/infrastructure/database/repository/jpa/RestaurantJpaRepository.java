@@ -1,12 +1,13 @@
 package org.example.infrastructure.database.repository.jpa;
 
-import org.example.domain.Owner;
 import org.example.domain.Restaurant;
 import org.example.infrastructure.database.entity.OwnerEntity;
 import org.example.infrastructure.database.entity.RestaurantEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,6 @@ public interface RestaurantJpaRepository extends JpaRepository<RestaurantEntity,
     Boolean existsByEmail(String email);
 
     RestaurantEntity findByEmail(String email);
+
+    Page<RestaurantEntity>  findByEmail(String email, Pageable pageable);
 }

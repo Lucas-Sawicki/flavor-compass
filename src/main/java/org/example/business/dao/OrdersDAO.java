@@ -8,9 +8,6 @@ import java.util.List;
 
 public interface OrdersDAO {
 
-    List<Orders> findOrdersByCustomerEmail(String email);
-    List<Orders> findOrdersByRestaurantEmail(String email);
-
     Orders getOrderByOrderNumber(Long orderNumber);
 
     Orders findById(Integer id);

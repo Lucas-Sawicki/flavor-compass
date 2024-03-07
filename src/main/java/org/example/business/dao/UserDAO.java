@@ -6,7 +6,7 @@ import org.example.infrastructure.database.entity.UserEntity;
 import java.util.Optional;
 
 public interface UserDAO {
-    User saveUser(User user);
+    void saveUser(User user);
     Optional<User> findByEmail(String email);
     Optional<UserEntity> findEntityByEmail(String email);
     Boolean existsByEmail(String email);
