@@ -1,7 +1,6 @@
 package org.example.api.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,13 +14,16 @@ import org.example.api.management.ValidEmail;
 @AllArgsConstructor
 @PasswordMatches
 public class LoginDTO {
-    @ValidEmail
+
+    @Email
     @NotNull
     @NotEmpty
+    @NotBlank(message = "Email is required")
     private String email;
 
     @NotNull
     @NotEmpty
+    @NotBlank(message = "Password is required")
     private String password;
 
 }

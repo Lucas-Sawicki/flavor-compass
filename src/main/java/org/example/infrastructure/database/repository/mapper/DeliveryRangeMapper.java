@@ -36,6 +36,8 @@ public interface DeliveryRangeMapper {
     @Mapping(target = "address.customer", ignore = true)
     @Mapping(target = "owner.user", ignore = true)
     @Mapping(target = "owner.restaurants", ignore = true)
+    @Mapping(target = "orders", ignore = true)
+    @Mapping(target = "opinions", ignore = true)
     @Mapping(source = "openingHours", target = "openingHours", qualifiedByName = "mapOpeningHours")
     Restaurant mapFromEntity(RestaurantEntity entity);
 

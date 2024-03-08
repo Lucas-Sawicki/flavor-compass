@@ -41,8 +41,12 @@
                                 <hr class="text-warning">
                                 <form th:action="@{/add-to-cart}" method="post">
                                     <input type="hidden" th:value="${menuItem.menuItemId}" name="id">
-                                    <label for="quantity">Quantity:</label>
+                                    <label for="quantity" class="text-warning">Quantity:</label>
+                                    <br>
+                                    <br>
                                     <input type="number" id="quantity" th:value="${orderItemDTO.quantity}" name="quantity" min="1" value="1">
+                                    <br>
+                                    <br>
                                     <button type="submit" class="btn btn-outline-warning">Add to cart</button>
                                 </form>
                             </div>

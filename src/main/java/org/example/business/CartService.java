@@ -1,10 +1,12 @@
 package org.example.business;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.api.dto.OrderItemDTO;
 import org.example.domain.*;
+import org.example.domain.exception.CustomException;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -19,7 +21,7 @@ public class CartService {
     private final OrdersService ordersService;
     private final OrderItemService orderItemService;
 
-
+    @Transactional
     public Cart getCart() {
         Cart cart = (Cart) httpSession.getAttribute("cart");
         if (cart == null) {
@@ -29,20 +31,26 @@ public class CartService {
         return cart;
     }
 
+    @Transactional
     public void addToCart(OrderItemDTO orderItemDTO) {
-        Cart cart = getCart();
+        try {
+            Cart cart = getCart();
 
-        MenuItem menuItem = menuItemService.findById(orderItemDTO.getMenuItemId());
+            MenuItem menuItem = menuItemService.findById(orderItemDTO.getMenuItemId());
 
-        OrderItem orderItem = OrderItem.builder()
-                .menuItem(menuItem)
-                .quantity(orderItemDTO.getQuantity())
-                .build();
+            OrderItem orderItem = OrderItem.builder()
+                    .menuItem(menuItem)
+                    .quantity(orderItemDTO.getQuantity())
+                    .build();
 
-        cart.addItem(orderItem);
+            cart.addItem(orderItem);
+        } catch (EntityNotFoundException ex) {
+            throw new CustomException("Menu item not found.", ex.getMessage());
+        }
+
     }
 
-
+    @Transactional
     public void removeFromCart(OrderItemDTO orderItemDTO) {
         Cart cart = getCart();
         cart.getItems().removeIf(item -> item.getMenuItem().getMenuItemId().equals(orderItemDTO.getMenuItemId()));
@@ -50,36 +58,40 @@ public class CartService {
 
     @Transactional
     public List<Orders> placeOrder(Cart cart, Customer customer, List<Restaurant> restaurants) {
-        List<Orders> ordersList = new ArrayList<>();
-        OffsetDateTime date = OffsetDateTime.now();
-        for (Restaurant restaurant : restaurants) {
-            List<OrderItem> orderItemsList = new ArrayList<>();
-            Orders order = Orders.builder()
-                    .restaurant(restaurant)
-                    .orderNumber(ordersService.generateOrderRequestNumber(date))
-                    .orderDate(date)
-                    .status("PENDING")
-                    .customer(customer)
-                    .orderItems(orderItemsList)
-                    .build();
+        try {
+            List<Orders> ordersList = new ArrayList<>();
+            OffsetDateTime date = OffsetDateTime.now();
+            for (Restaurant restaurant : restaurants) {
+                List<OrderItem> orderItemsList = new ArrayList<>();
+                Orders order = Orders.builder()
+                        .restaurant(restaurant)
+                        .orderNumber(ordersService.generateOrderRequestNumber(date))
+                        .orderDate(date)
+                        .status("PENDING")
+                        .customer(customer)
+                        .orderItems(orderItemsList)
+                        .build();
 
-            Orders savedOrder = ordersService.saveOrder(order);
+                Orders savedOrder = ordersService.saveOrder(order);
 
-            for (OrderItem item : cart.getItems()) {
-                if (item.getMenuItem().getRestaurant().equals(restaurant)) {
-                    OrderItem orderItem = OrderItem.builder()
-                            .menuItem(item.getMenuItem())
-                            .quantity(item.getQuantity())
-                            .order(savedOrder)
-                            .build();
-                    orderItemsList.add(orderItem);
+                for (OrderItem item : cart.getItems()) {
+                    if (item.getMenuItem().getRestaurant().equals(restaurant)) {
+                        OrderItem orderItem = OrderItem.builder()
+                                .menuItem(item.getMenuItem())
+                                .quantity(item.getQuantity())
+                                .order(savedOrder)
+                                .build();
+                        orderItemsList.add(orderItem);
+                    }
                 }
+                Orders withOrderItems = savedOrder.withOrderItems(orderItemsList);
+                withOrderItems.getOrderItems().forEach(orderItemService::save);
+                ordersList.add(withOrderItems);
             }
-            Orders withOrderItems = savedOrder.withOrderItems(orderItemsList);
-            withOrderItems.getOrderItems().forEach(orderItemService::save);
-            ordersList.add(withOrderItems);
+            httpSession.removeAttribute("cart");
+            return ordersList;
+        } catch (IllegalArgumentException ex) {
+            throw new CustomException("Invalid order data.", ex.getMessage());
         }
-        httpSession.removeAttribute("cart");
-        return ordersList;
     }
 }

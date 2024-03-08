@@ -6,7 +6,9 @@ import org.example.business.dao.OwnerDAO;
 import org.example.business.dao.UserDAO;
 import org.example.domain.Owner;
 import org.example.domain.User;
+import org.example.domain.exception.CustomException;
 import org.example.domain.exception.NotFoundException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,25 +21,39 @@ public class OwnerService {
 
     @Transactional
     public Owner findOwnerByUser(String email) {
-        User user = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
-        Owner owner = ownerDAO.findOwnerByUser(user);
-        return owner;
+        try {
+            User user = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
+            return ownerDAO.findOwnerByUser(user);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while accessing data.", ex.getMessage());
+        }
     }
 
     @Transactional
     public Owner findOwnerById(Integer id) {
-        return ownerDAO.findOwnerById(id);
+        try {
+            return ownerDAO.findOwnerById(id);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while finding owner by id.", ex.getMessage());
+        }
     }
 
     @Transactional
-    public Owner createOwner(Owner owner) {
-        return ownerDAO.saveOwner(owner);
-
+    public void createOwner(Owner owner) {
+        try {
+            ownerDAO.saveOwner(owner);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while saving owner.", ex.getMessage());
+        }
     }
 
     @Transactional
     public Owner findOwnerByEmail(String email) {
-        User owner = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
-        return owner.getOwner();
+        try {
+            User owner = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
+            return owner.getOwner();
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error finding owner by email.", ex.getMessage());
+        }
     }
 }

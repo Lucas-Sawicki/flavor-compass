@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.DayOfWeek;
 import java.util.Locale;
 import java.time.format.TextStyle;
@@ -15,9 +17,13 @@ import java.time.format.TextStyle;
 public class OpeningHoursDTO {
 
     DayOfWeek day;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     String openTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     String closeTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     String deliveryStartTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     String deliveryEndTime;
 
     Boolean status;

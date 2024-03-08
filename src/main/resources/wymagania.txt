@@ -3,10 +3,7 @@ Co trzeba zrobić (technicznie)
 [#12] Efekt końcowy projektu ma być dostępny na GitHub, a Twoje repozytorium ma być publiczne. Chcemy mieć pełny wgląd do kodu źródłowego, żeby móc go przeczytać i ocenić. Dodaj również plik README.md,
     w którym zawrzesz informacje o Twoim projekcie.
 [#16] Zaprojektuj bazę danych. Chcemy zobaczyć przygotowany diagram ERD. Możesz go narysować, w czym chcesz, możesz spróbować zrobić ten diagram np. wykorzystując PlantUML.
-[#19] Napisz warstwę WEB i wykorzystaj do tego Thymeleaf. Pamiętaj o obsłudze błędów i statusach HTTP. Pamiętaj, że warstwa WEB ma finalnie umożliwić użytkownikom pracę z bazą danych -
-[#20] Dodaj walidację danych wejściowych.
 [#20] Zabezpiecz swoją aplikację przed nieautoryzowanym dostępem. Jeżeli chodzi o zarządzanie użytkownikami (tworzenie, usuwanie, odzyskiwanie hasła), tutaj zostawiamy Ci pole do popisu.
-    Naszym wymaganiem jest tylko to, żeby do aplikacji można było się zalogować i żeby istnieli użytkownicy z różnymi uprawnieniami, a w związku z tym mieli dostęp do innych obszarów aplikacji.
     Pamiętaj, że jak dodasz do projektu security, to będziesz musiał/musiała jakoś ograć w testach warstwę security. Masz tutaj wolną rękę.
 [#20] Napisz testy jednostkowe (Mockito), @DataJpaTest, @WebMvcTest oraz @SpringBootTest. Zapewnij pokrycie kodu testami na poziomie 80%.
 [#21] Wystaw swoje REST API umożliwiające wywołanie endpointów GET, POST, PUT oraz DELETE w Twojej aplikacji. Co te endpointy będą realizowały w kontekście biznesowym - tutaj zostawiamy Ci wolną rękę.
@@ -22,10 +19,6 @@ Co trzeba zrobić (technicznie)
 [#21] Wiremock. Jeżeli uda Ci znaleźć REST API do skonsumowania, napisz też testy Wiremock.
 [#22] Chcę, żeby cały projekt można było uruchomić jedną komendą. Wykorzystaj w tym celu Docker Compose.
 
-W ramach tego tematu trzeba napisać aplikację, która umożliwi użytkownikom zamawianie jedzenia z dowozem. Możesz sobie wyobrazić, że taka aplikacja pełniłaby funkcje podobne do Pyszne.pl.
- Jakie przypadki biznesowe moglibyśmy tutaj wyróżnić?
 
-1.Właściciel lokalu gastronomicznego może podać listę ulic, na które dowozi jedzenie.
-2.Klient może podać ulicę, żeby na tej podstawie aplikacja wyświetliła mu listę lokali gastronomicznych oferujących możliwość zamówienia jedzenia z dowozem.
 
 

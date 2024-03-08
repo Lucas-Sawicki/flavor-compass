@@ -1,6 +1,7 @@
 package org.example.api.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.api.dto.AuthenticationResponseDTO;
@@ -12,23 +13,27 @@ import org.example.business.TokenService;
 import org.example.business.UserService;
 import org.example.infrastructure.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
 @RequestMapping(AuthenticationController.BASE_PATH)
 @RequiredArgsConstructor
+@Validated
 public class AuthenticationController {
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";
     public static final String BASE_PATH = "/auth";
     public static final String SUCCESS = "/success_register";
-    public static final String ACCESS_DENIED = "/access_denied";
     public static final String REGISTER = "/registration";
     @Autowired
     private AuthenticationService authenticationService;
@@ -44,13 +49,8 @@ public class AuthenticationController {
         return "login";
     }
 
-    @GetMapping(value = ACCESS_DENIED)
-    public String accessDenied(Model model) {
-        return "access_denied";
-    }
-
     @PostMapping(value = LOGIN)
-    public String login(@ModelAttribute LoginDTO loginDTO, HttpSession session) {
+    public String login(@Valid @ModelAttribute LoginDTO loginDTO, HttpSession session) {
         AuthenticationResponseDTO token = authenticationService.loginUser(loginDTO.getEmail(), loginDTO.getPassword());
         session.setAttribute("token", token);
         if (token.getIsCustomer()) {
@@ -79,9 +79,14 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = REGISTER)
-    public ModelAndView register(@ModelAttribute RegistrationDTO registrationDTO,
+    public ModelAndView register(@Valid @ModelAttribute RegistrationDTO registrationDTO,
                                  BindingResult bindingResult
     ) {
+        if (bindingResult.hasErrors()) {
+            String errorMessages = bindingResult.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.joining(", "));
+        }
         if (userService.existsByEmail(registrationDTO.getEmail())) {
             return new ModelAndView("error", HttpStatus.BAD_REQUEST);
         }

@@ -1,5 +1,6 @@
 package org.example.api.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,9 @@ import java.util.List;
 public class DeliveryRangeDTO {
 
     String restaurant;
+    @NotBlank
     String city;
+    @NotBlank
     String street;
     List<String> streets;
 }

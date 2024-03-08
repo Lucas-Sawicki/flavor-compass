@@ -8,7 +8,9 @@ import org.example.api.dto.OrdersDTO;
 import org.example.api.dto.mapper.OrdersMapper;
 import org.example.business.dao.OrdersDAO;
 import org.example.domain.*;
+import org.example.domain.exception.CustomException;
 import org.example.infrastructure.database.repository.OrdersRepository;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,10 +26,7 @@ import java.util.stream.Collectors;
 public class OrdersService {
 
     private final OrdersDAO ordersDAO;
-    private final OrdersMapper ordersMapper;
-    private final HttpSession httpSession;
-
-
+    @Transactional
     public Long generateOrderRequestNumber(OffsetDateTime when) {
         int datePart = when.getYear() * 10000 + when.getMonthValue() * 100 + when.getDayOfMonth();
         int millisPart = when.getNano() / 1_000_000;
@@ -38,37 +37,57 @@ public class OrdersService {
         return Long.parseLong(orderNumberStr);
     }
 
-    public Orders getOrderFromCart() {
-        return (Orders) httpSession.getAttribute("cart");
-    }
-
     @Transactional
     public Orders getOrderByOrderNumber(Long orderNr) {
-        return ordersDAO.getOrderByOrderNumber(orderNr);
+        try {
+            return ordersDAO.getOrderByOrderNumber(orderNr);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while accessing data.", ex.getMessage());
+        }
     }
 
     @Transactional
     public void delete(Long orderNumber) {
-        ordersDAO.delete(orderNumber);
+        try {
+            ordersDAO.delete(orderNumber);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while deleting order.", ex.getMessage());
+        }
     }
 
     @Transactional
     public Orders saveOrder(Orders orders) {
-        return ordersDAO.saveOrder(orders);
+        try {
+            return ordersDAO.saveOrder(orders);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while saving order.", ex.getMessage());
+        }
     }
 
     @Transactional
     public List<Orders> ordersHistoryForCustomer(Customer customer) {
-        return ordersDAO.findByCustomer(customer);
+        try {
+            return ordersDAO.findByCustomer(customer);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while finding orders for customer.", ex.getMessage());
+        }
     }
 
     @Transactional
     public List<Orders> ordersHistoryForOwner(Owner owner) {
-        return ordersDAO.findByOwner(owner);
+        try {
+            return ordersDAO.findByOwner(owner);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while finding orders for owner.", ex.getMessage());
+        }
     }
 
     @Transactional
     public void completeOrder(Long orderNumber) {
-        ordersDAO.completeOrder(orderNumber);
+        try {
+            ordersDAO.completeOrder(orderNumber);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error while completing order.", ex.getMessage());
+        }
     }
 }

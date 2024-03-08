@@ -10,9 +10,11 @@ import org.example.business.teryt.LoadDataService;
 import org.example.domain.Owner;
 import org.example.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -40,32 +42,35 @@ public class DeliveryController {
                              @RequestParam(required = false) String cit,
                              Model model,
                              Principal principal) {
-        Map<String, Set<String>> voivodeships = loadDataService.loadWojPowFromCSV();
-        Map<String, List<String>> countiesMap = loadDataService.loadPowGmiFromCSV();
-        Map<String, List<String>> symbols = loadDataService.loadGmiSymFromCSV();
+        try {
+            Map<String, Set<String>> voivodeships = loadDataService.loadWojPowFromCSV();
+            Map<String, List<String>> countiesMap = loadDataService.loadPowGmiFromCSV();
+            Map<String, List<String>> symbols = loadDataService.loadGmiSymFromCSV();
 
-        if (voi != null && voivodeships.containsKey(voi)) {
-            Set<String> counties = voivodeships.get(voi);
-            model.addAttribute("counties", counties);
+            if (voi != null && voivodeships.containsKey(voi)) {
+                Set<String> counties = voivodeships.get(voi);
+                model.addAttribute("counties", counties);
+            }
+            if (cou != null && countiesMap.containsKey(cou)) {
+                List<String> cities = countiesMap.get(cou);
+                model.addAttribute("cities", cities);
+            }
+            if (cit != null && symbols.containsKey(cit)) {
+                String symbol = symbols.get(cit).get(0);
+                List<StreetsDTO> streets = loadDataService.getStreetsForGmina(symbol);
+                model.addAttribute("streets", streets);
+            }
+            String email = principal.getName();
+            Owner owner = ownerService.findOwnerByUser(email);
+            List<Restaurant> restaurants = restaurantService.findRestaurantsByOwnerId(owner.getOwnerId());
+            model.addAttribute("cit", cit);
+            model.addAttribute("restaurantsList", restaurants);
+            model.addAttribute("voivodeships", voivodeships);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error displaying delivery range", e);
         }
-        if (cou != null && countiesMap.containsKey(cou)) {
-            List<String> cities = countiesMap.get(cou);
-            model.addAttribute("cities", cities);
-        }
-        if (cit != null && symbols.containsKey(cit)) {
-            String symbol = symbols.get(cit).get(0);
-            List<StreetsDTO> streets = loadDataService.getStreetsForGmina(symbol);
-            model.addAttribute("streets", streets);
-        }
-        String email = principal.getName();
-        Owner owner = ownerService.findOwnerByUser(email);
-        List<Restaurant> restaurants = restaurantService.findRestaurantsByOwnerId(owner.getOwnerId());
-        model.addAttribute("cit", cit);
-        model.addAttribute("restaurantsList", restaurants);
-        model.addAttribute("voivodeships", voivodeships);
         return "delivery_range";
     }
-
 
     @PostMapping("/owner/delivery/addStreets")
     public String addStreets(@RequestParam("cit") String cit,
@@ -76,10 +81,10 @@ public class DeliveryController {
         try {
             DeliveryRangeDTO deliveryRangeDTO = deliveryMapper.map(cit, restaurant, approvedNames);
             deliveryRangeService.addDeliveryPlaces(deliveryRangeDTO);
-           return "success_register";
+            return "success_register";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Something gone wrong when saving delivery address");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error adding streets", e.getMessage());
         }
-        return "error";
     }
 }

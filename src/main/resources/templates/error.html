@@ -12,20 +12,15 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
     <section layout:fragment="section" class="mx-auto my-5">
-        <h1>Sorry, seems that You can't use this webapp properly!</h1>
-        <b><span th:if="${errorMessage}" th:text="${errorMessage}">Error</span></b>
-        <br>
-        <b><span th:if="${errorType}" th:text="${errorType}">Error Type</span></b>
-        <br>
-        <img th:src="@{/images/oh_no.png}" alt="OH NO" width="50" height="50"/>
-        <br>
-        <br>
+        <h1 class="text-danger">Oops! Something went wrong</h1>
+        <div class="text-danger">
+            <p><strong>Error:</strong> <span th:text="${errorMessage}">Unexpected error</span></p>
+        </div>
+        <br /><br />
         <p>
             <a th:href="@{/home}" class="btn btn-warning" role="button">Back to the main page</a>
         </p>
     </section>
-</div>
 </body>
 </html>

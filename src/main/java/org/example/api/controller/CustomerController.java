@@ -12,9 +12,11 @@ import org.example.business.RestaurantService;
 import org.example.domain.Customer;
 import org.example.domain.Restaurant;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -34,13 +36,16 @@ public class CustomerController {
 
     @GetMapping(value = CUSTOMER_ID)
     public String showOwner(@PathVariable Integer customerID, Model model) {
-        Customer findCustomer = customerService.findCustomerById(customerID);
-        log.info("Customer found");
-        if (findCustomer != null) {
-            model.addAttribute("customer", findCustomer);
-            return "customer_portal";
-        } else {
-            return "error";
+        try {
+            Customer findCustomer = customerService.findCustomerById(customerID);
+            if (findCustomer != null) {
+                model.addAttribute("customer", findCustomer);
+                return "customer_portal";
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
+            }
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error displaying customer", e);
         }
     }
 }

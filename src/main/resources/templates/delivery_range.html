@@ -30,7 +30,7 @@
 
 
     <div id="source" >
-        <h2>Street name:</h2>
+        <h2 class="text-warning">Street name:</h2>
         <form id="streets-form" th:action="@{/owner/delivery/addStreets}" method="post" onsubmit="this.action += '?cit=' + document.getElementById('gmi-select').value;">
             <table>
                 <tr th:each="street, iterStat : ${streets}">
@@ -52,7 +52,7 @@
                         class="btn btn-outline-warning ">
                 </option>
             </select>
-            <p th:text="${cit}"></p>
+            <p th:text="${cit}" class="text-warning"></p>
             <input type="hidden" id="cit-input" name="cit" th:value="${cit}">
             <button type="submit" class="btn btn-warning">Save</button>
         </form>

@@ -1,20 +1,16 @@
 package org.example.business;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.example.api.dto.RestaurantDTO;
-import org.example.api.dto.mapper.RestaurantMapper;
 import org.example.business.dao.CustomerDAO;
 import org.example.business.dao.UserDAO;
 import org.example.domain.Customer;
 import org.example.domain.User;
+import org.example.domain.exception.CustomException;
 import org.example.domain.exception.NotFoundException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
 
 
 @Service
@@ -23,8 +19,7 @@ public class CustomerService {
 
     private final CustomerDAO customerDAO;
     private final UserDAO userDAO;
-    private final RestaurantService restaurantService;
-    private final RestaurantMapper restaurantMapper;
+
     @Transactional
     public Customer findCustomerByEmail(String email) {
         User customer = userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
@@ -33,18 +28,20 @@ public class CustomerService {
 
     @Transactional
     public void createCustomer(Customer customer) {
-        customerDAO.saveCustomer(customer);
+        try {
+            customerDAO.saveCustomer(customer);
+        } catch (DataAccessException ex) {
+            throw new CustomException("Error accessing data.", ex.getMessage());
+        }
     }
 
+    @Transactional
     public Customer findCustomerById(Integer id) {
-        return customerDAO.findCustomerById(id);
+        try {
+            return customerDAO.findCustomerById(id);
+        } catch (EntityNotFoundException ex) {
+            throw new CustomException("Customer not found.", ex.getMessage());
+        }
     }
 
-    public List<RestaurantDTO> findAllRestaurants() {
-        return restaurantService.findAll()
-                .stream()
-                .map(restaurantMapper::map)
-                .toList();
-
-    }
 }
