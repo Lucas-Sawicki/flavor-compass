@@ -7,7 +7,6 @@ Co trzeba zrobić (technicznie)
     Pamiętaj, że jak dodasz do projektu security, to będziesz musiał/musiała jakoś ograć w testach warstwę security. Masz tutaj wolną rękę.
 [#20] Napisz testy jednostkowe (Mockito), @DataJpaTest, @WebMvcTest oraz @SpringBootTest. Zapewnij pokrycie kodu testami na poziomie 80%.
 [#21] Wystaw swoje REST API umożliwiające wywołanie endpointów GET, POST, PUT oraz DELETE w Twojej aplikacji. Co te endpointy będą realizowały w kontekście biznesowym - tutaj zostawiamy Ci wolną rękę.
-    Przyjrzyj się domenie projektu i na tej podstawie zdecyduj o możliwościach tych endpointów.
 [#21] Wystaw SwaggerUI.
 [#21] Napisz testy RestAssured tak, żeby pokryć przypadek każdej z wymienionych metod HTTP w Twoim REST API.
 [#21] Postaraj się wykorzystać jakieś zewnętrzne API, które skonsumujesz w swojej aplikacji. Napisałem "postaraj",

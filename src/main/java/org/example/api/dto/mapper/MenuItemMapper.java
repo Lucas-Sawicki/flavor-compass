@@ -1,6 +1,7 @@
 package org.example.api.dto.mapper;
 
 import org.example.api.dto.MenuItemDTO;
+import org.example.domain.Category;
 import org.example.domain.MenuItem;
 import org.example.domain.Restaurant;
 import org.mapstruct.Mapper;
@@ -12,7 +13,7 @@ public interface MenuItemMapper {
     default MenuItem map(MenuItemDTO menuItemDTO, Restaurant restaurant) {
         MenuItem menuItem = MenuItem.builder()
                 .name(menuItemDTO.getName())
-                .category(menuItemDTO.getCategory())
+                .category(menuItemDTO.getCategory().getDescription())
                 .description(menuItemDTO.getDescription())
                 .price(new BigDecimal(menuItemDTO.getPrice()))
                 .photoUrl(menuItemDTO.getPhotoUrl())
@@ -25,7 +26,7 @@ public interface MenuItemMapper {
         return MenuItemDTO.builder()
                 .id(menuItem.getMenuItemId().toString())
                 .name(menuItem.getName())
-                .category(menuItem.getCategory())
+                .category(Category.fromDescription(menuItem.getCategory()))
                 .description(menuItem.getDescription())
                 .price(menuItem.getPrice().toString())
                 .photoUrl(menuItem.getPhotoUrl())

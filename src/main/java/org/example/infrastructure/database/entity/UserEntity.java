@@ -33,7 +33,7 @@ public class UserEntity  {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private CustomerEntity customer;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private OwnerEntity owner;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

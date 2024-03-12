@@ -103,12 +103,11 @@ lastDelete();
         BufferedReader readerSIMC = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/ULIC.csv"), StandardCharsets.UTF_8));
 
         List<List<String>> newRecords = new ArrayList<>();
-
         String lineSIMC;
-        while ((lineSIMC = readerSIMC.readLine()) != null) {
-            List<String> newRecord = new ArrayList<>(Arrays.asList(lineSIMC.split(";")));
 
-            newRecord.remove(newRecord.size() - 2);
+        while ((lineSIMC = readerSIMC.readLine()) != null) {
+            lineSIMC = lineSIMC.replaceAll("\"", "");
+            List<String> newRecord = new ArrayList<>(Arrays.asList(lineSIMC.split(";")));
             newRecords.add(newRecord);
         }
         try (Writer writer = new OutputStreamWriter(new FileOutputStream("ULIC.csv"), StandardCharsets.UTF_8)) {
@@ -119,4 +118,5 @@ lastDelete();
             csvPrinter.flush();
         }
     }
+
 }

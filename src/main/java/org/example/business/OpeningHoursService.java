@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.api.dto.OpeningHoursDTO;
 import org.example.api.dto.RestaurantDTO;
+import org.example.api.dto.mapper.OpeningHoursMapper;
 import org.example.domain.OpeningHours;
 import org.example.domain.Restaurant;
 import org.example.domain.exception.CustomException;
@@ -13,10 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -24,6 +22,7 @@ import java.util.Map;
 public class OpeningHoursService {
 
     private final OpeningHoursRepository openingHoursRepository;
+    private final OpeningHoursMapper openingHoursMapper;
 
     @Transactional
     public Map<DayOfWeek, OpeningHours> getOpeningHours(Restaurant restaurant) {
@@ -63,6 +62,7 @@ public class OpeningHoursService {
             throw new CustomException("Invalid restaurant data.", ex.getMessage());
         }
     }
+
     @Transactional
     private Map<String, List<DayOfWeek>> groupedHours(RestaurantDTO restaurant) {
         try {
@@ -79,6 +79,24 @@ public class OpeningHoursService {
             throw new CustomException("Invalid restaurant data.", ex.getMessage());
         }
     }
+
+    @Transactional
+    public boolean updateDay(Map<DayOfWeek, OpeningHours> currentOpeningHours, OpeningHoursDTO openingHoursDTO) {
+        OpeningHours mapped = openingHoursMapper.mapFromDto(openingHoursDTO);
+        DayOfWeek day = openingHoursDTO.getDay();
+        OpeningHours currentOpeningHour = currentOpeningHours.get(day);
+        if (currentOpeningHour == null || !currentOpeningHour.equals(mapped)) {
+            currentOpeningHours.put(day, mapped);
+            return true;
+        }
+        return false;
+    }
+
+    @Transactional
+    public void deleteById(Integer oldId) {
+        openingHoursRepository.deleteById(oldId);
+    }
+
 }
 
 

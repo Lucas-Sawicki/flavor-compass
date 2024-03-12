@@ -91,10 +91,11 @@
                                 name="category"
                                 th:field="*{category}"
                                 class="btn btn-outline-dark btn-rounded btn-block my-4 z-depth-0">
-                            <option class="btn btn-outline-warning" value="Appetizer">Appetizer</option>
-                            <option class="btn btn-outline-warning" value="Soup">Soup</option>
-                            <option class="btn btn-outline-warning" value="Main course">Main course</option>
-                            <option class="btn btn-outline-warning" value="Dessert">Dessert</option>
+                            <option th:each="category : ${T(org.example.domain.Category).values()}"
+                                    th:value="${category}"
+                                    th:text="${category.getDescription()}"
+                                    class="btn btn-outline-warning">
+                            </option>
                         </select>
                     </div>
                 </div>

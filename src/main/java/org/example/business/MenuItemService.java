@@ -43,7 +43,7 @@ public class MenuItemService {
             MenuItem menuItem = menuItemMapper.map(menuItemDTO, restaurant);
             menuItemDAO.saveMenuItem(menuItem);
         } catch (DataAccessException ex) {
-            throw new CustomException("Error saving menu item.", ex.getMessage());
+            throw new CustomException("Error while saving menu item.", ex.getMessage());
         }
     }
 

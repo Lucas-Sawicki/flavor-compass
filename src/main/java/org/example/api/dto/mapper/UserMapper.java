@@ -2,6 +2,7 @@ package org.example.api.dto.mapper;
 
 import org.example.api.dto.AddressDTO;
 import org.example.api.dto.RegistrationDTO;
+import org.example.api.dto.rest.RestRegistrationDTO;
 import org.example.domain.*;
 import org.mapstruct.Mapper;
 
@@ -46,7 +47,7 @@ public interface UserMapper {
         return owner.withUser(user);
     }
 
-    default User mapApiUser(RegistrationDTO registrationDTO) {
+    default User mapApiUser(RestRegistrationDTO registrationDTO) {
         return User.builder()
                 .email(registrationDTO.getEmail())
                 .password(registrationDTO.getPassword())

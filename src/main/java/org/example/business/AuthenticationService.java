@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.RegistrationDTO;
+import org.example.api.dto.rest.RestRegistrationDTO;
 import org.example.api.dto.mapper.UserMapper;
 import org.example.domain.Customer;
 import org.example.domain.Owner;
@@ -14,7 +15,6 @@ import org.example.domain.exception.CustomException;
 import org.example.infrastructure.security.CustomUserDetails;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -42,14 +42,7 @@ public class AuthenticationService {
     @Transactional
     public void registerUser(RegistrationDTO registrationDTO) {
         try {
-            if (registrationDTO.isRestApiUser()) {
-                User user = userMapper.mapApiUser(registrationDTO);
-                String password = user.getPassword();
-                Role rest_api = roleService.findByRole("ROLE_REST_API");
-                userService.createUser(user
-                        .withPassword(passwordEncoder.encode(password))
-                        .withRoles(Collections.singleton(rest_api)));
-            } else if (registrationDTO.getAddressDTO().isCustomer()) {
+            if (registrationDTO.getAddressDTO().isCustomer()) {
                 Customer customer = userMapper.mapCustomer(registrationDTO, registrationDTO.getAddressDTO());
                 String password = customer.getUser().getPassword();
                 Role role = roleService.findByRole("ROLE_CUSTOMER");
@@ -67,7 +60,23 @@ public class AuthenticationService {
                 ownerService.createOwner(owner.withUser(user));
             }
         } catch (DataIntegrityViolationException ex) {
-            throw new CustomException("User with this email already exists.", ex.getMessage());
+            throw new CustomException("User can't be created", ex.getMessage());
+        }
+    }
+
+    @Transactional
+    public void registerApiUser(RestRegistrationDTO registrationDTO) {
+        try {
+            if (registrationDTO.isRestApiUser()) {
+                User user = userMapper.mapApiUser(registrationDTO);
+                String password = user.getPassword();
+                Role rest_api = roleService.findByRole("ROLE_REST_API");
+                userService.createUser(user
+                        .withPassword(passwordEncoder.encode(password))
+                        .withRoles(Collections.singleton(rest_api)));
+            }
+        } catch (DataIntegrityViolationException ex) {
+            throw new CustomException("User can't be created", ex.getMessage());
         }
     }
 

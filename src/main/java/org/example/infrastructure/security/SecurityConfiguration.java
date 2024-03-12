@@ -80,7 +80,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/home", "/error", "/auth/**", "/api/login", "/api/registration", "/swagger-ui/**", "/images/**", "/css/**", "/js/**", "/restaurant/**", "/find/**").permitAll()
                         .requestMatchers("/owner/**").hasRole("OWNER")
                         .requestMatchers("/customer/**", "/cart").hasRole("CUSTOMER")
-                        .requestMatchers("/order/**").hasAnyRole("CUSTOMER", "OWNER")
+                        .requestMatchers("/order/**").hasAnyRole("CUSTOMER", "OWNER", "REST_API")
                         .requestMatchers("/api/**").hasRole("REST_API")
                         .anyRequest().authenticated()
                 )

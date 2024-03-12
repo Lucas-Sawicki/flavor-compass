@@ -44,7 +44,7 @@
                                     <label for="quantity" class="text-warning">Quantity:</label>
                                     <br>
                                     <br>
-                                    <input type="number" id="quantity" th:value="${orderItemDTO.quantity}" name="quantity" min="1" value="1">
+                                    <input type="number" id="quantity" th:value="${orderItemDTO.quantity}" name="quantity" min="1" max="10" value="1" placeholder="max 10">
                                     <br>
                                     <br>
                                     <button type="submit" class="btn btn-outline-warning">Add to cart</button>
@@ -54,6 +54,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

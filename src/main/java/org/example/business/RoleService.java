@@ -9,8 +9,6 @@ import org.example.infrastructure.database.repository.RoleRepository;
 import org.example.infrastructure.database.repository.mapper.RoleEntityMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class RoleService {

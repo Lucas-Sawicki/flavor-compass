@@ -6,7 +6,7 @@ import org.example.domain.OpeningHours;
 import org.example.domain.Restaurant;
 import org.example.infrastructure.database.entity.OpeningHoursEntity;
 import org.example.infrastructure.database.repository.jpa.OpeningHoursJpaRepository;
-import org.example.infrastructure.database.repository.mapper.OpeningHoursMapper;
+import org.example.infrastructure.database.repository.mapper.OpeningHoursEntityMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.DayOfWeek;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class OpeningHoursRepository implements OpeningHoursDAO {
 
     private final OpeningHoursJpaRepository openingHoursJpaRepository;
-    private final OpeningHoursMapper openingHoursMapper;
+    private final OpeningHoursEntityMapper openingHoursMapper;
 
     @Override
     public Map<DayOfWeek, OpeningHours> findByRestaurant(Restaurant restaurant) {
@@ -36,5 +36,10 @@ public class OpeningHoursRepository implements OpeningHoursDAO {
         OpeningHoursEntity openingHoursEntity = openingHoursMapper.mapToEntity(openingHours);
         OpeningHoursEntity saved = openingHoursJpaRepository.saveAndFlush(openingHoursEntity);
         return openingHoursMapper.mapFromEntity(saved);
+    }
+
+    @Override
+    public void deleteById(Integer oldId) {
+        openingHoursJpaRepository.deleteById(oldId);
     }
 }

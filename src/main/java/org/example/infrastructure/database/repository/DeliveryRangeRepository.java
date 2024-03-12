@@ -7,7 +7,8 @@ import org.example.domain.Restaurant;
 import org.example.infrastructure.database.entity.DeliveryRangeEntity;
 import org.example.infrastructure.database.entity.RestaurantEntity;
 import org.example.infrastructure.database.repository.jpa.DeliveryRangeJpaRepository;
-import org.example.infrastructure.database.repository.mapper.DeliveryRangeMapper;
+import org.example.infrastructure.database.repository.mapper.DeliveryRangeEntityMapper;
+
 import org.example.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,7 @@ import java.util.Optional;
 public class DeliveryRangeRepository implements DeliverRangeDAO {
 
     private final DeliveryRangeJpaRepository deliveryRangeJpaRepository;
-    private final DeliveryRangeMapper deliveryRangeMapper;
+    private final DeliveryRangeEntityMapper deliveryRangeMapper;
     private final RestaurantEntityMapper restaurantMapper;
 
     @Override

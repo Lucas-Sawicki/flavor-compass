@@ -44,7 +44,7 @@ public class SearchController {
                                     @RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "7") int size,
                                     @RequestParam(defaultValue = "localName") String sortBy) {
-        try {
+
             List<Restaurant> restaurantList = deliveryRangeService.processingFindRestaurants(DeliveryRangeDTO);
             Page<Restaurant> restaurants = restaurantService.pagination(page, size, sortBy, restaurantList);
             List<RestaurantDTO> restaurantDTOS = restaurants.getContent().stream().map(restaurantMapper::map).toList();
@@ -52,9 +52,6 @@ public class SearchController {
             model.addAttribute("restaurants", restaurantDTOS);
             model.addAttribute("pagination", restaurants);
             model.addAttribute("restaurantGroupedHours", restaurantGroupedHours);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while finding restaurants", e);
-        }
         return "find_restaurants";
     }
 }

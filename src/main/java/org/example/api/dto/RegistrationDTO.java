@@ -12,6 +12,7 @@ import org.example.api.management.ValidEmail;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@PasswordMatches
 public class RegistrationDTO {
 
 
@@ -25,8 +26,6 @@ public class RegistrationDTO {
     @Pattern(regexp = "^[+]\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$", message = "Please enter phone in valid pattern, example: +00 000 000 000")
     private String phone;
 
-    private boolean restApiUser;
-
     @Email
     @NotBlank(message = "Email is required")
     private String email;
@@ -35,7 +34,7 @@ public class RegistrationDTO {
     @Size(min = 8, message = "The password should be at least 8 characters long")
     private String password;
 
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "Password matching  is required")
     @Size(min = 8, message = "The password should be at least 8 characters long")
     private String matchingPassword;
 

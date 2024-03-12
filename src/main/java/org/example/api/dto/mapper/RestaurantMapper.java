@@ -87,7 +87,7 @@ public interface RestaurantMapper extends LocalTimeMapper {
                 .build();
     }
 
-    default Restaurant mapForApi(RestaurantDTO restaurantDTO, AddressDTO addressDTO){
+    default Restaurant mapForApi(RestaurantDTO restaurantDTO, AddressDTO addressDTO, Owner owner ){
        Restaurant restaurant = Restaurant.builder()
                 .localName(restaurantDTO.getRestaurantName())
                 .website(restaurantDTO.getRestaurantWebsite())
@@ -99,8 +99,15 @@ public interface RestaurantMapper extends LocalTimeMapper {
                         .postalCode(addressDTO.getAddressPostalCode())
                         .street(addressDTO.getAddressStreet())
                         .build())
-
+               .owner(Owner.builder()
+                       .ownerId(owner.getOwnerId())
+                       .user(owner.getUser())
+                       .name(owner.getName())
+                       .surname(owner.getSurname())
+                       .phone(owner.getPhone())
+                       .build())
                 .build();
+
         Map<DayOfWeek, OpeningHours> openingHoursMap = new TreeMap<>();
         for (Map.Entry<DayOfWeek, OpeningHoursDTO> entry : restaurantDTO.getOpeningHours().entrySet()) {
             DayOfWeek key = entry.getKey();
@@ -115,7 +122,7 @@ public interface RestaurantMapper extends LocalTimeMapper {
 
             openingHoursMap.put(entry.getKey(), openingHours);
 
-    }
+        }
         return restaurant.withOpeningHours(openingHoursMap);
     }
 }

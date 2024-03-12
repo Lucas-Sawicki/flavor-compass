@@ -10,7 +10,7 @@ import org.example.domain.exception.CustomException;
 import org.example.domain.exception.NotFoundException;
 import org.example.infrastructure.database.entity.DeliveryRangeEntity;
 import org.example.infrastructure.database.entity.RestaurantEntity;
-import org.example.infrastructure.database.repository.mapper.DeliveryRangeMapper;
+import org.example.infrastructure.database.repository.mapper.DeliveryRangeEntityMapper;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public class DeliveryRangeService {
 
     private final DeliverRangeDAO deliverRangeDAO;
-    private final DeliveryRangeMapper deliveryRangeMapper;
+    private final DeliveryRangeEntityMapper deliveryRangeMapper;
     private final RestaurantService restaurantService;
 
     @Transactional

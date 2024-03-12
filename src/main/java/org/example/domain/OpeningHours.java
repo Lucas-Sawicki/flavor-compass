@@ -10,7 +10,7 @@ import java.util.Set;
 @Value
 @With
 @Builder
-@EqualsAndHashCode(of = "openingHoursId")
+@EqualsAndHashCode(of = {"dayOfWeek", "openTime", "closeTime", "deliveryStartTime", "deliveryEndTime"})
 @ToString
 public class OpeningHours {
 
@@ -21,4 +21,6 @@ public class OpeningHours {
     LocalTime deliveryStartTime;
     LocalTime deliveryEndTime;
     Set<Restaurant> restaurants;
+
+
 }

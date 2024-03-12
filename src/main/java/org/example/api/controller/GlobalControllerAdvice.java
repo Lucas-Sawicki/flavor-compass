@@ -1,5 +1,6 @@
 package org.example.api.controller;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -42,15 +43,30 @@ public class GlobalControllerAdvice {
 
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
-    public String databaseError(Exception ex) {
+    public ModelAndView databaseError(Exception ex) {
+        String message = ex.getMessage();
         log.error("Request raised " + ex.getClass().getSimpleName());
-        return "databaseError";
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errorMessage", message);
+        modelAndView.addObject("errorType", ex.getClass().getSimpleName());
+        return modelAndView;
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(NullPointerException.class)
     public ModelAndView handleNullPointerException(HttpServletRequest req, NullPointerException ex) {
         String message = "Null pointer exception occurred: [%s]. Please check if all required objects were properly initialized.".formatted(ex.getMessage());
+        log.error(message, ex);
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errorMessage", message);
+        modelAndView.addObject("errorType", ex.getClass().getSimpleName());
+
+        return modelAndView;
+    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ModelAndView handleNullPointerException(HttpServletRequest req, ExpiredJwtException ex) {
+        String message = "Token expired";
         log.error(message, ex);
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errorMessage", message);

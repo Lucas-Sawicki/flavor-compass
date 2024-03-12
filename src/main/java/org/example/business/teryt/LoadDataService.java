@@ -109,7 +109,7 @@ public class LoadDataService {
                 street.setSymUl(record.get("SYM_UL"));
                 street.setCecha(record.get("CECHA"));
                 String[] nazwa = record.get("NAZWA").split(";", 2);
-                street.setNazwa_1(nazwa[0]);
+                street.setNazwa_1(nazwa.length > 0 ? nazwa[0] : "");
                 street.setNazwa_2(nazwa.length > 1 ? nazwa[1] : "");
                 streets.add(street);
             }

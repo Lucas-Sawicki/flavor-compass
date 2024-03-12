@@ -15,4 +15,6 @@ public interface OpeningHoursDAO {
    Map<DayOfWeek, OpeningHours> findByRestaurant(Restaurant restaurant);
 
    OpeningHours save(OpeningHours openingHours);
+
+    void deleteById(Integer oldId);
 }

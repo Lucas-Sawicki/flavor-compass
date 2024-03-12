@@ -16,14 +16,12 @@ import org.example.api.management.ValidEmail;
 public class LoginDTO {
 
     @Email
-    @NotNull
-    @NotEmpty
     @NotBlank(message = "Email is required")
     private String email;
 
-    @NotNull
-    @NotEmpty
+
     @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "The password should be at least 8 characters long")
     private String password;
 
 }

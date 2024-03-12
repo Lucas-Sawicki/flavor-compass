@@ -3,8 +3,10 @@ package org.example.business;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.api.dto.AddressDTO;
 import org.example.api.dto.RestaurantDTO;
 import org.example.api.dto.mapper.RestaurantMapper;
+import org.example.api.dto.rest.RestRestaurantUpdateDTO;
 import org.example.business.dao.RestaurantDAO;
 import org.example.domain.Address;
 import org.example.domain.OpeningHours;
@@ -51,6 +53,11 @@ public class RestaurantService {
         } catch (DataAccessException ex) {
             throw new CustomException("Error while saving restaurant.", ex.getMessage());
         }
+    }
+
+    @Transactional
+    public void saveRestaurant(Restaurant restaurant) {
+        restaurantDAO.saveRestaurant(restaurant);
     }
 
     @Transactional
@@ -124,5 +131,10 @@ public class RestaurantService {
         }
     }
 
+    @Transactional
+    public void updateAddress(Address address, Restaurant restaurant) {
+        Restaurant withAddress = restaurant.withAddress(address.withAddressId(restaurant.getAddress().getAddressId()));
+        restaurantDAO.saveRestaurant(withAddress);
 
+    }
 }

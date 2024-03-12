@@ -84,7 +84,7 @@ public class DeliveryController {
             return "success_register";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Something gone wrong when saving delivery address");
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error adding streets", e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error adding streets", e);
         }
     }
 }
