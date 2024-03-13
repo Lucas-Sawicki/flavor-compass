@@ -1,5 +1,12 @@
 package org.example.api.controller.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -27,6 +34,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping(AuthenticationRestController.BASE_PATH)
 @Validated
+@Tag(name = "Account Management")
 public class AuthenticationRestController {
     public static final String BASE_PATH = "/api/";
     public static final String REGISTER = "/registration";
@@ -37,7 +45,27 @@ public class AuthenticationRestController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-
+    @Operation(
+            summary ="Create a REST API account",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = RestRegistrationDTO.class),
+                            examples = @ExampleObject(
+                                    name = "register",
+                                    value = """
+                                            {
+                                               "email": "example@example.com",
+                                                "password": "12345678"
+                                            }""" )) ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Registration was successful"
+                    )
+            }
+    )
     @PostMapping(value = REGISTER)
     public ResponseEntity<String> register(@Valid @RequestBody RestRegistrationDTO body) {
         if (userService.existsByEmail(body.getEmail())) {
@@ -47,12 +75,55 @@ public class AuthenticationRestController {
         authenticationService.registerApiUser(body);
         return ResponseEntity.ok("User registered success");
     }
+    @Operation(
+            summary ="Log in to get a token",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LoginDTO.class),
+                            examples = @ExampleObject(
+                                    name = "login",
+                                    value = """
+                                            {
+                                               "email": "example@example.com",
+                                                "password": "12345678"
+                                            }""" )) ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Login success"
+                    )
+            }
+    )
 
     @PostMapping(value = LOGIN)
     public ResponseEntity<AuthenticationResponseDTO> loginUser(@RequestBody LoginDTO body) {
         return ResponseEntity.ok(authenticationService.loginUser(body.getEmail(), body.getPassword()));
     }
-
+    @Operation(
+            summary ="Upgrade your account to the restaurant owner level",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = RestOwnerDTO.class),
+                            examples = @ExampleObject(
+                                    name = "updateUserAsOwner",
+                                    value = """
+                                            {
+                                                "name": "Name",
+                                                "surname": "Surname",
+                                                "phone": "+00 000 000 000"
+                                            }""" )) ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Become restaurant owner successfully"
+                    )
+            }
+    )
+    @SecurityRequirement(name = "BearerAuth")
     @PatchMapping(value = BECOME_OWNER)
     public ResponseEntity<String> updateUserAsOwner(
             Principal principal,
@@ -71,6 +142,28 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(String.format("User [%s] become restaurant owner successfully", user));
     }
 
+    @Operation(
+            summary ="Endpoint to delete your account",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LoginDTO.class),
+                            examples = @ExampleObject(
+                                    name = "deleteAccount",
+                                    value = """
+                                            {
+                                               "email": "example@example.com",
+                                                "password": "12345678"
+                                            }""" )) ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "User account successfully deleted"
+                    )
+            }
+    )
+    @SecurityRequirement(name = "BearerAuth")
     @DeleteMapping(value = DELETE)
     public ResponseEntity<String> deleteAccount(@RequestBody LoginDTO loginDTO, HttpServletRequest request, Principal principal) {
         String email = principal.getName();

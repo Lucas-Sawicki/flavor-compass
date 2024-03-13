@@ -22,8 +22,8 @@
             <td th:text="${order.orderNumber}" style="border: 1px solid black;"></td>
             <td th:text="${order.orderDate}" style="border: 1px solid black;"></td>
             <td th:text="${order.status}" style="border: 1px solid black;"></td>
-            <td th:text="${order.restaurant.localName} "style="border: 1px solid black;"></td>
-            <td th:text="${order.totalCost} "style="border: 1px solid black;"></td>
+            <td th:text="${order.restaurant.localName} " style="border: 1px solid black;"></td>
+            <td th:text="${order.totalCost} " style="border: 1px solid black;"></td>
             <td>
                 <table style="border-collapse: collapse; width: 100%;">
                     <tr th:each="orderItem : ${order.orderItems}" style="border: 1px solid black;">

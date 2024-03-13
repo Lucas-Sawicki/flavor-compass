@@ -50,8 +50,8 @@ public class RestaurantService {
                     .withOpeningHours(savedOpeningHours)
                     .withAddress(address);
             restaurantDAO.saveRestaurant(finalRestaurant);
-        } catch (DataAccessException ex) {
-            throw new CustomException("Error while saving restaurant.", ex.getMessage());
+        } catch (RuntimeException ex) {
+            throw new CustomException(String.format("Error while saving restaurant: [%s]", ex.getMessage()),ex.getMessage());
         }
     }
 
