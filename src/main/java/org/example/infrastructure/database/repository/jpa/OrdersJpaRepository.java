@@ -16,19 +16,6 @@ import java.util.Set;
 @Repository
 public interface OrdersJpaRepository extends JpaRepository<OrdersEntity, Integer> {
 
-    Set<OrdersEntity> findAllByStatus(String status);
-
-    @Query("""
-                SELECT o FROM OrdersEntity o
-                WHERE o.customer.user.email = :email
-            """)
-    List<OrdersEntity> findOrdersByCustomerEmail(@Param("email") String email);
-
-    @Query("""
-                SELECT o FROM OrdersEntity o
-                WHERE o.restaurant.email = :email
-            """)
-    List<OrdersEntity> findOrdersByRestaurantEmail(@Param("email") String email);
     @Query("SELECT o FROM OrdersEntity o WHERE o.orderNumber = :orderNumber")
     Optional<OrdersEntity> findByOrderNumber(@Param("orderNumber")Long orderNumber);
 

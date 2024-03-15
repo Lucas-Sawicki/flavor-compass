@@ -38,27 +38,4 @@ public class Restaurant {
           }
           return openingHoursIdMap;
      }
-     public Restaurant withOpeningHoursId(Map<DayOfWeek, Integer> openingHoursIdMap) {
-          Map<DayOfWeek, OpeningHours> newOpeningHours = new HashMap<>();
-          Integer firstOpeningHoursId = openingHoursIdMap.values().stream().findFirst().orElse(null);
-          for (Map.Entry<DayOfWeek, Integer> entry : openingHoursIdMap.entrySet()) {
-               OpeningHours openingHours = OpeningHours.builder()
-                       .openingHoursId(firstOpeningHoursId)
-                       .build();
-               newOpeningHours.put(entry.getKey(), openingHours);
-          }
-          return Restaurant.builder()
-                  .restaurantId(this.restaurantId)
-                  .localName(this.localName)
-                  .website(this.website)
-                  .phone(this.phone)
-                  .email(this.email)
-                  .address(this.address)
-                  .owner(this.owner)
-                  .openingHours(newOpeningHours)
-                  .opinions(this.opinions)
-                  .orders(this.orders)
-                  .build();
-     }
-
 }

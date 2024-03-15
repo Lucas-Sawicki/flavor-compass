@@ -64,10 +64,5 @@ public class RestaurantRepository implements RestaurantDAO {
         return restaurantEntityMapper.mapFromEntity(entity);
     }
 
-    @Override
-    public Page<Restaurant> findByRestaurant(Restaurant restaurant, PageRequest pageRequest) {
-        Page<RestaurantEntity> sorted = restaurantJpaRepository.findByEmail(restaurant.getEmail(), pageRequest);
-        return sorted.map(restaurantEntityMapper::mapFromEntity);
-    }
 
 }

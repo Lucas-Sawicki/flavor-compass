@@ -23,9 +23,6 @@ import java.util.Enumeration;
 @Controller
 @RequiredArgsConstructor
 public class FileUploadController {
-
-    // U u
-
     private final FileUpload fileUpload;
 
     @PostMapping("/upload")

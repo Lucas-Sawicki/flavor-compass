@@ -5,8 +5,10 @@ import org.example.business.dao.OpeningHoursDAO;
 import org.example.domain.OpeningHours;
 import org.example.domain.Restaurant;
 import org.example.infrastructure.database.entity.OpeningHoursEntity;
+import org.example.infrastructure.database.entity.RestaurantEntity;
 import org.example.infrastructure.database.repository.jpa.OpeningHoursJpaRepository;
 import org.example.infrastructure.database.repository.mapper.OpeningHoursEntityMapper;
+import org.example.infrastructure.database.repository.mapper.RestaurantEntityMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.DayOfWeek;
@@ -20,10 +22,12 @@ public class OpeningHoursRepository implements OpeningHoursDAO {
 
     private final OpeningHoursJpaRepository openingHoursJpaRepository;
     private final OpeningHoursEntityMapper openingHoursMapper;
+    private final RestaurantEntityMapper restaurantEntityMapper;
 
     @Override
     public Map<DayOfWeek, OpeningHours> findByRestaurant(Restaurant restaurant) {
-        List<OpeningHoursEntity> openingHoursEntities = openingHoursJpaRepository.findByRestaurants(restaurant);
+        RestaurantEntity restaurantEntity = restaurantEntityMapper.mapToEntity(restaurant);
+        List<OpeningHoursEntity> openingHoursEntities = openingHoursJpaRepository.findByRestaurants(restaurantEntity);
         return openingHoursEntities.stream()
                 .collect(Collectors.toMap(
                         OpeningHoursEntity::getDayOfWeek,

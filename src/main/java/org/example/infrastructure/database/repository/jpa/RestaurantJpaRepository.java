@@ -25,5 +25,4 @@ public interface RestaurantJpaRepository extends JpaRepository<RestaurantEntity,
 
     RestaurantEntity findByEmail(String email);
 
-    Page<RestaurantEntity>  findByEmail(String email, Pageable pageable);
 }

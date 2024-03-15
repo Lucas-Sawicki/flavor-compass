@@ -35,7 +35,7 @@ public class CustomerController {
 
 
     @GetMapping(value = CUSTOMER_ID)
-    public String showOwner(@PathVariable Integer customerID, Model model) {
+    public String showCustomerPageByID(@PathVariable Integer customerID, Model model) {
         try {
             Customer findCustomer = customerService.findCustomerById(customerID);
             if (findCustomer != null) {
@@ -47,5 +47,10 @@ public class CustomerController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error displaying customer", e);
         }
+    }
+
+    @GetMapping()
+    public String showCustomerPage(Model model) {
+        return "customer_portal";
     }
 }

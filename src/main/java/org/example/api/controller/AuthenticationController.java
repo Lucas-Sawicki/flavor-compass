@@ -8,10 +8,7 @@ import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.LoginDTO;
 import org.example.api.dto.RegistrationDTO;
 import org.example.business.AuthenticationService;
-import org.example.business.CustomerService;
-import org.example.business.TokenService;
 import org.example.business.UserService;
-import org.example.infrastructure.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -19,7 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.stream.Collectors;
@@ -37,9 +37,6 @@ public class AuthenticationController {
     public static final String REGISTER = "/registration";
     @Autowired
     private AuthenticationService authenticationService;
-    private CustomUserDetailsService userDetailsService;
-    private TokenService tokenService;
-    private CustomerService customerService;
     @Autowired
     private UserService userService;
 
@@ -93,5 +90,6 @@ public class AuthenticationController {
         authenticationService.registerUser(registrationDTO);
         return new ModelAndView("redirect:/auth/success_register");
     }
+
 }
 

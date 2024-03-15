@@ -11,6 +11,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       format_sql: true
-      ddl-auto: create-drop
+      ddl-auto: validate
   security:
     enabled: false

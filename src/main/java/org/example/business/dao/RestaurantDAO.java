@@ -20,5 +20,4 @@ public interface RestaurantDAO {
 
     Restaurant findRestaurantById(Integer restaurantId);
 
-    Page<Restaurant> findByRestaurant(Restaurant restaurant, PageRequest pageRequest);
 }

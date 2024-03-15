@@ -15,4 +15,12 @@ public interface AddressMapper {
                 .postalCode(addressDTO.getAddressPostalCode())
                 .build();
     }
+    default AddressDTO map(Address address) {
+       return AddressDTO.builder()
+                .addressCountry(address.getCountry())
+                .addressCity(address.getCity())
+                .addressStreet(address.getStreet())
+                .addressPostalCode(address.getPostalCode())
+                .build();
+    }
 }

@@ -34,17 +34,6 @@ public class OrdersRepository implements OrdersDAO {
         return ordersEntityMapper.mapFromEntity(entity);
     }
 
-    @Override
-    public Orders findById(Integer id) {
-        Optional<OrdersEntity> ordersEntity = ordersJpaRepository.findById(id);
-        if (ordersEntity.isPresent()) {
-            OrdersEntity entity = ordersEntity.get();
-            return ordersEntityMapper.mapFromEntity(entity);
-        } else {
-            throw new RuntimeException(String.format("Cant find order with id: [%s]", id));
-        }
-    }
-
 
     @Override
     public Orders saveOrder(Orders orders) {

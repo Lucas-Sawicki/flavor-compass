@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @Repository
 public interface MenuItemJpaRepository extends JpaRepository<MenuItemEntity, Integer> {
-     Optional<MenuItemEntity> findMenuItemByName(String name);
-
     List<MenuItemEntity> findAllByRestaurantRestaurantId(Integer restaurantId);
     Page<MenuItemEntity> findAllByRestaurantRestaurantId(Integer restaurantId, Pageable pageable);
 }

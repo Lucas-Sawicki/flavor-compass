@@ -37,7 +37,7 @@ public class DeliveryController {
     private DeliveryMapper deliveryMapper;
 
     @GetMapping("/owner/delivery")
-    public String showMyPage(@RequestParam(required = false) String voi,
+    public String showPage(@RequestParam(required = false) String voi,
                              @RequestParam(required = false) String cou,
                              @RequestParam(required = false) String cit,
                              Model model,
@@ -76,8 +76,7 @@ public class DeliveryController {
     public String addStreets(@RequestParam("cit") String cit,
                              @RequestParam("restaurant") String restaurant,
                              @RequestParam("approvedNames") List<String> approvedNames,
-                             RedirectAttributes redirectAttributes,
-                             Model model) {
+                             RedirectAttributes redirectAttributes) {
         try {
             DeliveryRangeDTO deliveryRangeDTO = deliveryMapper.map(cit, restaurant, approvedNames);
             deliveryRangeService.addDeliveryPlaces(deliveryRangeDTO);

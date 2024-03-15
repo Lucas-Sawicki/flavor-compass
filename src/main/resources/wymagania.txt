@@ -2,12 +2,9 @@ Co trzeba zrobić (technicznie)
 
 [#12] Efekt końcowy projektu ma być dostępny na GitHub, a Twoje repozytorium ma być publiczne. Chcemy mieć pełny wgląd do kodu źródłowego, żeby móc go przeczytać i ocenić. Dodaj również plik README.md,
     w którym zawrzesz informacje o Twoim projekcie.
-[#16] Zaprojektuj bazę danych. Chcemy zobaczyć przygotowany diagram ERD. Możesz go narysować, w czym chcesz, możesz spróbować zrobić ten diagram np. wykorzystując PlantUML.
 [#20] Zabezpiecz swoją aplikację przed nieautoryzowanym dostępem. Jeżeli chodzi o zarządzanie użytkownikami (tworzenie, usuwanie, odzyskiwanie hasła), tutaj zostawiamy Ci pole do popisu.
     Pamiętaj, że jak dodasz do projektu security, to będziesz musiał/musiała jakoś ograć w testach warstwę security. Masz tutaj wolną rękę.
 [#20] Napisz testy jednostkowe (Mockito), @DataJpaTest, @WebMvcTest oraz @SpringBootTest. Zapewnij pokrycie kodu testami na poziomie 80%.
-[#21] Wystaw swoje REST API umożliwiające wywołanie endpointów GET, POST, PUT oraz DELETE w Twojej aplikacji. Co te endpointy będą realizowały w kontekście biznesowym - tutaj zostawiamy Ci wolną rękę.
-[#21] Wystaw SwaggerUI.
 [#21] Napisz testy RestAssured tak, żeby pokryć przypadek każdej z wymienionych metod HTTP w Twoim REST API.
 [#21] Postaraj się wykorzystać jakieś zewnętrzne API, które skonsumujesz w swojej aplikacji. Napisałem "postaraj",
     bo nie w każdej z proponowanych domen biznesowych będzie można łatwo znaleźć w Internecie REST API do skonsumowania, a tym bardziej API wystawiające kontrakt OpenAPI.

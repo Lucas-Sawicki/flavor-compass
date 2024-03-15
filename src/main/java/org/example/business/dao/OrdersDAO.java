@@ -10,7 +10,6 @@ public interface OrdersDAO {
 
     Orders getOrderByOrderNumber(Long orderNumber);
 
-    Orders findById(Integer id);
     Orders saveOrder(Orders orders);
 
     void delete(Long orderNumber);

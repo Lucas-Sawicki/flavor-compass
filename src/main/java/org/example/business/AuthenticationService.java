@@ -12,6 +12,7 @@ import org.example.domain.Owner;
 import org.example.domain.Role;
 import org.example.domain.User;
 import org.example.domain.exception.CustomException;
+import org.example.infrastructure.database.repository.mapper.UserEntityMapper;
 import org.example.infrastructure.security.CustomUserDetails;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +33,7 @@ public class AuthenticationService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
+    private final UserEntityMapper userEntityMapper;
     private final RoleService roleService;
     private final CustomerService customerService;
     private final OwnerService ownerService;
@@ -87,17 +89,17 @@ public class AuthenticationService {
                     new UsernamePasswordAuthenticationToken(email, password)
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            var user = userService.findEntityByEmail(email)
+            var userEntity = userService.findEntityByEmail(email)
                     .orElseThrow(() -> new EntityNotFoundException("User not found!"));
-            UserDetails userDetails = new CustomUserDetails(user);
+            UserDetails userDetails = new CustomUserDetails(userEntity);
             var jwtToken = tokenService.generateToken(userDetails);
-            Optional<User> userOptional = userService.findByEmail(user.getEmail());
+            User user = userEntityMapper.mapFromEntity(userEntity);
             AuthenticationResponseDTO responseDTO = AuthenticationResponseDTO.builder()
-                    .user(userOptional.get())
+                    .user(user)
                     .token(jwtToken)
                     .build();
 
-            if (user.getCustomer() != null) {
+            if (userEntity.getCustomer() != null) {
                 responseDTO.setIsCustomer(true);
             }
             return responseDTO;
@@ -105,4 +107,5 @@ public class AuthenticationService {
             throw new CustomException("Invalid login credentials.", ex.getMessage());
         }
     }
+
 }

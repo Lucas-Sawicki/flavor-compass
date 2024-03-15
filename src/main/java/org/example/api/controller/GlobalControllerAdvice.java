@@ -31,8 +31,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-
-//@Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class GlobalControllerAdvice {
     protected Logger log;
