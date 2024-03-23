@@ -1,6 +1,7 @@
-package org.example.api.controller;
+package org.example.api.controller.mockitoTests;
 
-import org.example.business.FileUpload;
+import org.example.api.controller.FileUploadController;
+import org.example.business.dao.FileUploadDAO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class FileUploadControllerMockitoTest {
+public class FileUploadDAOControllerMockitoTest {
 
     @InjectMocks
     FileUploadController fileUploadController;
 
     @Mock
-    FileUpload fileUpload;
+    FileUploadDAO fileUploadDAO;
 
     @Mock
     Model model;
@@ -35,7 +36,7 @@ public class FileUploadControllerMockitoTest {
         MultipartFile multipartFile = mock(MultipartFile.class);
         //when
         when(multipartFile.isEmpty()).thenReturn(false);
-        when(fileUpload.uploadFile(multipartFile)).thenReturn("imageUrl");
+        when(fileUploadDAO.uploadFile(multipartFile)).thenReturn("imageUrl");
         String viewName = fileUploadController.uploadFile(multipartFile, model, new MockHttpSession());
         //then
         assertEquals("redirect:/owner/add/menu", viewName);
@@ -58,7 +59,7 @@ public class FileUploadControllerMockitoTest {
         MultipartFile multipartFile = mock(MultipartFile.class);
         //when
         when(multipartFile.isEmpty()).thenReturn(false);
-        doThrow(IOException.class).when(fileUpload).uploadFile(multipartFile);
+        doThrow(IOException.class).when(fileUploadDAO).uploadFile(multipartFile);
         //then
         assertThrows(ResponseStatusException.class, () -> {
             fileUploadController.uploadFile(multipartFile, model, new MockHttpSession());

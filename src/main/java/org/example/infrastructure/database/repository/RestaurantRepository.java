@@ -34,9 +34,10 @@ public class RestaurantRepository implements RestaurantDAO {
     }
 
     @Override
-    public void saveRestaurant(Restaurant restaurant) {
+    public Restaurant saveRestaurant(Restaurant restaurant) {
         RestaurantEntity toSave = restaurantEntityMapper.mapToEntity(restaurant);
         restaurantJpaRepository.saveAndFlush(toSave);
+        return restaurantEntityMapper.mapFromEntity(toSave);
     }
 
     @Override

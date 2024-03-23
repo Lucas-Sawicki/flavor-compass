@@ -1,6 +1,7 @@
-package org.example.api.controller;
+package org.example.api.controller.mockitoTests;
 
 import jakarta.servlet.http.HttpSession;
+import org.example.api.controller.MenuItemController;
 import org.example.api.dto.MenuItemDTO;
 import org.example.business.OwnerService;
 import org.example.business.RestaurantService;

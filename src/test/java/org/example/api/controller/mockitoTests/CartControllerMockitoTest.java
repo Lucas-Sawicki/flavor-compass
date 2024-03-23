@@ -1,5 +1,6 @@
-package org.example.api.controller;
+package org.example.api.controller.mockitoTests;
 
+import org.example.api.controller.CartController;
 import org.example.api.dto.OrderItemDTO;
 import org.example.business.CartService;
 import org.example.business.MenuItemService;
@@ -37,7 +38,7 @@ public class CartControllerMockitoTest {
     public void whenAddToCartThenReturnsToCartPage() {
         //given
         MenuItem menuItem = OtherFixtures.someMenuItem();
-        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItem();
+        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItemDTO();
         //when
         when(menuItemService.findById(orderItemDTO.getMenuItemId())).thenReturn(menuItem);
         String viewName = cartController.addToCart(orderItemDTO.getMenuItemId(),orderItemDTO.getQuantity());
@@ -49,7 +50,7 @@ public class CartControllerMockitoTest {
     @Test
     public void whenRemoveFromCartThenBackToCartPage() {
         //given
-        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItem();
+        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItemDTO();
         //when
         String viewName = cartController.removeFromCart(orderItemDTO, new MockHttpSession());
         //then
@@ -84,7 +85,7 @@ public class CartControllerMockitoTest {
     @Test
     public void whenRemoveFromCartThenThrowsException() {
         //given
-        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItem();
+        OrderItemDTO orderItemDTO = OtherFixtures.someOrderItemDTO();
         //when
         doThrow(new RuntimeException()).when(cartService).removeFromCart(orderItemDTO);
         //then

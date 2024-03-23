@@ -36,7 +36,7 @@ public class OrdersController {
     public static final String CHECKOUT = "/checkout";
     public static final String PLACE_ORDER = "/placeOrder";
     public static final String CONFIRMATION = "/confirmation";
-    private static final String CANCEL_ORDER = "/cancel";
+    public static final String CANCEL_ORDER = "/cancel";
     private static final String HISTORY = "/history";
     private static final String COMPLETED = "/complete";
     private static final String ORDER_ERROR = "/order_error";
@@ -45,21 +45,6 @@ public class OrdersController {
     private final UserService userService;
 
     private final CartService cartService;
-
-    @GetMapping(value = CHECKOUT)
-    public String checkout(Model model) {
-        try {
-            Cart cart = cartService.getCart();
-            if (cart == null) {
-                return "redirect:/cart";
-            }
-            model.addAttribute("order", new OrdersDTO());
-            model.addAttribute("cart", cart);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while displaying checkout page", e);
-        }
-        return "checkout";
-    }
 
     @PostMapping(value = PLACE_ORDER)
     public String placeOrder(@ModelAttribute("order") OrdersDTO orderDTO, BindingResult bindingResult, HttpSession session, Principal principal) {
@@ -94,7 +79,7 @@ public class OrdersController {
     }
 
     @DeleteMapping(value = CANCEL_ORDER)
-    public String cancelOrder(@RequestParam Long orderNumber, HttpServletRequest request) {
+    public String cancelOrder(@RequestParam Long orderNumber) {
         try {
             Orders order = ordersService.getOrderByOrderNumber(orderNumber);
             OffsetDateTime orderTime = order.getOrderDate();
@@ -131,7 +116,7 @@ public class OrdersController {
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found", e);
         } catch (IllegalStateException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while displaying order history", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
@@ -152,7 +137,7 @@ public class OrdersController {
         return dateTime.format(formatter);
     }
 
-    private void displayOrderHistoryForOwner(Model model, Owner owner) {
+    public void displayOrderHistoryForOwner(Model model, Owner owner) {
         List<Orders> orders = ordersService.ordersHistoryForOwner(owner);
         List<Orders> pendingOrders = orders.stream()
                 .filter(order -> order.getStatus().equals("PENDING"))

@@ -1,24 +1,19 @@
 package org.example.business;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.api.dto.OrdersDTO;
-import org.example.api.dto.mapper.OrdersMapper;
 import org.example.business.dao.OrdersDAO;
-import org.example.domain.*;
+import org.example.domain.Customer;
+import org.example.domain.Orders;
+import org.example.domain.Owner;
 import org.example.domain.exception.CustomException;
-import org.example.infrastructure.database.repository.OrdersRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Service

@@ -2,8 +2,6 @@ Co trzeba zrobić (technicznie)
 
 [#12] Efekt końcowy projektu ma być dostępny na GitHub, a Twoje repozytorium ma być publiczne. Chcemy mieć pełny wgląd do kodu źródłowego, żeby móc go przeczytać i ocenić. Dodaj również plik README.md,
     w którym zawrzesz informacje o Twoim projekcie.
-[#20] Zabezpiecz swoją aplikację przed nieautoryzowanym dostępem. Jeżeli chodzi o zarządzanie użytkownikami (tworzenie, usuwanie, odzyskiwanie hasła), tutaj zostawiamy Ci pole do popisu.
-    Pamiętaj, że jak dodasz do projektu security, to będziesz musiał/musiała jakoś ograć w testach warstwę security. Masz tutaj wolną rękę.
 [#20] Napisz testy jednostkowe (Mockito), @DataJpaTest, @WebMvcTest oraz @SpringBootTest. Zapewnij pokrycie kodu testami na poziomie 80%.
 [#21] Napisz testy RestAssured tak, żeby pokryć przypadek każdej z wymienionych metod HTTP w Twoim REST API.
 [#21] Postaraj się wykorzystać jakieś zewnętrzne API, które skonsumujesz w swojej aplikacji. Napisałem "postaraj",

@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /test
 spring:
   h2:
     console:
@@ -8,9 +11,9 @@ spring:
     password: password
     driverClassName: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       format_sql: true
       ddl-auto: validate
   security:
-    enabled: false
+    enabled: true

@@ -12,7 +12,6 @@ import org.example.api.management.ValidEmail;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@PasswordMatches
 public class LoginDTO {
 
     @Email

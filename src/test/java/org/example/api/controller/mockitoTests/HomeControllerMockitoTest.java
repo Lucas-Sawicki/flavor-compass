@@ -1,7 +1,8 @@
-package org.example.api.controller;
+package org.example.api.controller.mockitoTests;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.example.api.controller.HomeController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

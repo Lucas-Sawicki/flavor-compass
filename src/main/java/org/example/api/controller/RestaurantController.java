@@ -67,9 +67,7 @@ public class RestaurantController {
     @PostMapping(value = ADD_RESTAURANT)
     public ModelAndView addRestaurant(
             @Valid @ModelAttribute RestaurantDTO restaurantDTO,
-            @Valid @ModelAttribute OpeningHoursDTO openingHoursDTO,
             Principal principal,
-            Model model,
             BindingResult bindingResult
     ) {
         try {

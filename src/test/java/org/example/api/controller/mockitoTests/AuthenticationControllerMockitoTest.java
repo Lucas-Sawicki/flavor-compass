@@ -1,5 +1,6 @@
-package org.example.api.controller;
+package org.example.api.controller.mockitoTests;
 
+import org.example.api.controller.AuthenticationController;
 import org.example.api.dto.AuthenticationResponseDTO;
 import org.example.api.dto.LoginDTO;
 import org.example.api.dto.RegistrationDTO;

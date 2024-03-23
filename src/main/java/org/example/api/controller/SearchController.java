@@ -40,12 +40,12 @@ public class SearchController {
 
     @PostMapping(value = FIND)
     public String listOfRestaurants(Model model,
-                                    @ModelAttribute DeliveryRangeDTO DeliveryRangeDTO,
+                                    @ModelAttribute DeliveryRangeDTO deliveryRangeDTO,
                                     @RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "7") int size,
                                     @RequestParam(defaultValue = "localName") String sortBy) {
 
-            List<Restaurant> restaurantList = deliveryRangeService.processingFindRestaurants(DeliveryRangeDTO);
+            List<Restaurant> restaurantList = deliveryRangeService.processingFindRestaurants(deliveryRangeDTO);
             Page<Restaurant> restaurants = restaurantService.pagination(page, size, sortBy, restaurantList);
             List<RestaurantDTO> restaurantDTOS = restaurants.getContent().stream().map(restaurantMapper::map).toList();
             Map<String, Map<String, String>> restaurantGroupedHours = openingHoursService.formattedHours(restaurantDTOS);

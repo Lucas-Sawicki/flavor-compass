@@ -2,33 +2,28 @@ package org.example.business;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.example.api.dto.AuthenticationResponseDTO;
-import org.example.api.dto.mapper.AddressMapper;
-import org.example.api.dto.mapper.UserMapper;
 import org.example.domain.User;
 import org.example.domain.exception.CustomException;
 import org.example.infrastructure.database.entity.RoleEntity;
 import org.example.infrastructure.database.entity.UserEntity;
 import org.example.infrastructure.database.repository.RoleRepository;
-import org.example.infrastructure.database.repository.mapper.AddressEntityMapper;
-import org.example.infrastructure.database.repository.mapper.CustomerEntityMapper;
 import org.example.infrastructure.database.repository.mapper.UserEntityMapper;
 import org.example.infrastructure.security.CustomUserDetails;
 import org.example.util.EntityFixtures;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -39,8 +34,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class AuthenticationServiceTest {
+@ExtendWith(MockitoExtension.class)
+public class AuthenticationServiceMockitoTest {
 
     @Mock
     private AuthenticationManager authenticationManager;
@@ -69,7 +64,6 @@ public class AuthenticationServiceTest {
         User user = userEntityMapper.mapFromEntity(userEntity);
 
         // when
-        when(roleRepository.findByRole("ROLE_OWNER")).thenReturn(role);
         when(authenticationManager.authenticate(any())).thenReturn(auth);
         when(userService.findEntityByEmail(email)).thenReturn(Optional.of(userEntity));
         when(tokenService.generateToken(userDetails)).thenReturn(token);

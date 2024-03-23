@@ -36,11 +36,11 @@ import java.util.Optional;
 @Validated
 @Tag(name = "Account Management")
 public class AuthenticationRestController {
-    public static final String BASE_PATH = "/api/";
+    public static final String BASE_PATH = "/api";
     public static final String REGISTER = "/registration";
     public static final String LOGIN = "/login";
     public static final String BECOME_OWNER = "/owner/create";
-    private static final String DELETE = "/delete";
+    public static final String DELETE = "/delete";
     private final AuthenticationService authenticationService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;

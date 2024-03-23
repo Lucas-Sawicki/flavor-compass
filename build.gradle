@@ -68,6 +68,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 
     //test
+    testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test:6.2.2'
     testCompileOnly 'org.projectlombok:lombok'

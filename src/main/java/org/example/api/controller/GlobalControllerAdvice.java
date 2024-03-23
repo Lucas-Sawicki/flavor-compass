@@ -13,6 +13,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -190,7 +192,16 @@ public class GlobalControllerAdvice {
         modelAndView.addObject("errorType", ex.getClass().getSimpleName());
         return modelAndView;
     }
-
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    public ModelAndView handleMissingServletRequestPartException(MissingServletRequestPartException ex) {
+        String message = "Unexpected exception occurred: [%s]".formatted(ex.getMessage());
+        log.error(message, ex);
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errorMessage", message);
+        modelAndView.addObject("errorType", ex.getClass().getSimpleName());
+        return modelAndView;
+    }
     @ModelAttribute("deliveryRangeDTO")
     public DeliveryRangeDTO deliveryRangeDTO() {
         return new DeliveryRangeDTO();

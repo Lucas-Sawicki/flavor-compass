@@ -1,8 +1,8 @@
 package org.example.business;
 
 import com.cloudinary.Cloudinary;
-import com.cloudinary.Url;
 import lombok.RequiredArgsConstructor;
+import org.example.business.dao.FileUploadDAO;
 import org.example.domain.exception.CustomException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class FileUploadImpl implements FileUpload {
+public class FileUploadImpl implements FileUploadDAO {
 
     private final Cloudinary cloudinary;
 

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface RestaurantDAO {
     List<Restaurant> findAvailableRestaurantsByOwner(Owner owner);
-    void saveRestaurant(Restaurant restaurant);
+    Restaurant saveRestaurant(Restaurant restaurant);
     Boolean existsByEmail(String email);
 
     List<Restaurant> findAllByRestaurantId();
