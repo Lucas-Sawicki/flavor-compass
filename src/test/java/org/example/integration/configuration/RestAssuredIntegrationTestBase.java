@@ -19,8 +19,8 @@ import org.springframework.test.context.TestPropertySource;
 
 @TestPropertySource(locations = "classpath:application-test.yaml")
 @SpringBootTest(
-        classes = {ApplicationRunner.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+        classes = {ApplicationRunner.class}
+//        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public abstract class RestAssuredIntegrationTestBase
         implements ControllerTestSupport, AuthenticationTestSupport {

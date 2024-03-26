@@ -17,9 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.hasItems;
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@TestPropertySource(locations = "classpath:application-test.yaml")
+//@TestPropertySource(locations = "classpath:application-test.yaml")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AuthenticationRestControllerRestAssuredIT
         extends RestAssuredIntegrationTestBase

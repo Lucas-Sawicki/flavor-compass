@@ -6,7 +6,7 @@ public class RestFixtures {
 
     public static RestRegistrationDTO someRegistrationDTO(){
         return RestRegistrationDTO.builder()
-                .email("some@email.com")
+                .email("some22@email.com")
                 .password("password")
                 .build();
     }
